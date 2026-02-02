@@ -125,7 +125,7 @@ open MouseHighlighter.xcodeproj
 
 ```bash
 xcodebuild -project MouseHighlighter.xcodeproj \
-  -scheme "Mac Mouse Highlighter" \
+  -scheme "MouseHighlighter" \
   -configuration Release \
   -arch arm64 -arch x86_64 \
   ONLY_ACTIVE_ARCH=NO

@@ -9,7 +9,7 @@ set -e
 APP_NAME="Mac Mouse Highlighter"
 DMG_NAME="MacMouseHighlighter"
 VERSION=$(grep -o 'MARKETING_VERSION = [^;]*' MouseHighlighter.xcodeproj/project.pbxproj | head -1 | cut -d '=' -f2 | tr -d ' ')
-SCHEME="Mac Mouse Highlighter"
+SCHEME="MouseHighlighter"
 BUILD_DIR="build"
 DMG_DIR="$BUILD_DIR/dmg"
 RELEASE_DIR="$BUILD_DIR/Release"
