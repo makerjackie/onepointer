@@ -1,0 +1,31 @@
+# Changelog
+
+All notable changes to Mac Mouse Highlighter will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.0] - 2024
+
+### Added
+
+- Initial release of Mac Mouse Highlighter
+- **Highlight Styles**
+  - Circle: Soft, filled circle with gradient effect
+  - Spotlight: Screen dimming with spotlight around cursor
+  - Ring: Glowing ring outline around cursor
+- **Click Effects**
+  - Ripple: Expanding circle that fades out
+  - Color Flash: Brief flash of color at click point
+  - Shrink & Bounce: Spring animation on click
+- **Features**
+  - Menu bar icon with quick access to settings
+  - Multi-display support
+  - Customizable colors, sizes, and opacity
+  - Launch at login option
+  - Show/hide dock icon option
+  - Smooth 60fps animations
+  - Low CPU usage
+- **Compatibility**
+  - Universal Binary (Intel + Apple Silicon)
+  - macOS 12.0 (Monterey) and later

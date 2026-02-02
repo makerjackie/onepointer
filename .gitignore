@@ -1,0 +1,61 @@
+# Xcode
+xcuserdata/
+*.xcuserdatad/
+DerivedData/
+Build/
+*.app/
+*.dSYM/
+*.dSYM.zip
+*.ipa
+*.xcarchive
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Build artifacts
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Xcode Scheme
+*.xcscheme
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Packages/
+Package.resolved
+
+# CocoaPods (if used in future)
+Pods/
+
+# Carthage (if used in future)
+Carthage/Build/
+
+# Distribution
+*.dmg
+*.pkg
+*.zip
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# Secrets (never commit these)
+*.p12
+*.mobileprovision
+*.provisionprofile
+Secrets/
