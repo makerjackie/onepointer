@@ -1,10 +1,20 @@
 # Mac Mouse Highlighter
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![macOS](https://img.shields.io/badge/macOS-12.0%2B-blue)](https://www.apple.com/macos/)
+[![macOS](https://img.shields.io/badge/macOS-12.0%2B%20Monterey-blue)](https://www.apple.com/macos/)
 [![Platform](https://img.shields.io/badge/Platform-Universal%20Binary-green)](https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary)
 
 A native macOS app that adds visual highlights around the mouse cursor and animated click effects, perfect for screen recordings, presentations, and demos.
+
+## Why I Built This
+
+Ever tried to record a tutorial or do a live demo and your audience just... loses your cursor? I've been there countless times. "Where's the mouse?" "Can you click that again?" "I couldn't see where you clicked."
+
+It's such a simple problem, but surprisingly annoying. I just wanted a quick way to highlight my mouse cursor - nothing fancy, just something that works. Most solutions out there were either paid apps with way more features than I needed, or janky utilities that hadn't been updated since 2015.
+
+So I built this. A simple, native Mac app that does one thing well: makes your cursor visible. Whether you're recording a screencast, presenting to your team, or helping someone over a screen share, you'll never lose your cursor again.
+
+It's free, it's open source, and it just works. Hope it helps you as much as it helps me.
 
 ## Download
 
