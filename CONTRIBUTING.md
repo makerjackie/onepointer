@@ -90,7 +90,7 @@ Before submitting a PR:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mac-mouse-highlighter.git
+git clone https://github.com/nikhilbhansali/mac-mouse-highlighter.git
 cd mac-mouse-highlighter
 
 # Open in Xcode
