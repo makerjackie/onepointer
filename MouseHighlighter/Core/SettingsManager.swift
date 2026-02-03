@@ -6,6 +6,8 @@ enum HighlightStyle: String, CaseIterable, Codable {
     case circle = "Circle"
     case spotlight = "Spotlight"
     case ring = "Ring"
+    case crosshair = "Crosshair"
+    case pulse = "Pulse"
 }
 
 enum ClickEffect: String, CaseIterable, Codable {
@@ -32,6 +34,15 @@ final class SettingsManager: ObservableObject {
         static let effectDuration = "effectDuration"
         static let launchAtLogin = "launchAtLogin"
         static let showInDock = "showInDock"
+        // Crosshair settings
+        static let crosshairLength = "crosshairLength"
+        static let crosshairThickness = "crosshairThickness"
+        static let crosshairStyle = "crosshairStyle"
+        // Pulse settings
+        static let pulseSpeed = "pulseSpeed"
+        static let pulseIntensity = "pulseIntensity"
+        // Performance settings
+        static let targetFrameRate = "targetFrameRate"
     }
 
     @Published var isEnabled: Bool {
@@ -114,6 +125,45 @@ final class SettingsManager: ObservableObject {
         }
     }
 
+    // Crosshair settings
+    @Published var crosshairLength: CGFloat {
+        didSet {
+            UserDefaults.standard.set(crosshairLength, forKey: Keys.crosshairLength)
+        }
+    }
+
+    @Published var crosshairThickness: CGFloat {
+        didSet {
+            UserDefaults.standard.set(crosshairThickness, forKey: Keys.crosshairThickness)
+        }
+    }
+
+    @Published var crosshairStyle: CrosshairStyle {
+        didSet {
+            UserDefaults.standard.set(crosshairStyle.rawValue, forKey: Keys.crosshairStyle)
+        }
+    }
+
+    // Pulse settings
+    @Published var pulseSpeed: PulseSpeed {
+        didSet {
+            UserDefaults.standard.set(pulseSpeed.rawValue, forKey: Keys.pulseSpeed)
+        }
+    }
+
+    @Published var pulseIntensity: PulseIntensity {
+        didSet {
+            UserDefaults.standard.set(pulseIntensity.rawValue, forKey: Keys.pulseIntensity)
+        }
+    }
+
+    // Performance settings
+    @Published var targetFrameRate: Int {
+        didSet {
+            UserDefaults.standard.set(targetFrameRate, forKey: Keys.targetFrameRate)
+        }
+    }
+
     private init() {
         let defaults = UserDefaults.standard
 
@@ -143,6 +193,35 @@ final class SettingsManager: ObservableObject {
         effectDuration = defaults.object(forKey: Keys.effectDuration) as? CGFloat ?? 0.3
         launchAtLogin = defaults.object(forKey: Keys.launchAtLogin) as? Bool ?? false
         showInDock = defaults.object(forKey: Keys.showInDock) as? Bool ?? true
+
+        // Crosshair settings
+        crosshairLength = defaults.object(forKey: Keys.crosshairLength) as? CGFloat ?? 40.0
+        crosshairThickness = defaults.object(forKey: Keys.crosshairThickness) as? CGFloat ?? 2.0
+
+        if let crosshairStyleRaw = defaults.string(forKey: Keys.crosshairStyle),
+           let style = CrosshairStyle(rawValue: crosshairStyleRaw) {
+            crosshairStyle = style
+        } else {
+            crosshairStyle = .plus
+        }
+
+        // Pulse settings
+        if let pulseSpeedRaw = defaults.string(forKey: Keys.pulseSpeed),
+           let speed = PulseSpeed(rawValue: pulseSpeedRaw) {
+            pulseSpeed = speed
+        } else {
+            pulseSpeed = .medium
+        }
+
+        if let pulseIntensityRaw = defaults.string(forKey: Keys.pulseIntensity),
+           let intensity = PulseIntensity(rawValue: pulseIntensityRaw) {
+            pulseIntensity = intensity
+        } else {
+            pulseIntensity = .moderate
+        }
+
+        // Performance settings
+        targetFrameRate = defaults.object(forKey: Keys.targetFrameRate) as? Int ?? 60
     }
 
     private func saveColor(_ color: NSColor, forKey key: String) {
@@ -191,5 +270,14 @@ final class SettingsManager: ObservableObject {
         effectDuration = 0.3
         launchAtLogin = false
         showInDock = true
+        // Crosshair defaults
+        crosshairLength = 40.0
+        crosshairThickness = 2.0
+        crosshairStyle = .plus
+        // Pulse defaults
+        pulseSpeed = .medium
+        pulseIntensity = .moderate
+        // Performance defaults
+        targetFrameRate = 60
     }
 }

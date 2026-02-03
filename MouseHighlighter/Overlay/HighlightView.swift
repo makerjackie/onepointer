@@ -3,17 +3,23 @@ import Combine
 
 final class HighlightView: NSView, AnimationControllerDelegate {
     private var mousePosition: NSPoint = .zero
+    private var lastMousePosition: NSPoint = .zero
     private var isHighlightVisible: Bool = true
     private var isMouseOnScreen: Bool = false
 
     private var activeClickEffects: [ClickEffectState] = []
     private let animationController = AnimationController()
 
+    // Position change threshold for redraw optimization
+    private let positionChangeThreshold: CGFloat = 0.5
+
     private var cancellables = Set<AnyCancellable>()
 
     private var circleHighlight: CircleHighlight?
     private var spotlightHighlight: SpotlightHighlight?
     private var ringHighlight: RingHighlight?
+    private var crosshairHighlight: CrosshairHighlight?
+    private var pulseHighlight: PulseHighlight?
 
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -32,6 +38,8 @@ final class HighlightView: NSView, AnimationControllerDelegate {
         circleHighlight = CircleHighlight()
         spotlightHighlight = SpotlightHighlight()
         ringHighlight = RingHighlight()
+        crosshairHighlight = CrosshairHighlight()
+        pulseHighlight = PulseHighlight()
 
         animationController.delegate = self
         animationController.start()
@@ -75,9 +83,17 @@ final class HighlightView: NSView, AnimationControllerDelegate {
     }
 
     func updateMousePosition(_ point: NSPoint, isVisible: Bool) {
-        mousePosition = point
-        isMouseOnScreen = isVisible
-        needsDisplay = true
+        // Only update if position changed significantly
+        let dx = abs(point.x - lastMousePosition.x)
+        let dy = abs(point.y - lastMousePosition.y)
+
+        if dx > positionChangeThreshold || dy > positionChangeThreshold || isVisible != isMouseOnScreen {
+            mousePosition = point
+            lastMousePosition = point
+            isMouseOnScreen = isVisible
+            animationController.notifyActivity()
+            needsDisplay = true
+        }
     }
 
     func setHighlightVisible(_ visible: Bool) {
@@ -100,6 +116,8 @@ final class HighlightView: NSView, AnimationControllerDelegate {
         )
 
         activeClickEffects.append(effect)
+        animationController.setHasActiveAnimations(true)
+        animationController.notifyActivity()
     }
 
     func animationTick(deltaTime: TimeInterval) {
@@ -116,6 +134,15 @@ final class HighlightView: NSView, AnimationControllerDelegate {
 
             needsRedraw = true
             return mutableEffect
+        }
+
+        // Update animation controller about active effects
+        animationController.setHasActiveAnimations(!activeClickEffects.isEmpty)
+
+        // Pulse style needs continuous redraw for animation
+        let settings = SettingsManager.shared
+        if settings.highlightStyle == .pulse && settings.isEnabled && isHighlightVisible && isMouseOnScreen {
+            needsRedraw = true
         }
 
         if needsRedraw || !activeClickEffects.isEmpty {
@@ -159,6 +186,28 @@ final class HighlightView: NSView, AnimationControllerDelegate {
                     opacity: settings.highlightOpacity,
                     thickness: settings.ringThickness,
                     glowIntensity: settings.ringGlowIntensity
+                )
+
+            case .crosshair:
+                crosshairHighlight?.draw(
+                    in: context,
+                    at: mousePosition,
+                    length: settings.crosshairLength,
+                    thickness: settings.crosshairThickness,
+                    color: settings.highlightColor,
+                    opacity: settings.highlightOpacity,
+                    style: settings.crosshairStyle
+                )
+
+            case .pulse:
+                pulseHighlight?.draw(
+                    in: context,
+                    at: mousePosition,
+                    baseSize: settings.highlightSize,
+                    color: settings.highlightColor,
+                    opacity: settings.highlightOpacity,
+                    speed: settings.pulseSpeed,
+                    intensity: settings.pulseIntensity
                 )
             }
         }

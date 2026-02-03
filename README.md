@@ -1,4 +1,4 @@
-# Mac Mouse Highlighter
+# Mac Cursor Highlighter Thingy
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![macOS](https://img.shields.io/badge/macOS-12.0%2B%20Monterey-blue)](https://www.apple.com/macos/)
@@ -101,11 +101,11 @@ Access detailed settings through the menu bar or by clicking the dock icon:
 
 ## Permissions
 
-Mac Mouse Highlighter requires **Input Monitoring** permission to track mouse movement and clicks. This is a macOS privacy feature that ensures apps can only access this data with your explicit consent.
+Mac Cursor Highlighter Thingy requires **Input Monitoring** permission to track mouse movement and clicks. This is a macOS privacy feature that ensures apps can only access this data with your explicit consent.
 
 To grant permission:
 1. Go to System Settings → Privacy & Security → Input Monitoring
-2. Enable the toggle for Mac Mouse Highlighter
+2. Enable the toggle for Mac Cursor Highlighter Thingy
 3. Restart the app if needed
 
 ### Why is App Sandbox Disabled?
@@ -141,7 +141,7 @@ xcodebuild -project MouseHighlighter.xcodeproj \
   ONLY_ACTIVE_ARCH=NO
 
 # Verify architectures
-lipo -info "build/Release/Mac Mouse Highlighter.app/Contents/MacOS/Mac Mouse Highlighter"
+lipo -info "build/Release/Mac Cursor Highlighter Thingy.app/Contents/MacOS/Mac Cursor Highlighter Thingy"
 # Should output: Architectures in the fat file: arm64 x86_64
 ```
 

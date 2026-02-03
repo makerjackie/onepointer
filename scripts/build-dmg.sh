@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Build DMG for Mac Mouse Highlighter
+# Build DMG for Mac Cursor Highlighter Thingy
 # Usage: ./scripts/build-dmg.sh
 
 set -e
 
 # Configuration
-APP_NAME="Mac Mouse Highlighter"
+APP_NAME="Mac Cursor Highlighter Thingy"
 DMG_NAME="MacMouseHighlighter"
 VERSION=$(grep -o 'MARKETING_VERSION = [^;]*' MouseHighlighter.xcodeproj/project.pbxproj | head -1 | cut -d '=' -f2 | tr -d ' ')
 SCHEME="MouseHighlighter"

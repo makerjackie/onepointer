@@ -21,7 +21,7 @@ struct SettingsView: View {
                     Label("Effects", systemImage: "sparkles")
                 }
         }
-        .frame(width: 450, height: 380)
+        .frame(width: 450, height: 480)
         .padding()
     }
 }
@@ -78,6 +78,25 @@ struct GeneralSettingsView: View {
                     .padding(.vertical, 4)
                 }
 
+                GroupBox(label: Text("Performance").font(.headline)) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("Target Frame Rate")
+                            Spacer()
+                            Picker("", selection: $settings.targetFrameRate) {
+                                Text("30 FPS (Battery Saver)").tag(30)
+                                Text("60 FPS (Smooth)").tag(60)
+                            }
+                            .pickerStyle(.menu)
+                            .frame(width: 180)
+                        }
+                        Text("Lower frame rate uses less CPU and battery.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                }
+
                 GroupBox {
                     Button("Reset to Defaults") {
                         settings.resetToDefaults()
@@ -102,6 +121,8 @@ struct HighlightSettingsView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                HighlightPreviewView(settings: settings)
+
                 GroupBox(label: Text("Highlight Style").font(.headline)) {
                     Picker("Style", selection: $settings.highlightStyle) {
                         ForEach(HighlightStyle.allCases, id: \.self) { style in
@@ -179,6 +200,71 @@ struct HighlightSettingsView: View {
                                         .foregroundColor(.secondary)
                                 }
                                 Slider(value: $settings.ringGlowIntensity, in: 0...1.0, step: 0.1)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+
+                if settings.highlightStyle == .crosshair {
+                    GroupBox(label: Text("Crosshair Settings").font(.headline)) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Picker("Style", selection: $settings.crosshairStyle) {
+                                ForEach(CrosshairStyle.allCases, id: \.self) { style in
+                                    Text(style.rawValue).tag(style)
+                                }
+                            }
+                            .pickerStyle(.segmented)
+
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Line Length")
+                                    Spacer()
+                                    Text("\(Int(settings.crosshairLength)) px")
+                                        .foregroundColor(.secondary)
+                                }
+                                Slider(value: $settings.crosshairLength, in: 10...100, step: 1)
+                            }
+
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text("Line Thickness")
+                                    Spacer()
+                                    Text("\(Int(settings.crosshairThickness)) px")
+                                        .foregroundColor(.secondary)
+                                }
+                                Slider(value: $settings.crosshairThickness, in: 1...10, step: 0.5)
+                            }
+                        }
+                        .padding(.vertical, 4)
+                    }
+                }
+
+                if settings.highlightStyle == .pulse {
+                    GroupBox(label: Text("Pulse Settings").font(.headline)) {
+                        VStack(alignment: .leading, spacing: 12) {
+                            HStack {
+                                Text("Speed")
+                                Spacer()
+                                Picker("", selection: $settings.pulseSpeed) {
+                                    ForEach(PulseSpeed.allCases, id: \.self) { speed in
+                                        Text(speed.rawValue).tag(speed)
+                                    }
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(width: 200)
+                            }
+
+                            HStack {
+                                Text("Intensity")
+                                Spacer()
+                                Picker("", selection: $settings.pulseIntensity) {
+                                    ForEach(PulseIntensity.allCases, id: \.self) { intensity in
+                                        Text(intensity.rawValue).tag(intensity)
+                                    }
+                                }
+                                .pickerStyle(.segmented)
+                                .frame(width: 200)
                             }
                         }
                         .padding(.vertical, 4)
@@ -272,7 +358,7 @@ class SettingsWindowController {
         let hostingController = NSHostingController(rootView: settingsView)
 
         let newWindow = NSWindow(contentViewController: hostingController)
-        newWindow.title = "Mac Mouse Highlighter Settings"
+        newWindow.title = "Mac Cursor Highlighter Thingy Settings"
         newWindow.styleMask = [.titled, .closable, .miniaturizable]
         newWindow.center()
         newWindow.setFrameAutosaveName("SettingsWindow")

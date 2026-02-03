@@ -11,8 +11,20 @@ final class AnimationController {
     private var displayLink: CVDisplayLink?
     private var lastTimestamp: TimeInterval = 0
     private var isRunning = false
+    private var isPaused = false
 
     private let updateQueue = DispatchQueue(label: "com.mousehighlighter.animation", qos: .userInteractive)
+
+    // Idle detection
+    private var idleTime: TimeInterval = 0
+    private let idleThreshold: TimeInterval = 0.5
+    private var hasActiveAnimations = false
+
+    // Frame rate control
+    private var frameSkipCounter = 0
+    private var targetFrameRate: Int {
+        return SettingsManager.shared.targetFrameRate
+    }
 
     func start() {
         guard !isRunning else { return }
@@ -38,6 +50,7 @@ final class AnimationController {
         CVDisplayLinkSetOutputCallback(displayLink, callback, refcon)
         CVDisplayLinkStart(displayLink)
         isRunning = true
+        isPaused = false
     }
 
     func stop() {
@@ -46,6 +59,34 @@ final class AnimationController {
         CVDisplayLinkStop(link)
         displayLink = nil
         isRunning = false
+        isPaused = false
+    }
+
+    func pause() {
+        guard isRunning, !isPaused, let link = displayLink else { return }
+        CVDisplayLinkStop(link)
+        isPaused = true
+    }
+
+    func resume() {
+        guard isRunning, isPaused, let link = displayLink else { return }
+        lastTimestamp = CACurrentMediaTime()
+        CVDisplayLinkStart(link)
+        isPaused = false
+    }
+
+    func notifyActivity() {
+        idleTime = 0
+        if isPaused {
+            resume()
+        }
+    }
+
+    func setHasActiveAnimations(_ active: Bool) {
+        hasActiveAnimations = active
+        if active && isPaused {
+            resume()
+        }
     }
 
     private func tick() {
@@ -53,8 +94,28 @@ final class AnimationController {
         let deltaTime = currentTime - lastTimestamp
         lastTimestamp = currentTime
 
+        // Frame rate control: skip frames if targeting 30fps
+        if targetFrameRate == 30 {
+            frameSkipCounter += 1
+            if frameSkipCounter % 2 != 0 {
+                return
+            }
+        }
+
         DispatchQueue.main.async { [weak self] in
-            self?.delegate?.animationTick(deltaTime: deltaTime)
+            guard let self = self else { return }
+            self.delegate?.animationTick(deltaTime: deltaTime)
+
+            // Update idle time
+            self.idleTime += deltaTime
+
+            // Check if we should pause (no active animations and idle for threshold)
+            let settings = SettingsManager.shared
+            let needsContinuousAnimation = settings.highlightStyle == .pulse && settings.isEnabled
+
+            if !self.hasActiveAnimations && !needsContinuousAnimation && self.idleTime > self.idleThreshold {
+                self.pause()
+            }
         }
     }
 

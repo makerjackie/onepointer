@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-about: Report a bug to help us improve Mac Mouse Highlighter
+about: Report a bug to help us improve Mac Cursor Highlighter Thingy
 title: '[Bug] '
 labels: bug
 assignees: ''

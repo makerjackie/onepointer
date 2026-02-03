@@ -1,6 +1,6 @@
-# Contributing to Mac Mouse Highlighter
+# Contributing to Mac Cursor Highlighter Thingy
 
-Thank you for your interest in contributing to Mac Mouse Highlighter! This document provides guidelines and information for contributors.
+Thank you for your interest in contributing to Mac Cursor Highlighter Thingy! This document provides guidelines and information for contributors.
 
 ## How to Contribute
 
