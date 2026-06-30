@@ -64,34 +64,29 @@ final class OverlayWindowController {
         highlightViews.removeAll()
     }
 
+    // The incoming point comes from NSEvent.mouseLocation, which is already in Cocoa
+    // global coordinates (bottom-left origin, Y up) spanning all displays. No conversion
+    // is needed — mapping into each screen's local space is a simple origin subtraction,
+    // which is inherently correct for any monitor arrangement (side-by-side, stacked,
+    // mixed sizes).
     func updateMousePosition(_ globalPoint: NSPoint) {
-        // Convert from CGEvent coordinates (origin top-left) to NSScreen coordinates (origin bottom-left)
-        guard let mainScreen = NSScreen.main else { return }
-        let flippedY = mainScreen.frame.height - globalPoint.y
-        let convertedPoint = NSPoint(x: globalPoint.x, y: flippedY)
-
         for (screen, view) in highlightViews {
             let localPoint = NSPoint(
-                x: convertedPoint.x - screen.frame.origin.x,
-                y: convertedPoint.y - screen.frame.origin.y
+                x: globalPoint.x - screen.frame.origin.x,
+                y: globalPoint.y - screen.frame.origin.y
             )
 
-            let isOnThisScreen = screen.frame.contains(convertedPoint)
+            let isOnThisScreen = screen.frame.contains(globalPoint)
             view.updateMousePosition(localPoint, isVisible: isOnThisScreen)
         }
     }
 
     func triggerClickEffect(at globalPoint: NSPoint, button: MouseButton) {
-        // Convert from CGEvent coordinates (origin top-left) to NSScreen coordinates (origin bottom-left)
-        guard let mainScreen = NSScreen.main else { return }
-        let flippedY = mainScreen.frame.height - globalPoint.y
-        let convertedPoint = NSPoint(x: globalPoint.x, y: flippedY)
-
         for (screen, view) in highlightViews {
-            if screen.frame.contains(convertedPoint) {
+            if screen.frame.contains(globalPoint) {
                 let localPoint = NSPoint(
-                    x: convertedPoint.x - screen.frame.origin.x,
-                    y: convertedPoint.y - screen.frame.origin.y
+                    x: globalPoint.x - screen.frame.origin.x,
+                    y: globalPoint.y - screen.frame.origin.y
                 )
                 view.triggerClickEffect(at: localPoint, button: button)
                 break

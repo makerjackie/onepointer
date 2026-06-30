@@ -2,11 +2,10 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var settings = SettingsManager.shared
-    @ObservedObject var permissions = PermissionsManager.shared
 
     var body: some View {
         TabView {
-            GeneralSettingsView(settings: settings, permissions: permissions)
+            GeneralSettingsView(settings: settings)
                 .tabItem {
                     Label("General", systemImage: "gear")
                 }
@@ -28,7 +27,6 @@ struct SettingsView: View {
 
 struct GeneralSettingsView: View {
     @ObservedObject var settings: SettingsManager
-    @ObservedObject var permissions: PermissionsManager
 
     var body: some View {
         ScrollView {
@@ -39,33 +37,6 @@ struct GeneralSettingsView: View {
                             .toggleStyle(.switch)
                         Toggle("Enable Click Effects", isOn: $settings.isClickEffectEnabled)
                             .toggleStyle(.switch)
-                    }
-                    .padding(.vertical, 4)
-                }
-
-                GroupBox(label: Text("Permissions").font(.headline)) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        if permissions.hasInputMonitoringPermission {
-                            HStack {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.green)
-                                Text("Input Monitoring Permission Granted")
-                            }
-                        } else {
-                            HStack {
-                                Image(systemName: "exclamationmark.triangle.fill")
-                                    .foregroundColor(.yellow)
-                                Text("Input Monitoring Permission Required")
-                            }
-
-                            Text("Mouse Highlighter needs permission to track mouse movement and clicks.")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-
-                            Button("Open System Settings") {
-                                permissions.openSystemPreferences()
-                            }
-                        }
                     }
                     .padding(.vertical, 4)
                 }

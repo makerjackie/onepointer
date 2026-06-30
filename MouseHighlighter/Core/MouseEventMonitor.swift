@@ -1,5 +1,4 @@
 import Cocoa
-import Combine
 
 protocol MouseEventDelegate: AnyObject {
     func mouseMoved(to point: NSPoint)
@@ -14,144 +13,101 @@ enum MouseButton {
     case other
 }
 
+/// Tracks the global cursor position and mouse-button state WITHOUT any special
+/// permissions.
+///
+/// Earlier this used a `CGEventTap`, which since macOS 10.15 requires the Input
+/// Monitoring (TCC `ListenEvent`) permission. That permission is bound to a stable
+/// code signature, so a locally/ad-hoc-signed build can never reliably hold the grant.
+/// Since the highlighter only ever *observes* the cursor (it never intercepts events or
+/// reads the keyboard), we instead poll `NSEvent.mouseLocation` and
+/// `NSEvent.pressedMouseButtons` on a timer — both are permission-free reads. This also
+/// removes the brittle coordinate conversion: `NSEvent.mouseLocation` is already in Cocoa
+/// global coordinates (bottom-left origin) spanning all displays.
 final class MouseEventMonitor {
     weak var delegate: MouseEventDelegate?
 
-    private var eventTap: CFMachPort?
-    private var runLoopSource: CFRunLoopSource?
+    private var timer: Timer?
     private var isRunning = false
 
-    private let mouseMovedSubject = PassthroughSubject<NSPoint, Never>()
-    private let mouseDownSubject = PassthroughSubject<(NSPoint, MouseButton), Never>()
-    private let mouseUpSubject = PassthroughSubject<(NSPoint, MouseButton), Never>()
-    private let mouseDraggedSubject = PassthroughSubject<(NSPoint, MouseButton), Never>()
+    private var lastLocation: NSPoint = NSEvent.mouseLocation
+    private var lastButtonMask: Int = 0
 
-    var mouseMovedPublisher: AnyPublisher<NSPoint, Never> {
-        mouseMovedSubject.eraseToAnyPublisher()
+    private var pollInterval: TimeInterval {
+        // SettingsManager exposes a target frame rate (e.g. 60 or 120). Poll at that rate.
+        let fps = max(30, SettingsManager.shared.targetFrameRate)
+        return 1.0 / Double(fps)
     }
 
-    var mouseDownPublisher: AnyPublisher<(NSPoint, MouseButton), Never> {
-        mouseDownSubject.eraseToAnyPublisher()
-    }
-
-    var mouseUpPublisher: AnyPublisher<(NSPoint, MouseButton), Never> {
-        mouseUpSubject.eraseToAnyPublisher()
-    }
-
-    var mouseDraggedPublisher: AnyPublisher<(NSPoint, MouseButton), Never> {
-        mouseDraggedSubject.eraseToAnyPublisher()
-    }
-
+    @discardableResult
     func start() -> Bool {
         guard !isRunning else { return true }
 
-        var eventMask: CGEventMask = 0
-        eventMask |= (1 << CGEventType.mouseMoved.rawValue)
-        eventMask |= (1 << CGEventType.leftMouseDown.rawValue)
-        eventMask |= (1 << CGEventType.leftMouseUp.rawValue)
-        eventMask |= (1 << CGEventType.leftMouseDragged.rawValue)
-        eventMask |= (1 << CGEventType.rightMouseDown.rawValue)
-        eventMask |= (1 << CGEventType.rightMouseUp.rawValue)
-        eventMask |= (1 << CGEventType.rightMouseDragged.rawValue)
-        eventMask |= (1 << CGEventType.otherMouseDown.rawValue)
-        eventMask |= (1 << CGEventType.otherMouseUp.rawValue)
-        eventMask |= (1 << CGEventType.otherMouseDragged.rawValue)
+        lastLocation = NSEvent.mouseLocation
+        lastButtonMask = NSEvent.pressedMouseButtons
 
-        let refcon = UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque())
-
-        guard let tap = CGEvent.tapCreate(
-            tap: .cgSessionEventTap,
-            place: .headInsertEventTap,
-            options: .listenOnly,
-            eventsOfInterest: eventMask,
-            callback: { (proxy, type, event, refcon) -> Unmanaged<CGEvent>? in
-                guard let refcon = refcon else { return Unmanaged.passRetained(event) }
-                let monitor = Unmanaged<MouseEventMonitor>.fromOpaque(refcon).takeUnretainedValue()
-                monitor.handleEvent(type: type, event: event)
-                return Unmanaged.passRetained(event)
-            },
-            userInfo: refcon
-        ) else {
-            return false
+        let timer = Timer(timeInterval: pollInterval, repeats: true) { [weak self] _ in
+            self?.poll()
         }
-
-        eventTap = tap
-        runLoopSource = CFMachPortCreateRunLoopSource(kCFAllocatorDefault, tap, 0)
-
-        if let source = runLoopSource {
-            CFRunLoopAddSource(CFRunLoopGetCurrent(), source, .commonModes)
-            CGEvent.tapEnable(tap: tap, enable: true)
-            isRunning = true
-            return true
-        }
-
-        return false
+        // .common modes so polling continues during menu tracking / window resize.
+        RunLoop.main.add(timer, forMode: .common)
+        self.timer = timer
+        isRunning = true
+        return true
     }
 
     func stop() {
         guard isRunning else { return }
-
-        if let tap = eventTap {
-            CGEvent.tapEnable(tap: tap, enable: false)
-        }
-
-        if let source = runLoopSource {
-            CFRunLoopRemoveSource(CFRunLoopGetCurrent(), source, .commonModes)
-        }
-
-        eventTap = nil
-        runLoopSource = nil
+        timer?.invalidate()
+        timer = nil
         isRunning = false
     }
 
-    private func handleEvent(type: CGEventType, event: CGEvent) {
-        let location = event.location
-        let point = NSPoint(x: location.x, y: location.y)
+    private func poll() {
+        let location = NSEvent.mouseLocation
+        let buttonMask = NSEvent.pressedMouseButtons
 
-        switch type {
-        case .mouseMoved:
-            delegate?.mouseMoved(to: point)
-            mouseMovedSubject.send(point)
-
-        case .leftMouseDown:
-            delegate?.mouseDown(at: point, button: .left)
-            mouseDownSubject.send((point, .left))
-
-        case .leftMouseUp:
-            delegate?.mouseUp(at: point, button: .left)
-            mouseUpSubject.send((point, .left))
-
-        case .leftMouseDragged:
-            delegate?.mouseDragged(to: point, button: .left)
-            mouseDraggedSubject.send((point, .left))
-
-        case .rightMouseDown:
-            delegate?.mouseDown(at: point, button: .right)
-            mouseDownSubject.send((point, .right))
-
-        case .rightMouseUp:
-            delegate?.mouseUp(at: point, button: .right)
-            mouseUpSubject.send((point, .right))
-
-        case .rightMouseDragged:
-            delegate?.mouseDragged(to: point, button: .right)
-            mouseDraggedSubject.send((point, .right))
-
-        case .otherMouseDown:
-            delegate?.mouseDown(at: point, button: .other)
-            mouseDownSubject.send((point, .other))
-
-        case .otherMouseUp:
-            delegate?.mouseUp(at: point, button: .other)
-            mouseUpSubject.send((point, .other))
-
-        case .otherMouseDragged:
-            delegate?.mouseDragged(to: point, button: .other)
-            mouseDraggedSubject.send((point, .other))
-
-        default:
-            break
+        // Button transitions (diff against previous mask).
+        if buttonMask != lastButtonMask {
+            for bit in 0..<3 {
+                let flag = 1 << bit
+                let wasDown = (lastButtonMask & flag) != 0
+                let isDown = (buttonMask & flag) != 0
+                guard wasDown != isDown else { continue }
+                let button = self.button(for: bit)
+                if isDown {
+                    delegate?.mouseDown(at: location, button: button)
+                } else {
+                    delegate?.mouseUp(at: location, button: button)
+                }
+            }
+            lastButtonMask = buttonMask
         }
+
+        // Position changes.
+        if location != lastLocation {
+            lastLocation = location
+            if buttonMask != 0 {
+                // A button is held → this is a drag. Report the lowest held button.
+                delegate?.mouseDragged(to: location, button: heldButton(in: buttonMask))
+            } else {
+                delegate?.mouseMoved(to: location)
+            }
+        }
+    }
+
+    private func button(for bit: Int) -> MouseButton {
+        switch bit {
+        case 0: return .left
+        case 1: return .right
+        default: return .other
+        }
+    }
+
+    private func heldButton(in mask: Int) -> MouseButton {
+        if mask & (1 << 0) != 0 { return .left }
+        if mask & (1 << 1) != 0 { return .right }
+        return .other
     }
 
     deinit {

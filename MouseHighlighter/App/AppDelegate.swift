@@ -37,48 +37,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setupMouseMonitor() {
-        let permissions = PermissionsManager.shared
-        permissions.checkPermissions()
-
-        if permissions.hasInputMonitoringPermission {
-            startMouseTracking()
-        } else {
-            permissions.requestInputMonitoringPermission()
-
-            NotificationCenter.default.addObserver(
-                forName: .permissionGranted,
-                object: nil,
-                queue: .main
-            ) { [weak self] _ in
-                self?.startMouseTracking()
-            }
-        }
-    }
-
-    private func startMouseTracking() {
+        // No permissions required: MouseEventMonitor polls NSEvent.mouseLocation /
+        // pressedMouseButtons, so tracking can start immediately.
         mouseMonitor = MouseEventMonitor()
         mouseMonitor?.delegate = self
-
-        if mouseMonitor?.start() == true {
-            print("Mouse tracking started successfully")
-        } else {
-            print("Failed to start mouse tracking")
-            showPermissionAlert()
-        }
-    }
-
-    private func showPermissionAlert() {
-        let alert = NSAlert()
-        alert.messageText = "Input Monitoring Permission Required"
-        alert.informativeText = "Mouse Highlighter needs Input Monitoring permission to track mouse movement. Please grant permission in System Settings > Privacy & Security > Input Monitoring."
-        alert.alertStyle = .warning
-        alert.addButton(withTitle: "Open System Settings")
-        alert.addButton(withTitle: "Later")
-
-        let response = alert.runModal()
-        if response == .alertFirstButtonReturn {
-            PermissionsManager.shared.openSystemPreferences()
-        }
+        mouseMonitor?.start()
+        print("Mouse tracking started")
     }
 
     private func setupBindings() {
@@ -100,7 +64,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
         mouseMonitor?.stop()
         overlayController?.removeAllOverlays()
-        PermissionsManager.shared.stopPolling()
     }
 
     func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
