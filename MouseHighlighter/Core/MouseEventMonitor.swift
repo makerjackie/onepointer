@@ -69,13 +69,9 @@ final class MouseEventMonitor {
 
         // Button transitions (diff against previous mask).
         if buttonMask != lastButtonMask {
-            for bit in 0..<3 {
-                let flag = 1 << bit
-                let wasDown = (lastButtonMask & flag) != 0
-                let isDown = (buttonMask & flag) != 0
-                guard wasDown != isDown else { continue }
-                let button = self.button(for: bit)
-                if isDown {
+            for change in Geometry.buttonTransitions(old: lastButtonMask, new: buttonMask) {
+                let button = self.button(for: change.index)
+                if change.isDown {
                     delegate?.mouseDown(at: location, button: button)
                 } else {
                     delegate?.mouseUp(at: location, button: button)
@@ -87,27 +83,21 @@ final class MouseEventMonitor {
         // Position changes.
         if location != lastLocation {
             lastLocation = location
-            if buttonMask != 0 {
-                // A button is held → this is a drag. Report the lowest held button.
-                delegate?.mouseDragged(to: location, button: heldButton(in: buttonMask))
+            if let heldIndex = Geometry.lowestHeldButton(in: buttonMask) {
+                // A button is held → this is a drag.
+                delegate?.mouseDragged(to: location, button: button(for: heldIndex))
             } else {
                 delegate?.mouseMoved(to: location)
             }
         }
     }
 
-    private func button(for bit: Int) -> MouseButton {
-        switch bit {
+    private func button(for index: Int) -> MouseButton {
+        switch index {
         case 0: return .left
         case 1: return .right
         default: return .other
         }
-    }
-
-    private func heldButton(in mask: Int) -> MouseButton {
-        if mask & (1 << 0) != 0 { return .left }
-        if mask & (1 << 1) != 0 { return .right }
-        return .other
     }
 
     deinit {

@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		1100000000000000 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000000 /* main.swift */; };
 		1100000000000001 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000001 /* AppDelegate.swift */; };
-		1100000000000002 /* PermissionsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000002 /* PermissionsManager.swift */; };
+		1100000000000020 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000020 /* Geometry.swift */; };
+		1100000000000021 /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000021 /* HotKeyManager.swift */; };
 		1100000000000003 /* MouseEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000003 /* MouseEventMonitor.swift */; };
 		1100000000000004 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000004 /* SettingsManager.swift */; };
 		1100000000000005 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2100000000000005 /* OverlayWindowController.swift */; };
@@ -32,7 +33,8 @@
 /* Begin PBXFileReference section */
 		2100000000000000 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2100000000000001 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2100000000000002 /* PermissionsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsManager.swift; sourceTree = "<group>"; };
+		2100000000000020 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		2100000000000021 /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
 		2100000000000003 /* MouseEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventMonitor.swift; sourceTree = "<group>"; };
 		2100000000000004 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		2100000000000005 /* OverlayWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayWindowController.swift; sourceTree = "<group>"; };
@@ -110,7 +112,8 @@
 		5100000000000005 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2100000000000002 /* PermissionsManager.swift */,
+				2100000000000020 /* Geometry.swift */,
+				2100000000000021 /* HotKeyManager.swift */,
 				2100000000000003 /* MouseEventMonitor.swift */,
 				2100000000000004 /* SettingsManager.swift */,
 			);
@@ -238,7 +241,8 @@
 			files = (
 				1100000000000000 /* main.swift in Sources */,
 				1100000000000001 /* AppDelegate.swift in Sources */,
-				1100000000000002 /* PermissionsManager.swift in Sources */,
+				1100000000000020 /* Geometry.swift in Sources */,
+				1100000000000021 /* HotKeyManager.swift in Sources */,
 				1100000000000003 /* MouseEventMonitor.swift in Sources */,
 				1100000000000004 /* SettingsManager.swift in Sources */,
 				1100000000000005 /* OverlayWindowController.swift in Sources */,

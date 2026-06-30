@@ -30,10 +30,6 @@
     <string>Copyright © 2024. All rights reserved.</string>
     <key>NSPrincipalClass</key>
     <string>NSApplication</string>
-    <key>NSInputMonitoringUsageDescription</key>
-    <string>Mouse Highlighter needs Input Monitoring permission to track mouse movement and clicks for visual highlighting effects.</string>
-    <key>NSAccessibilityUsageDescription</key>
-    <string>Mouse Highlighter uses Accessibility features to provide visual feedback for mouse interactions.</string>
     <key>NSSupportsAutomaticTermination</key>
     <false/>
     <key>NSSupportsSuddenTermination</key>

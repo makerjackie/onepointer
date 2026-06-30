@@ -71,11 +71,7 @@ final class OverlayWindowController {
     // mixed sizes).
     func updateMousePosition(_ globalPoint: NSPoint) {
         for (screen, view) in highlightViews {
-            let localPoint = NSPoint(
-                x: globalPoint.x - screen.frame.origin.x,
-                y: globalPoint.y - screen.frame.origin.y
-            )
-
+            let localPoint = Geometry.localPoint(global: globalPoint, screenOrigin: screen.frame.origin)
             let isOnThisScreen = screen.frame.contains(globalPoint)
             view.updateMousePosition(localPoint, isVisible: isOnThisScreen)
         }
@@ -84,10 +80,7 @@ final class OverlayWindowController {
     func triggerClickEffect(at globalPoint: NSPoint, button: MouseButton) {
         for (screen, view) in highlightViews {
             if screen.frame.contains(globalPoint) {
-                let localPoint = NSPoint(
-                    x: globalPoint.x - screen.frame.origin.x,
-                    y: globalPoint.y - screen.frame.origin.y
-                )
+                let localPoint = Geometry.localPoint(global: globalPoint, screenOrigin: screen.frame.origin)
                 view.triggerClickEffect(at: localPoint, button: button)
                 break
             }

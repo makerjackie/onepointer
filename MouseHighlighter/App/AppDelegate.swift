@@ -6,6 +6,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var menuBarController: MenuBarController?
     private var overlayController: OverlayWindowController?
     private var mouseMonitor: MouseEventMonitor?
+    private let hotKeyManager = HotKeyManager()
     private let settingsWindowController = SettingsWindowController()
 
     private var cancellables = Set<AnyCancellable>()
@@ -13,11 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         print("App launched!")
 
-        NSApp.setActivationPolicy(.regular)
+        // Respect the user's Dock preference at launch.
+        NSApp.setActivationPolicy(SettingsManager.shared.showInDock ? .regular : .accessory)
 
         setupMenuBar()
         setupOverlays()
         setupMouseMonitor()
+        setupHotKey()
         setupBindings()
 
         // Show settings on first launch
@@ -41,8 +44,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // pressedMouseButtons, so tracking can start immediately.
         mouseMonitor = MouseEventMonitor()
         mouseMonitor?.delegate = self
-        mouseMonitor?.start()
-        print("Mouse tracking started")
+        // Only poll when enabled — saves CPU/battery while the highlighter is off.
+        if SettingsManager.shared.isEnabled {
+            mouseMonitor?.start()
+        }
+    }
+
+    private func setupHotKey() {
+        hotKeyManager.onToggle = {
+            SettingsManager.shared.isEnabled.toggle()
+        }
+        hotKeyManager.register()
     }
 
     private func setupBindings() {
@@ -50,6 +62,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .sink { [weak self] enabled in
                 self?.overlayController?.setHighlightsVisible(enabled)
                 self?.menuBarController?.updateIcon(enabled: enabled)
+                // Start/stop polling so a disabled highlighter consumes no CPU.
+                if enabled {
+                    self?.mouseMonitor?.start()
+                } else {
+                    self?.mouseMonitor?.stop()
+                }
             }
             .store(in: &cancellables)
     }
@@ -63,6 +81,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         mouseMonitor?.stop()
+        hotKeyManager.unregister()
         overlayController?.removeAllOverlays()
     }
 

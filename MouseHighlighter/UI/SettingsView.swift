@@ -37,6 +37,13 @@ struct GeneralSettingsView: View {
                             .toggleStyle(.switch)
                         Toggle("Enable Click Effects", isOn: $settings.isClickEffectEnabled)
                             .toggleStyle(.switch)
+                        HStack(spacing: 4) {
+                            Image(systemName: "keyboard")
+                                .foregroundColor(.secondary)
+                            Text("Toggle anytime with \(HotKeyManager.shortcutDescription)")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
                     }
                     .padding(.vertical, 4)
                 }
@@ -119,7 +126,7 @@ struct HighlightSettingsView: View {
                                 Text("\(Int(settings.highlightSize)) px")
                                     .foregroundColor(.secondary)
                             }
-                            Slider(value: $settings.highlightSize, in: 20...100, step: 1)
+                            Slider(value: $settings.highlightSize, in: 10...200, step: 1)
                         }
 
                         VStack(alignment: .leading) {

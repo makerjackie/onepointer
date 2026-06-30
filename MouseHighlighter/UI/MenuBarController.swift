@@ -8,6 +8,14 @@ final class MenuBarController {
 
     weak var delegate: MenuBarControllerDelegate?
 
+    /// Quick-access size presets (label → diameter in points).
+    static let sizePresets: [(name: String, value: CGFloat)] = [
+        ("Small", 30),
+        ("Medium", 60),
+        ("Large", 100),
+        ("Extra Large", 160)
+    ]
+
     init() {
         setupStatusItem()
         setupBindings()
@@ -81,6 +89,18 @@ final class MenuBarController {
         effectItem.submenu = effectMenu
         menu.addItem(effectItem)
 
+        let sizeMenu = NSMenu()
+        for preset in Self.sizePresets {
+            let item = NSMenuItem(title: preset.name, action: #selector(selectSize(_:)), keyEquivalent: "")
+            item.target = self
+            item.representedObject = preset.value
+            item.state = SettingsManager.shared.highlightSize == preset.value ? .on : .off
+            sizeMenu.addItem(item)
+        }
+        let sizeItem = NSMenuItem(title: "Highlight Size", action: nil, keyEquivalent: "")
+        sizeItem.submenu = sizeMenu
+        menu.addItem(sizeItem)
+
         menu.addItem(NSMenuItem.separator())
 
         let settingsItem = NSMenuItem(title: "Settings...", action: #selector(openSettings), keyEquivalent: ",")
@@ -114,6 +134,12 @@ final class MenuBarController {
                 self?.updateMenuState()
             }
             .store(in: &cancellables)
+
+        SettingsManager.shared.$highlightSize
+            .sink { [weak self] _ in
+                self?.updateMenuState()
+            }
+            .store(in: &cancellables)
     }
 
     private func updateMenuState() {
@@ -140,6 +166,15 @@ final class MenuBarController {
                 }
             }
         }
+
+        if let sizeItem = menu.item(withTitle: "Highlight Size"),
+           let sizeMenu = sizeItem.submenu {
+            for item in sizeMenu.items {
+                if let value = item.representedObject as? CGFloat {
+                    item.state = SettingsManager.shared.highlightSize == value ? .on : .off
+                }
+            }
+        }
     }
 
     @objc private func toggleEnabled() {
@@ -154,6 +189,11 @@ final class MenuBarController {
     @objc private func selectClickEffect(_ sender: NSMenuItem) {
         guard let effect = sender.representedObject as? ClickEffect else { return }
         SettingsManager.shared.clickEffect = effect
+    }
+
+    @objc private func selectSize(_ sender: NSMenuItem) {
+        guard let value = sender.representedObject as? CGFloat else { return }
+        SettingsManager.shared.highlightSize = value
     }
 
     @objc private func openSettings() {
