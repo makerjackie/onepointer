@@ -27,6 +27,7 @@ struct SettingsView: View {
 
 struct GeneralSettingsView: View {
     @ObservedObject var settings: SettingsManager
+    @ObservedObject var systemCursor = SystemCursorManager.shared
 
     var body: some View {
         ScrollView {
@@ -46,6 +47,30 @@ struct GeneralSettingsView: View {
                         }
                     }
                     .padding(.vertical, 4)
+                }
+
+                GroupBox(label: Text("Mouse Pointer Size (System)").font(.headline)) {
+                    VStack(alignment: .leading, spacing: 8) {
+                        HStack {
+                            Text("Pointer Size")
+                            Spacer()
+                            Text(String(format: "%.1f×", systemCursor.size))
+                                .foregroundColor(.secondary)
+                        }
+                        Slider(value: $systemCursor.size,
+                               in: SystemCursorManager.minSize...SystemCursorManager.maxSize,
+                               step: 0.1)
+
+                        Button("Open macOS Pointer Settings") {
+                            systemCursor.openPointerSettings()
+                        }
+
+                        Text("Resizes the real macOS pointer. macOS applies the new size live once you adjust it in System Settings (button above) or at your next login.")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.vertical, 4)
+                    .onAppear { systemCursor.refreshFromSystem() }
                 }
 
                 GroupBox(label: Text("Startup").font(.headline)) {
