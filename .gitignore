@@ -28,9 +28,6 @@ build/
 *.perspectivev3
 !default.perspectivev3
 
-# Xcode Scheme
-*.xcscheme
-
 # Swift Package Manager
 .build/
 .swiftpm/

@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest a new feature or improvement for Mac Cursor Highlighter Thingy
+about: Suggest a new feature or improvement for OnePointer
 title: '[Feature] '
 labels: enhancement
 assignees: ''

@@ -1,0 +1,67 @@
+name: OnePointer
+options:
+  bundleIdPrefix: studio.oneapps
+  deploymentTarget:
+    macOS: "13.0"
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+  xcodeVersion: "26.0"
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: targeted
+    DEVELOPMENT_TEAM: PCJ84YD7HQ
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_HARDENED_RUNTIME: YES
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+    CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: YES
+    DEAD_CODE_STRIPPING: YES
+targets:
+  OnePointer:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+      - path: LICENSE
+        buildPhase: resources
+      - path: LICENSES
+        buildPhase: resources
+      - path: THIRD_PARTY_NOTICES.md
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: studio.oneapps.onepointer
+        PRODUCT_NAME: OnePointer
+        SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+        INFOPLIST_FILE: Config/Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/OnePointer.entitlements
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+      configs:
+        Debug:
+          PRODUCT_BUNDLE_IDENTIFIER: studio.oneapps.onepointer.debug
+  OnePointerTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: Tests
+    dependencies:
+      - target: OnePointer
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: studio.oneapps.onepointer.tests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/OnePointer.app/Contents/MacOS/OnePointer"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+schemes:
+  OnePointer:
+    build:
+      targets:
+        OnePointer: all
+        OnePointerTests: [test]
+    test:
+      gatherCoverageData: true
+      targets:
+        - OnePointerTests
+    archive:
+      config: Release

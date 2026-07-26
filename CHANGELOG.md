@@ -1,31 +1,24 @@
 # Changelog
 
-All notable changes to Mac Cursor Highlighter Thingy will be documented in this file.
+All notable changes to OnePointer will be documented here.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [1.0.0] - 2024
+## [Unreleased]
 
 ### Added
 
-- Initial release of Mac Cursor Highlighter Thingy
-- **Highlight Styles**
-  - Circle: Soft, filled circle with gradient effect
-  - Spotlight: Screen dimming with spotlight around cursor
-  - Ring: Glowing ring outline around cursor
-- **Click Effects**
-  - Ripple: Expanding circle that fades out
-  - Color Flash: Brief flash of color at click point
-  - Shrink & Bounce: Spring animation on click
-- **Features**
-  - Menu bar icon with quick access to settings
-  - Multi-display support
-  - Customizable colors, sizes, and opacity
-  - Launch at login option
-  - Show/hide dock icon option
-  - Smooth 60fps animations
-  - Low CPU usage
-- **Compatibility**
-  - Universal Binary (Intel + Apple Silicon)
-  - macOS 12.0 (Monterey) and later
+- Double-tap Control quick focus with a transient, multi-display spotlight.
+- A regular, localized SwiftUI settings window with no menu-bar item.
+- Optional launch at login using `SMAppService`.
+- English and Simplified Chinese localization.
+- Unit tests for gesture recognition, animation timing, and display geometry.
+
+### Preserved from mac-mouse-highlighter
+
+- Circle, spotlight, ring, crosshair, and pulse presentation styles.
+- Ripple, color-flash, and shrink-and-bounce click effects.
+- Multi-display overlays, adjustable appearance, and frame-rate controls.
+- Permission-free `⌃⌥⌘H` presentation-mode shortcut.
+
+## [0.1.0] - Local development build
+
+- First OnePointer development build.

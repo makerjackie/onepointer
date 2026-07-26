@@ -1,108 +1,26 @@
-# Contributing to Mac Cursor Highlighter Thingy
+# Contributing to OnePointer
 
-Thank you for your interest in contributing to Mac Cursor Highlighter Thingy! This document provides guidelines and information for contributors.
+Contributions are welcome and are licensed under the repository's MIT License.
 
-## How to Contribute
+## Build and test
 
-### Reporting Bugs
-
-1. Check if the bug has already been reported in [Issues](../../issues)
-2. If not, create a new issue using the bug report template
-3. Include:
-   - macOS version
-   - Mac model (Intel or Apple Silicon)
-   - Steps to reproduce
-   - Expected vs actual behavior
-   - Screenshots if applicable
-
-### Suggesting Features
-
-1. Check existing [Issues](../../issues) for similar suggestions
-2. Create a new issue using the feature request template
-3. Describe the use case and why it would be valuable
-
-### Pull Requests
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Make your changes
-4. Test thoroughly on macOS
-5. Commit with clear messages
-6. Push to your fork
-7. Open a Pull Request
-
-## Code Style Guidelines
-
-### Swift
-
-- Follow [Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-- Use 4 spaces for indentation
-- Use `// MARK: -` comments to organize code sections
-- Prefer `let` over `var` when possible
-- Use meaningful variable and function names
-
-### Project Structure
-
-```
-MouseHighlighter/
-├── App/           # App lifecycle, main entry point
-├── Core/          # Core functionality (permissions, settings, events)
-├── Overlay/       # Overlay window and view management
-├── Highlights/    # Highlight style implementations
-├── ClickEffects/  # Click effect implementations
-├── UI/            # SwiftUI views and menu bar
-└── Resources/     # Assets, icons
-```
-
-### Adding New Highlight Styles
-
-1. Create a new Swift file in `Highlights/`
-2. Implement the drawing logic
-3. Add the style to `HighlightStyle` enum in `SettingsManager.swift`
-4. Add UI for any style-specific settings
-5. Update the `HighlightView.swift` to render the new style
-
-### Adding New Click Effects
-
-1. Create a new Swift file in `ClickEffects/`
-2. Implement the animation logic
-3. Add the effect to `ClickEffect` enum in `SettingsManager.swift`
-4. Update `AnimationController.swift` to handle the new effect
-
-## Testing
-
-Before submitting a PR:
-
-1. Test on both Intel and Apple Silicon Macs if possible
-2. Test all highlight styles and click effects
-3. Test across multiple displays
-4. Verify settings persistence across app restarts
-5. Check for memory leaks using Instruments
-
-## Building from Source
-
-### Requirements
-
-- Xcode 15.0 or later
-- macOS 12.0 (Monterey) or later
-
-### Steps
+OnePointer targets macOS 13 or later and uses XcodeGen to keep the Xcode project
+reproducible.
 
 ```bash
-# Clone the repository
-git clone https://github.com/nikhilbhansali/mac-mouse-highlighter.git
-cd mac-mouse-highlighter
-
-# Open in Xcode
-open MouseHighlighter.xcodeproj
-
-# Build and run (Cmd+R)
+xcodegen generate
+./scripts/run-tests.sh
 ```
 
-## License
+Before submitting a change, test the relevant behavior on macOS. Visual or input
+changes should cover:
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+- Double-tap Control recognition and cancellation by unrelated input.
+- The “Focus Pointer Now” permission-free fallback.
+- Every presentation style and click effect affected by the change.
+- Multiple displays and a full-screen Space when available.
+- English and Simplified Chinese layouts.
+- Reduced Motion behavior for transient focus animations.
 
-## Questions?
-
-Feel free to open an issue for any questions about contributing.
+Keep the app as a regular Dock app without creating a menu-bar status item.
+Preserve notices for code and assets derived from `mac-mouse-highlighter`.

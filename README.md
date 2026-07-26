@@ -1,197 +1,125 @@
-# Mac Cursor Highlighter Thingy
+# OnePointer
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![macOS](https://img.shields.io/badge/macOS-12.0%2B%20Monterey-blue)](https://www.apple.com/macos/)
-[![Platform](https://img.shields.io/badge/Platform-Universal%20Binary-green)](https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary)
+[简体中文](#简体中文) · [English](#english)
 
-A native macOS app that adds visual highlights around the mouse cursor and animated click effects, perfect for screen recordings, presentations, and demos.
+OnePointer is a native, open-source macOS utility for finding and presenting the
+mouse pointer. It keeps the original presentation features from
+`mac-mouse-highlighter` and adds a restrained, transient spotlight triggered by
+double-tapping Control.
 
-## Why I Built This
+## 简体中文
 
-Ever tried to record a tutorial or do a live demo and your audience just... loses your cursor? I've been there countless times. "Where's the mouse?" "Can you click that again?" "I couldn't see where you clicked."
+### 功能
 
-It's such a simple problem, but surprisingly annoying. I just wanted a quick way to highlight my mouse cursor - nothing fancy, just something that works. Most solutions out there were either paid apps with way more features than I needed, or janky utilities that hadn't been updated since 2015.
+- 双击同一侧 `Control`：所有显示器短暂变暗，在鼠标位置显示聚光圈并淡出
+- “立即聚焦指针”按钮：无需输入监控权限即可测试聚焦效果
+- 演示模式：圆形、聚光灯、圆环、十字准星、脉冲五种持续高亮
+- 点击效果：涟漪、颜色闪光、收缩回弹
+- 多显示器与全屏空间支持
+- `⌃⌥⌘H`：随时开关演示模式
+- 可选开机启动，默认关闭
+- 简体中文与英文界面
 
-So I built this. A simple, native Mac app that does one thing well: makes your cursor visible. Whether you're recording a screencast, presenting to your team, or helping someone over a screen share, you'll never lose your cursor again.
+OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后，App
+仍会在后台运行；再次从 Spotlight 或“应用程序”打开即可显示窗口。
 
-It's free, it's open source, and it just works. Hope it helps you as much as it helps me.
+### 权限
 
-## Download
+只有“双击 Control”需要 macOS 的“输入监控”权限，用于只读识别按键节奏。
+聚焦按钮、`⌃⌥⌘H` 和鼠标演示模式不需要该权限。OnePointer 的事件监听使用
+`.listenOnly`，不会注入、修改或拦截输入。
 
-Download the latest release from [GitHub Releases](../../releases).
+首次使用双击 Control：
 
-> **Note:** Since this app is not notarized, macOS will show a security warning. See [Installation](#installation) for how to open it.
+1. 打开 OnePointer。
+2. 点击“允许输入监控”。
+3. 在“系统设置 → 隐私与安全性 → 输入监控”中启用 OnePointer。
+4. 返回 OnePointer；如 macOS 要求，退出并重新打开 App。
 
-## Features
+### 从 GitHub Releases 安装
 
-### Highlight Styles
-- **Circle** - A soft, filled circle that follows your cursor with gradient effect
-- **Spotlight** - Dims the entire screen except for a spotlight around the cursor
-- **Ring** - A glowing ring outline around the cursor
+1. 从 [GitHub Releases](../../releases) 下载最新的 `.dmg`。
+2. 打开 DMG，将 OnePointer 拖入“应用程序”。
+3. 打开 OnePointer，并按上面的说明授权“双击 Control”。
 
-### Click Effects
-- **Ripple** - An expanding circle that fades out from the click location
-- **Color Flash** - A brief flash of color at the click point
-- **Shrink & Bounce** - The highlight shrinks then bounces back with a spring effect
+正式 Release 应使用 Developer ID Application 签名、Apple 公证并附加
+notarization ticket。自动更新需要稳定的 GitHub owner/repo 与 appcast URL，
+因此 `0.1.0` 本地版本暂不内置更新器。
 
-### App Features
-- Menu bar icon with quick access to settings
-- Optional dock icon presence
-- Launch at login support
-- Customizable colors, sizes, and opacity
-- Works across all displays
-- Low CPU usage with smooth 60fps animations
+### 从源码构建
 
-## Requirements
-
-- **macOS:** 12.0 (Monterey) or later
-- **Architecture:** Universal Binary (Intel & Apple Silicon)
-- **Permissions:** Input Monitoring (required for mouse tracking)
-
-## Installation
-
-### From GitHub Releases (Recommended)
-
-1. Download the latest `.dmg` from [Releases](../../releases)
-2. Open the DMG and drag the app to Applications
-3. **Important:** Right-click the app and select "Open" (required for first launch)
-4. Click "Open" in the security dialog
-5. Grant Input Monitoring permission when prompted
-
-### Opening Unsigned Apps
-
-Since this app is distributed outside the Mac App Store and is not notarized, macOS Gatekeeper will block it. To open:
-
-**Method 1: Right-click → Open**
-1. Right-click (or Control-click) the app
-2. Select "Open" from the context menu
-3. Click "Open" in the dialog
-
-**Method 2: System Settings**
-1. Try to open the app normally (it will be blocked)
-2. Go to System Settings → Privacy & Security
-3. Scroll down and click "Open Anyway"
-
-## Usage
-
-### Menu Bar
-Click the menu bar icon to:
-- Toggle the highlighter on/off
-- Change highlight style
-- Change click effect
-- Open settings
-
-### Settings
-Access detailed settings through the menu bar or by clicking the dock icon:
-
-**General Tab**
-- Enable/disable the highlighter
-- Launch at login
-- Show/hide dock icon
-
-**Highlight Tab**
-- Choose highlight style (Circle, Spotlight, Ring)
-- Set highlight color
-- Adjust size and opacity
-- Style-specific settings (spotlight dim level, ring glow intensity)
-
-**Effects Tab**
-- Choose click effect (None, Ripple, Color Flash, Shrink & Bounce)
-- Adjust effect duration
-
-## Permissions
-
-Mac Cursor Highlighter Thingy requires **Input Monitoring** permission to track mouse movement and clicks. This is a macOS privacy feature that ensures apps can only access this data with your explicit consent.
-
-To grant permission:
-1. Go to System Settings → Privacy & Security → Input Monitoring
-2. Enable the toggle for Mac Cursor Highlighter Thingy
-3. Restart the app if needed
-
-### Why is App Sandbox Disabled?
-
-This app requires `CGEventTap` to monitor mouse events globally, which is incompatible with App Sandbox. The app only uses `.listenOnly` mode and cannot inject or modify input events.
-
-## Building from Source
-
-### Prerequisites
-- Xcode 15.0 or later
-- macOS 12.0 SDK or later
-
-### Steps
+要求 macOS 13 或更高版本、Xcode 26 或兼容版本，以及
+[XcodeGen](https://github.com/yonaskolb/XcodeGen)。
 
 ```bash
-# Clone the repository
-git clone https://github.com/nikhilbhansali/mac-mouse-highlighter.git
-cd mac-mouse-highlighter
-
-# Open in Xcode
-open MouseHighlighter.xcodeproj
-
-# Build and run (Cmd+R)
+xcodegen generate
+xcodebuild test \
+  -project OnePointer.xcodeproj \
+  -scheme OnePointer \
+  -configuration Debug \
+  -derivedDataPath .build/DerivedData \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
-### Building Universal Binary
+本地独立仓库路径建议为 `/Users/jackiexiao/code/OnePointer`。它不属于
+`/Users/jackiexiao/code/OneApps` monorepo。
+
+## English
+
+### Features
+
+- Double-tap the same `Control` key to briefly dim every display and reveal a
+  fading spotlight at the pointer
+- A “Focus Pointer Now” button that previews the effect without Input
+  Monitoring permission
+- Presentation mode with circle, spotlight, ring, crosshair, and pulse styles
+- Ripple, color-flash, and shrink-and-bounce click effects
+- Multiple-display and full-screen Space support
+- `⌃⌥⌘H` toggles presentation mode
+- Optional launch at login, off by default
+- Full English and Simplified Chinese interface
+
+OnePointer is a regular Dock app and does not create a menu-bar item. Closing
+the settings window leaves the app running; open it again from Spotlight or
+Applications to bring the window back.
+
+### Permission
+
+Only the double-Control gesture needs macOS Input Monitoring, solely to observe
+the key rhythm. The focus button, `⌃⌥⌘H`, and presentation mode do not require
+it. The event tap is listen-only and cannot inject, modify, or block input.
+
+### Install from GitHub Releases
+
+1. Download the latest `.dmg` from [GitHub Releases](../../releases).
+2. Open the DMG and drag OnePointer to Applications.
+3. Launch OnePointer and grant Input Monitoring if you want double-Control.
+
+Public releases should be Developer ID signed, notarized by Apple, and stapled.
+The local `0.1.0` build does not include automatic updates because a stable
+GitHub owner/repo and appcast URL have not been established yet.
+
+### Build from source
+
+OnePointer requires macOS 13 or later, Xcode 26 or a compatible release, and
+[XcodeGen](https://github.com/yonaskolb/XcodeGen).
 
 ```bash
-xcodebuild -project MouseHighlighter.xcodeproj \
-  -scheme "MouseHighlighter" \
-  -configuration Release \
-  -arch arm64 -arch x86_64 \
-  ONLY_ACTIVE_ARCH=NO
-
-# Verify architectures
-lipo -info "build/Release/Mac Cursor Highlighter Thingy.app/Contents/MacOS/Mac Cursor Highlighter Thingy"
-# Should output: Architectures in the fat file: arm64 x86_64
+xcodegen generate
+xcodebuild test \
+  -project OnePointer.xcodeproj \
+  -scheme OnePointer \
+  -configuration Debug \
+  -derivedDataPath .build/DerivedData \
+  CODE_SIGNING_ALLOWED=NO
 ```
 
-### Generating App Icons
+## License and upstream attribution
 
-A Swift script is included to generate app icons:
-```bash
-swift generate_icon.swift MouseHighlighter/Resources/Assets.xcassets/AppIcon.appiconset
-```
-
-## Project Structure
-
-```
-MouseHighlighter/
-├── App/
-│   ├── AppDelegate.swift           # App lifecycle, permissions
-│   └── Info.plist                  # App configuration
-├── Core/
-│   ├── MouseEventMonitor.swift     # Global mouse tracking
-│   ├── PermissionsManager.swift    # Input Monitoring permissions
-│   └── SettingsManager.swift       # UserDefaults persistence
-├── Overlay/
-│   ├── OverlayWindowController.swift  # Transparent overlay windows
-│   ├── HighlightView.swift         # Main rendering view
-│   └── AnimationController.swift   # 60fps display link
-├── Highlights/
-│   ├── CircleHighlight.swift       # Filled circle renderer
-│   ├── SpotlightHighlight.swift    # Screen dim with cutout
-│   └── RingHighlight.swift         # Glowing ring renderer
-├── ClickEffects/
-│   ├── RippleEffect.swift          # Expanding fade-out circle
-│   ├── ColorFlashEffect.swift      # Brief color change
-│   └── ShrinkBounceEffect.swift    # Spring animation
-├── UI/
-│   ├── MenuBarController.swift     # Status bar icon + dropdown
-│   └── SettingsView.swift          # SwiftUI settings window
-└── Resources/
-    └── Assets.xcassets             # App icons
-```
-
-## Contributing
-
-Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Built with SwiftUI and AppKit
-- Uses Core Graphics for efficient rendering
-- Icon generated programmatically
+OnePointer is licensed under the MIT License. It contains modified source and
+assets from Nikhil Bhansali's
+[`mac-mouse-highlighter`](https://github.com/nikhilbhansali/mac-mouse-highlighter)
+at commit `385412eeb4c75b272a19b4eda1d7ae739c8f7b85`, also licensed under MIT.
+The required upstream notice is preserved in
+[`LICENSES/mac-mouse-highlighter-LICENSE`](LICENSES/mac-mouse-highlighter-LICENSE)
+and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
