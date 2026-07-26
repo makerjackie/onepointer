@@ -1,5 +1,6 @@
 import Cocoa
 import Combine
+import Sparkle
 import SwiftUI
 
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -9,6 +10,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var doubleControlMonitor: DoubleControlMonitor?
     private let hotKeyManager = HotKeyManager()
     private let appModel = AppModel()
+    private var updaterController: SPUStandardUpdaterController?
     private lazy var settingsWindowController = SettingsWindowController(appModel: appModel)
 
     private var cancellables = Set<AnyCancellable>()
@@ -19,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupOverlays()
         setupMouseMonitor()
         setupHotKey()
+        setupUpdater()
         setupBindings()
         setupQuickFocus()
         settingsWindowController.showSettings()
@@ -46,6 +49,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             SettingsManager.shared.isEnabled.toggle()
         }
         hotKeyManager.register()
+    }
+
+    private func setupUpdater() {
+        let updaterController = SPUStandardUpdaterController(
+            startingUpdater: true,
+            updaterDelegate: nil,
+            userDriverDelegate: nil
+        )
+        self.updaterController = updaterController
+        appModel.checkForUpdates = { [weak updaterController] in
+            updaterController?.checkForUpdates(nil)
+        }
     }
 
     private func setupQuickFocus() {
@@ -113,6 +128,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)),
             keyEquivalent: ""
         )
+        appMenu.addItem(
+            withTitle: String(localized: "Check for Updates…"),
+            action: #selector(checkForUpdates(_:)),
+            keyEquivalent: ""
+        )
         appMenu.addItem(.separator())
         appMenu.addItem(
             withTitle: String(localized: "Hide OnePointer"),
@@ -126,6 +146,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         )
         appMenuItem.submenu = appMenu
         NSApp.mainMenu = mainMenu
+    }
+
+    @objc private func checkForUpdates(_ sender: Any?) {
+        updaterController?.checkForUpdates(sender)
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

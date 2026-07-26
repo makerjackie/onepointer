@@ -17,6 +17,7 @@ struct SettingsView: View {
                     isExpanded: $showsPresentationDetails
                 )
                 AdvancedSettingsSection(
+                    appModel: appModel,
                     settings: settings,
                     isExpanded: $showsAdvancedSettings
                 )

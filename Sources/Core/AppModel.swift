@@ -12,6 +12,7 @@ final class AppModel: ObservableObject {
     @Published private(set) var inputMonitoringState: InputMonitoringState = .required
 
     var focusNow: () -> Void = {}
+    var checkForUpdates: () -> Void = {}
     var inputMonitoringDidChange: () -> Void = {}
 
     init() {

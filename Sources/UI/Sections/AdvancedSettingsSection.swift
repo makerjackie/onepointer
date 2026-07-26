@@ -1,12 +1,19 @@
 import SwiftUI
 
 struct AdvancedSettingsSection: View {
+    @ObservedObject var appModel: AppModel
     @ObservedObject var settings: SettingsManager
     @Binding var isExpanded: Bool
 
     var body: some View {
         SettingsCard(title: "General", systemImage: "gearshape") {
             Toggle("Launch OnePointer at login", isOn: $settings.launchAtLogin)
+
+            Button(
+                "Check for Updates…",
+                systemImage: "arrow.triangle.2.circlepath",
+                action: appModel.checkForUpdates
+            )
 
             DisclosureGroup("Advanced", isExpanded: $isExpanded) {
                 VStack(alignment: .leading, spacing: DesignTokens.controlSpacing) {

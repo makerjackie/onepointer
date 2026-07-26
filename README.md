@@ -18,6 +18,7 @@ double-tapping Control.
 - 多显示器与全屏空间支持
 - `⌃⌥⌘H`：随时开关演示模式
 - 可选开机启动，默认关闭
+- Sparkle 安全自动更新，也可手动“检查更新”
 - 简体中文与英文界面
 
 OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后，App
@@ -38,13 +39,12 @@ OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后
 
 ### 从 GitHub Releases 安装
 
-1. 从 [GitHub Releases](../../releases) 下载最新的 `.dmg`。
+1. 从 [GitHub Releases](https://github.com/makerjackie/onepointer/releases) 下载最新的 `.dmg`。
 2. 打开 DMG，将 OnePointer 拖入“应用程序”。
 3. 打开 OnePointer，并按上面的说明授权“双击 Control”。
 
-正式 Release 应使用 Developer ID Application 签名、Apple 公证并附加
-notarization ticket。自动更新需要稳定的 GitHub owner/repo 与 appcast URL，
-因此 `0.1.0` 本地版本暂不内置更新器。
+公开 Release 使用 Developer ID Application 签名，经过 Apple 公证并附加
+notarization ticket。后续版本可由 App 内的 Sparkle 安全更新。
 
 ### 从源码构建
 
@@ -64,6 +64,9 @@ xcodebuild test \
 本地独立仓库路径建议为 `/Users/jackiexiao/code/OnePointer`。它不属于
 `/Users/jackiexiao/code/OneApps` monorepo。
 
+维护者可运行 `./scripts/build-dmg.sh` 完成测试、归档、嵌套签名、App 与
+DMG 双重公证、Sparkle appcast 签名和校验和生成。
+
 ## English
 
 ### Features
@@ -77,6 +80,7 @@ xcodebuild test \
 - Multiple-display and full-screen Space support
 - `⌃⌥⌘H` toggles presentation mode
 - Optional launch at login, off by default
+- Secure Sparkle automatic updates and a manual “Check for Updates” action
 - Full English and Simplified Chinese interface
 
 OnePointer is a regular Dock app and does not create a menu-bar item. Closing
@@ -91,13 +95,13 @@ it. The event tap is listen-only and cannot inject, modify, or block input.
 
 ### Install from GitHub Releases
 
-1. Download the latest `.dmg` from [GitHub Releases](../../releases).
+1. Download the latest `.dmg` from
+   [GitHub Releases](https://github.com/makerjackie/onepointer/releases).
 2. Open the DMG and drag OnePointer to Applications.
 3. Launch OnePointer and grant Input Monitoring if you want double-Control.
 
-Public releases should be Developer ID signed, notarized by Apple, and stapled.
-The local `0.1.0` build does not include automatic updates because a stable
-GitHub owner/repo and appcast URL have not been established yet.
+Public releases are Developer ID signed, notarized by Apple, and stapled.
+Future releases can be installed securely by Sparkle from inside the app.
 
 ### Build from source
 
@@ -122,4 +126,5 @@ assets from Nikhil Bhansali's
 at commit `385412eeb4c75b272a19b4eda1d7ae739c8f7b85`, also licensed under MIT.
 The required upstream notice is preserved in
 [`LICENSES/mac-mouse-highlighter-LICENSE`](LICENSES/mac-mouse-highlighter-LICENSE)
-and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Sparkle's complete
+license notices are preserved in [`LICENSES/Sparkle-LICENSE`](LICENSES/Sparkle-LICENSE).

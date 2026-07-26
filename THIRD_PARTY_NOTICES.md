@@ -12,3 +12,11 @@ The upstream work is licensed under the MIT License:
 
 The complete upstream license text is preserved at
 [`LICENSES/mac-mouse-highlighter-LICENSE`](LICENSES/mac-mouse-highlighter-LICENSE).
+
+## Sparkle
+
+OnePointer uses
+[`sparkle-project/Sparkle`](https://github.com/sparkle-project/Sparkle)
+version `2.9.2` for secure automatic updates. Sparkle and its bundled
+third-party components are distributed under the notices preserved in
+[`LICENSES/Sparkle-LICENSE`](LICENSES/Sparkle-LICENSE).

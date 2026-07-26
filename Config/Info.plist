@@ -34,7 +34,11 @@
     <string>NSApplication</string>
     <key>NSSupportsAutomaticTermination</key>
     <false/>
-    <key>NSSupportsSuddenTermination</key>
-    <false/>
+	<key>NSSupportsSuddenTermination</key>
+	<false/>
+	<key>SUFeedURL</key>
+	<string>https://raw.githubusercontent.com/makerjackie/onepointer/main/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>9R1DcKAps2y1h60T48b/uMksnxNaJIo+2/++kZuCSDo=</string>
 </dict>
 </plist>
