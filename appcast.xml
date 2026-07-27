@@ -3,6 +3,33 @@
     <channel>
         <title>OnePointer</title>
         <item>
+            <title>0.2.0</title>
+            <pubDate>Mon, 27 Jul 2026 17:19:46 +0800</pubDate>
+            <link>https://github.com/makerjackie/onepointer</link>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.2.0
+
+快速聚焦快捷手势现在可以自由选择，也可以关闭。
+
+- 默认快捷手势改为双击左侧 Option
+- 可选择左右侧的 Option、Control、Command 或 Shift
+- 可完全关闭快速聚焦快捷手势
+- 修饰键与其他按键组合使用时不会误触聚焦
+
+---
+
+The quick-focus gesture is now configurable and optional.
+
+- The default gesture is now double-tap left Option
+- Choose either side of Option, Control, Command, or Shift
+- Disable the quick-focus gesture completely
+- Modifier-key combinations do not accidentally trigger quick focus
+]]></description>
+            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.2.0/OnePointer-0.2.0.dmg" length="2518338" type="application/octet-stream" sparkle:edSignature="LQC6HavcPpJMmAAXJZIUUQK8ov3PLHejxJ2+s8iw5wuBa1jWY1gC67Q0pR81GfRrdEdQagkUcEMkxZijs9ztBg=="/>
+        </item>
+        <item>
             <title>0.1.1</title>
             <pubDate>Mon, 27 Jul 2026 16:04:37 +0800</pubDate>
             <link>https://github.com/makerjackie/onepointer</link>
