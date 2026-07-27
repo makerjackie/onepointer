@@ -3,6 +3,38 @@
     <channel>
         <title>OnePointer</title>
         <item>
+            <title>0.3.0</title>
+            <pubDate>Mon, 27 Jul 2026 18:42:58 +0800</pubDate>
+            <link>https://github.com/makerjackie/onepointer</link>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>0.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.3.0
+
+设置界面经过重新设计，让快速聚焦与持续高亮都更容易找到和使用。
+
+- 只保留“快速聚焦”和“持续高亮”两个清晰入口
+- 持续高亮改为醒目的全宽主按钮，可一键开启或关闭
+- 所有设置直接展示，不再折叠“高级设置”
+- 开机启动、检查更新、帧率和重置整合到快速聚焦页
+- 全新 App 图标更明确地表达鼠标指针与聚焦功能
+- 新增 OneApps.Studio 更多实用 App 入口
+
+---
+
+The settings window has been redesigned to make both quick focus and persistent
+highlighting easier to find and use.
+
+- Two clear destinations: Quick Focus and Persistent Highlight
+- A prominent full-width control enables or disables persistent highlighting
+- All settings stay visible without a collapsed advanced section
+- Launch at login, updates, frame rate, and reset now live on the Quick Focus page
+- A refreshed app icon clearly communicates pointer focus
+- A new link helps users discover more apps from OneApps.Studio
+]]></description>
+            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.3.0/OnePointer-0.3.0.dmg" length="3561591" type="application/octet-stream" sparkle:edSignature="2FBkgCx4TwBO2J/aA4YdIDjQHLNeBWIY14sfjbrnEQpKvCp4cOg5q6Vt6+h7MTRrd09TQRPq9Eudmh4mlFuTCw=="/>
+        </item>
+        <item>
             <title>0.2.0</title>
             <pubDate>Mon, 27 Jul 2026 17:19:46 +0800</pubDate>
             <link>https://github.com/makerjackie/onepointer</link>
@@ -53,37 +85,6 @@ The focus animation is now clearer and more direct.
 - Reduce Motion keeps the circle fixed and uses opacity only
 ]]></description>
             <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.1.1/OnePointer-0.1.1.dmg" length="2506996" type="application/octet-stream" sparkle:edSignature="5kgYDVtZbC12zjqOX6FFE86sw5CCPD3n4YEYwWFGMM5fH3zsGV35QXENlF5NXhjzwIxZMRtwTwQhBsJx5QrdAw=="/>
-        </item>
-        <item>
-            <title>0.1.0</title>
-            <pubDate>Sun, 26 Jul 2026 21:53:24 +0800</pubDate>
-            <link>https://github.com/makerjackie/onepointer</link>
-            <sparkle:version>1</sparkle:version>
-            <sparkle:shortVersionString>0.1.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.1.0
-
-首个公开版本。
-
-- 双击同一侧 Control，短暂灰屏并聚焦鼠标位置
-- 保留圆形、聚光灯、圆环、十字准星和脉冲演示模式
-- 保留涟漪、颜色闪光和收缩回弹点击效果
-- 支持多显示器、全屏空间和开机启动
-- 简体中文与英文界面
-- 使用 Sparkle 提供安全的自动更新
-
----
-
-First public release.
-
-- Double-tap the same Control key to briefly dim every display and focus the pointer
-- Circle, spotlight, ring, crosshair, and pulse presentation modes
-- Ripple, color-flash, and shrink-and-bounce click effects
-- Multiple displays, full-screen Spaces, and launch at login
-- English and Simplified Chinese interface
-- Secure automatic updates powered by Sparkle
-]]></description>
-            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.1.0/OnePointer-0.1.0.dmg" length="2505560" type="application/octet-stream" sparkle:edSignature="ObUCr0lKSnk1W5db+ax4vOgjLc8ynYqPy1lL7vVAtyDLzpf2xU9tmTQIFa0mNyba6MX45B9Sc1hQfpCx+HUrAQ=="/>
         </item>
     </channel>
 </rss>
