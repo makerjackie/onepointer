@@ -3,6 +3,31 @@
     <channel>
         <title>OnePointer</title>
         <item>
+            <title>0.1.1</title>
+            <pubDate>Mon, 27 Jul 2026 16:04:37 +0800</pubDate>
+            <link>https://github.com/makerjackie/onepointer</link>
+            <sparkle:version>2</sparkle:version>
+            <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.1.1
+
+聚焦动画现在更清晰、更直接。
+
+- 大聚光圈快速收拢到鼠标位置
+- 轻微回弹后稳定，并在 0.85 秒内淡出
+- 开启“减少动态效果”时，保持固定圆圈并仅淡入淡出
+
+---
+
+The focus animation is now clearer and more direct.
+
+- A large spotlight rapidly contracts toward the pointer
+- It lightly rebounds, settles, and fades within 0.85 seconds
+- Reduce Motion keeps the circle fixed and uses opacity only
+]]></description>
+            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.1.1/OnePointer-0.1.1.dmg" length="2506996" type="application/octet-stream" sparkle:edSignature="5kgYDVtZbC12zjqOX6FFE86sw5CCPD3n4YEYwWFGMM5fH3zsGV35QXENlF5NXhjzwIxZMRtwTwQhBsJx5QrdAw=="/>
+        </item>
+        <item>
             <title>0.1.0</title>
             <pubDate>Sun, 26 Jul 2026 21:53:24 +0800</pubDate>
             <link>https://github.com/makerjackie/onepointer</link>
