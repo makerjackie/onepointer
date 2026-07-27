@@ -4,6 +4,18 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-27
+
+### Changed
+
+- The transient focus spotlight now begins as a large circle, rapidly contracts
+  toward the pointer, lightly rebounds, settles, and fades within 0.85 seconds.
+- Reduce Motion keeps the spotlight at its final size and uses opacity only.
+
+## [0.1.0] - 2026-07-26
+
+First public OnePointer release.
+
 ### Added
 
 - Double-tap Control quick focus with a transient, multi-display spotlight.
@@ -19,7 +31,3 @@ All notable changes to OnePointer will be documented here.
 - Ripple, color-flash, and shrink-and-bounce click effects.
 - Multi-display overlays, adjustable appearance, and frame-rate controls.
 - Permission-free `⌃⌥⌘H` presentation-mode shortcut.
-
-## [0.1.0] - 2026-07-26
-
-- First public OnePointer release.

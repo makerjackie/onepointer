@@ -63,7 +63,6 @@ final class TransientFocusOverlayController {
         let mouseLocation = NSEvent.mouseLocation
         let reduceMotion = NSWorkspace.shared.accessibilityDisplayShouldReduceMotion
         let opacity = timeline.overlayOpacity(at: elapsed, reduceMotion: reduceMotion)
-        let radius = timeline.spotlightRadius(at: elapsed, reduceMotion: reduceMotion)
 
         var selectedScreenIndex: Int?
         for (index, overlay) in overlays.enumerated() where overlay.screen.frame.contains(mouseLocation) {
@@ -73,8 +72,12 @@ final class TransientFocusOverlayController {
 
         for (index, overlay) in overlays.enumerated() {
             overlay.view.overlayOpacity = opacity
-            overlay.view.spotlightRadius = radius
             if index == selectedScreenIndex {
+                overlay.view.spotlightRadius = timeline.spotlightRadius(
+                    at: elapsed,
+                    initialRadius: initialSpotlightRadius(for: overlay.screen.frame.size),
+                    reduceMotion: reduceMotion
+                )
                 overlay.view.spotlightCenter = Geometry.localPoint(
                     global: mouseLocation,
                     screenOrigin: overlay.screen.frame.origin
@@ -84,6 +87,11 @@ final class TransientFocusOverlayController {
             }
             overlay.view.needsDisplay = true
         }
+    }
+
+    private func initialSpotlightRadius(for screenSize: CGSize) -> Double {
+        let diagonal = hypot(screenSize.width, screenSize.height)
+        return min(max(diagonal * 0.22, 360), 620)
     }
 
     private func hide() {

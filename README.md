@@ -11,7 +11,7 @@ double-tapping Control.
 
 ### 功能
 
-- 双击同一侧 `Control`：所有显示器短暂变暗，在鼠标位置显示聚光圈并淡出
+- 双击同一侧 `Control`：所有显示器短暂变暗，大聚光圈快速收拢到鼠标位置并淡出
 - “立即聚焦指针”按钮：无需输入监控权限即可测试聚焦效果
 - 演示模式：圆形、聚光灯、圆环、十字准星、脉冲五种持续高亮
 - 点击效果：涟漪、颜色闪光、收缩回弹
@@ -71,8 +71,8 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 
 ### Features
 
-- Double-tap the same `Control` key to briefly dim every display and reveal a
-  fading spotlight at the pointer
+- Double-tap the same `Control` key to briefly dim every display and rapidly
+  contract a large spotlight toward the pointer before fading
 - A “Focus Pointer Now” button that previews the effect without Input
   Monitoring permission
 - Presentation mode with circle, spotlight, ring, crosshair, and pulse styles
