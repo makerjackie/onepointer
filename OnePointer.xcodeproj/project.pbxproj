@@ -16,12 +16,15 @@
 		278B72929196BBAF1A3E9BEE /* TransientFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A67D17FD60C92F45A7DB5 /* TransientFocusView.swift */; };
 		29D1FF6983C5E976BE1689D3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCD94224DD2009B604AFF2 /* SettingsWindowController.swift */; };
 		2EFC79809961BD9F99E233CA /* Sparkle-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 40F8499B16304A987500C094 /* Sparkle-LICENSE */; };
+		35D4B11397D66A59191EB9BA /* OneAppsPromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3DC5C8CD934EB33F41BCDB /* OneAppsPromotionView.swift */; };
 		398926F96B0BCDD6B3EF1FE4 /* QuickFocusModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */; };
 		3C44F1250BEDD79D1AFAE03C /* PulseHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7299C6018AB315A586ABDC /* PulseHighlight.swift */; };
 		3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F89975A378A1AD2090009 /* HighlightPreviewView.swift */; };
 		3D40EFF8E7440318E04C5D14 /* CrosshairHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B997C69D3D90F26643855638 /* CrosshairHighlight.swift */; };
+		3FE9EA007F5F1EA4F18BCE70 /* FocusPreviewGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0285C0F81D442028CBD67CF /* FocusPreviewGrid.swift */; };
 		406E6A78EEA0FE0678615378 /* HighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BFFD69BA215C831DA6AA8 /* HighlightView.swift */; };
 		55CCC2D4D9A13E9D9E759E46 /* ColorFlashEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA799485B34C6DF64BAFF69 /* ColorFlashEffect.swift */; };
+		5834C2C28C75EE384957A53A /* FocusPreviewSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE9C399A513DC85FEAE697 /* FocusPreviewSurface.swift */; };
 		59ED39E4C741F4856DE8E935 /* PresentationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8584F43A3633EEF95E2FD5 /* PresentationSection.swift */; };
 		6122B164A78D36AEF4562552 /* FocusAnimationTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6D9A7AB28F4A7BB02D687 /* FocusAnimationTimeline.swift */; };
 		61560E4CC3EB87684BF0C6F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA32164464A4B28D5F4170F0 /* Assets.xcassets */; };
@@ -38,6 +41,7 @@
 		969A28FA96D30A5ED3D09291 /* FocusAnimationTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */; };
 		9BF13EF84430E2167DEA953A /* ShortcutKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9731B12A571738F421051D /* ShortcutKeyView.swift */; };
 		9E4003EA62C7A30763707894 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED1A602FFEFEFDEF2C83D9 /* MenuBarController.swift */; };
+		9F95FE6443C7748DC8DFC5CA /* QuickFocusControlBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC926DECFB1EC4C4BFBB373 /* QuickFocusControlBar.swift */; };
 		AA0DEE074C4DE7B899F9E9FD /* QuickFocusSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131E41708121C942BD562770 /* QuickFocusSection.swift */; };
 		AD263EC0A5DDF08C19695591 /* THIRD_PARTY_NOTICES.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DE951FCDB2C2B759E80A963 /* THIRD_PARTY_NOTICES.md */; };
 		AF7C39DB7E0DDEC6D56AAEF9 /* AdvancedSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017848C4E857B8ABEFE99A7B /* AdvancedSettingsSection.swift */; };
@@ -52,6 +56,7 @@
 		DF3B32939D130D998A7B4A23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5744829DE39B4E5315F915F /* Localizable.strings */; };
 		E024587D8BDBA1D140499531 /* TransientFocusOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01017CDEF97E57F17FC05C25 /* TransientFocusOverlayController.swift */; };
 		E31005297A2883C2A9E33328 /* DoubleModifierTapRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */; };
+		EDD1D328340B51A6CD29B458 /* SettingsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */; };
 		F05C7CE05840A0879DDE588C /* mac-mouse-highlighter-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDED30D7ADD4CCBC3EFF87D1 /* mac-mouse-highlighter-LICENSE */; };
 		F3DEF6204FB4EEDDDD6CCC7A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317FE4291EF447F51AE1DF62 /* AppModel.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +80,7 @@
 		131E41708121C942BD562770 /* QuickFocusSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusSection.swift; sourceTree = "<group>"; };
 		1643DE114C8BE244B5E63AF3 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		17B6D9A7AB28F4A7BB02D687 /* FocusAnimationTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusAnimationTimeline.swift; sourceTree = "<group>"; };
+		27CE9C399A513DC85FEAE697 /* FocusPreviewSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPreviewSurface.swift; sourceTree = "<group>"; };
 		28F33AFE8483B32358C81D9A /* ShrinkBounceEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkBounceEffect.swift; sourceTree = "<group>"; };
 		2915DE49ED917762B9D01682 /* ModifierTapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierTapEvent.swift; sourceTree = "<group>"; };
 		2AF48C7D213AFD3135FCDBC6 /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
@@ -86,11 +92,13 @@
 		3DE951FCDB2C2B759E80A963 /* THIRD_PARTY_NOTICES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = THIRD_PARTY_NOTICES.md; sourceTree = "<group>"; };
 		3E8584F43A3633EEF95E2FD5 /* PresentationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSection.swift; sourceTree = "<group>"; };
 		40F8499B16304A987500C094 /* Sparkle-LICENSE */ = {isa = PBXFileReference; path = "Sparkle-LICENSE"; sourceTree = "<group>"; };
+		48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageHeader.swift; sourceTree = "<group>"; };
 		4A7299C6018AB315A586ABDC /* PulseHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseHighlight.swift; sourceTree = "<group>"; };
 		557F112BB733183006C2423C /* DoubleModifierTapRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizer.swift; sourceTree = "<group>"; };
 		595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierMonitor.swift; sourceTree = "<group>"; };
 		5B2AA9AE44A3FB164EED4F12 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		5B9731B12A571738F421051D /* ShortcutKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutKeyView.swift; sourceTree = "<group>"; };
+		5DC926DECFB1EC4C4BFBB373 /* QuickFocusControlBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusControlBar.swift; sourceTree = "<group>"; };
 		6302588BE38D1829AC24E4E4 /* OnePointer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePointer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F89975A378A1AD2090009 /* HighlightPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightPreviewView.swift; sourceTree = "<group>"; };
 		65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusModifier.swift; sourceTree = "<group>"; };
@@ -113,7 +121,9 @@
 		E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizerTests.swift; sourceTree = "<group>"; };
 		E94112EF908D12562527F2A3 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
 		EDED30D7ADD4CCBC3EFF87D1 /* mac-mouse-highlighter-LICENSE */ = {isa = PBXFileReference; path = "mac-mouse-highlighter-LICENSE"; sourceTree = "<group>"; };
+		EE3DC5C8CD934EB33F41BCDB /* OneAppsPromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneAppsPromotionView.swift; sourceTree = "<group>"; };
 		EF42E0ADD9C567EC225642A7 /* LICENSE */ = {isa = PBXFileReference; path = LICENSE; sourceTree = "<group>"; };
+		F0285C0F81D442028CBD67CF /* FocusPreviewGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusPreviewGrid.swift; sourceTree = "<group>"; };
 		F8397E82082E13001859D64F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDC3250892665D1FDF32F4B6 /* RingHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingHighlight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -228,6 +238,7 @@
 				E94112EF908D12562527F2A3 /* DesignTokens.swift */,
 				659F89975A378A1AD2090009 /* HighlightPreviewView.swift */,
 				35ED1A602FFEFEFDEF2C83D9 /* MenuBarController.swift */,
+				EE3DC5C8CD934EB33F41BCDB /* OneAppsPromotionView.swift */,
 				6FF4F11F031FAD654B1B772D /* SettingsView.swift */,
 				3ABCD94224DD2009B604AFF2 /* SettingsWindowController.swift */,
 				F39FC2278722DE79B72BDD90 /* Components */,
@@ -288,7 +299,11 @@
 		F39FC2278722DE79B72BDD90 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F0285C0F81D442028CBD67CF /* FocusPreviewGrid.swift */,
+				27CE9C399A513DC85FEAE697 /* FocusPreviewSurface.swift */,
+				5DC926DECFB1EC4C4BFBB373 /* QuickFocusControlBar.swift */,
 				ABCA6DC9C74DF0030A6923BD /* SettingsCard.swift */,
+				48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */,
 				5B9731B12A571738F421051D /* ShortcutKeyView.swift */,
 			);
 			path = Components;
@@ -432,6 +447,8 @@
 				8E91AC901A67EE17C80B18F6 /* DoubleModifierMonitor.swift in Sources */,
 				062E888CF60FBDBC6159E381 /* DoubleModifierTapRecognizer.swift in Sources */,
 				6122B164A78D36AEF4562552 /* FocusAnimationTimeline.swift in Sources */,
+				3FE9EA007F5F1EA4F18BCE70 /* FocusPreviewGrid.swift in Sources */,
+				5834C2C28C75EE384957A53A /* FocusPreviewSurface.swift in Sources */,
 				0E60515D078D952812755831 /* Geometry.swift in Sources */,
 				3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */,
 				406E6A78EEA0FE0678615378 /* HighlightView.swift in Sources */,
@@ -439,15 +456,18 @@
 				9E4003EA62C7A30763707894 /* MenuBarController.swift in Sources */,
 				CAC6A448ADDA10AE3C92DB06 /* ModifierTapEvent.swift in Sources */,
 				D302761540E7B2DB2FD3E7CA /* MouseEventMonitor.swift in Sources */,
+				35D4B11397D66A59191EB9BA /* OneAppsPromotionView.swift in Sources */,
 				73BCFE8C5F6E9BF9B507E6A5 /* OverlayWindowController.swift in Sources */,
 				59ED39E4C741F4856DE8E935 /* PresentationSection.swift in Sources */,
 				3C44F1250BEDD79D1AFAE03C /* PulseHighlight.swift in Sources */,
+				9F95FE6443C7748DC8DFC5CA /* QuickFocusControlBar.swift in Sources */,
 				398926F96B0BCDD6B3EF1FE4 /* QuickFocusModifier.swift in Sources */,
 				AA0DEE074C4DE7B899F9E9FD /* QuickFocusSection.swift in Sources */,
 				89B14833EAB1BAB0C495D25C /* RingHighlight.swift in Sources */,
 				76C16CED57942211B8BD9CC2 /* RippleEffect.swift in Sources */,
 				226E71FFEDCF65E70CF81DF6 /* SettingsCard.swift in Sources */,
 				192DDF968DEF607BBA5A5A76 /* SettingsManager.swift in Sources */,
+				EDD1D328340B51A6CD29B458 /* SettingsPageHeader.swift in Sources */,
 				7DA2FB7B4099D938FE34007D /* SettingsView.swift in Sources */,
 				29D1FF6983C5E976BE1689D3 /* SettingsWindowController.swift in Sources */,
 				9BF13EF84430E2167DEA953A /* ShortcutKeyView.swift in Sources */,

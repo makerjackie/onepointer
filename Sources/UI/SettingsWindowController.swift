@@ -26,10 +26,10 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
         let window = NSWindow(contentViewController: hostingController)
         window.title = "OnePointer"
         window.styleMask = [.titled, .closable, .miniaturizable, .resizable]
-        window.setContentSize(NSSize(width: 720, height: 700))
-        window.minSize = NSSize(width: 620, height: 560)
+        window.setContentSize(NSSize(width: 980, height: 700))
+        window.minSize = NSSize(width: 820, height: 600)
         window.center()
-        window.setFrameAutosaveName("OnePointerMainWindow")
+        window.setFrameAutosaveName("OnePointerMainWindowV2")
         window.isReleasedWhenClosed = false
         window.delegate = self
 

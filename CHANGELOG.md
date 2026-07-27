@@ -4,6 +4,24 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-27
+
+### Added
+
+- A prominent full-width control for enabling and disabling persistent pointer
+  highlighting.
+- A compact One Apps link for discovering more utilities from OneApps.Studio.
+
+### Changed
+
+- Redesigned the settings window around two focused destinations: Quick Focus
+  and Persistent Highlight.
+- Kept all controls visible instead of hiding advanced options behind
+  disclosure sections.
+- Moved launch-at-login, update, frame-rate, and reset controls into the Quick
+  Focus page so a separate General tab is no longer needed.
+- Refreshed the app icon with a clearly recognizable pointer and focus ring.
+
 ## [0.2.0] - 2026-07-27
 
 ### Added

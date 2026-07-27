@@ -18,9 +18,11 @@ double-tapping a configurable modifier key.
 - 点击效果：涟漪、颜色闪光、收缩回弹
 - 多显示器与全屏空间支持
 - `⌃⌥⌘H`：随时开关演示模式
+- 持续高亮页顶部提供醒目的主开关，可一键开启或关闭
 - 可选开机启动，默认关闭
 - Sparkle 安全自动更新，也可手动“检查更新”
 - 简体中文与英文界面
+- 设置窗口提供 OneApps.Studio 的更多 App 入口
 
 OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后，App
 仍会在后台运行；再次从 Spotlight 或“应用程序”打开即可显示窗口。
@@ -82,9 +84,11 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 - Ripple, color-flash, and shrink-and-bounce click effects
 - Multiple-display and full-screen Space support
 - `⌃⌥⌘H` toggles presentation mode
+- A prominent primary control enables or disables persistent highlighting
 - Optional launch at login, off by default
 - Secure Sparkle automatic updates and a manual “Check for Updates” action
 - Full English and Simplified Chinese interface
+- A settings-window link for discovering more apps from OneApps.Studio
 
 OnePointer is a regular Dock app and does not create a menu-bar item. Closing
 the settings window leaves the app running; open it again from Spotlight or
