@@ -1,6 +1,7 @@
 "About OnePointer" = "About OnePointer";
 "Advanced" = "Advanced";
 "All displays dim briefly while a spotlight follows the pointer." = "All displays dim briefly while a spotlight follows the pointer.";
+"All displays dim briefly while a spotlight contracts toward the pointer." = "All displays dim briefly while a spotlight contracts toward the pointer.";
 "Allow Input Monitoring" = "Allow Input Monitoring";
 "Appearance and click effects" = "Appearance and click effects";
 "Circle" = "Circle";
@@ -12,8 +13,11 @@
 "Crosshair style" = "Crosshair style";
 "Dim opacity" = "Dim opacity";
 "Double-tap Control" = "Double-tap Control";
+"Double-tap %@" = "Double-tap %@";
+"Double-tap shortcut" = "Double-tap shortcut";
 "Effect duration" = "Effect duration";
 "Enable double-tap Control" = "Enable double-tap Control";
+"Enable quick focus shortcut" = "Enable quick focus shortcut";
 "Find your pointer instantly, or keep it visible while presenting." = "Find your pointer instantly, or keep it visible while presenting.";
 "Focus Pointer Now" = "Focus Pointer Now";
 "General" = "General";
@@ -22,10 +26,15 @@
 "Highlight color" = "Highlight color";
 "Highlight style" = "Highlight style";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "Input Monitoring is required only to recognize the Control-key rhythm.";
+"Input Monitoring is required only to recognize the modifier-key rhythm." = "Input Monitoring is required only to recognize the modifier-key rhythm.";
 "Keep a highlight around the pointer" = "Keep a highlight around the pointer";
 "Launch OnePointer at login" = "Launch OnePointer at login";
 "Line length" = "Line length";
 "Line thickness" = "Line thickness";
+"Left Command" = "Left Command";
+"Left Control" = "Left Control";
+"Left Option" = "Left Option";
+"Left Shift" = "Left Shift";
 "Medium" = "Medium";
 "Moderate" = "Moderate";
 "None" = "None";
@@ -33,6 +42,7 @@
 "Opacity" = "Opacity";
 "Open System Settings" = "Open System Settings";
 "Plus (+)" = "Plus (+)";
+"Press and release the selected modifier twice by itself." = "Press and release the selected modifier twice by itself.";
 "Presentation frame rate" = "Presentation frame rate";
 "Presentation Mode" = "Presentation Mode";
 "Preview" = "Preview";
@@ -45,6 +55,10 @@
 "Reset to Defaults" = "Reset to Defaults";
 "Ring" = "Ring";
 "Ring thickness" = "Ring thickness";
+"Right Command" = "Right Command";
+"Right Control" = "Right Control";
+"Right Option" = "Right Option";
+"Right Shift" = "Right Shift";
 "Ripple" = "Ripple";
 "Show click effects" = "Show click effects";
 "Shrink & Bounce" = "Shrink & Bounce";

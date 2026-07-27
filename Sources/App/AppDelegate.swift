@@ -7,7 +7,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private var overlayController: OverlayWindowController?
     private var transientFocusController: TransientFocusOverlayController?
     private var mouseMonitor: MouseEventMonitor?
-    private var doubleControlMonitor: DoubleControlMonitor?
+    private var doubleModifierMonitor: DoubleModifierMonitor?
     private let hotKeyManager = HotKeyManager()
     private let appModel = AppModel()
     private var updaterController: SPUStandardUpdaterController?
@@ -64,19 +64,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setupQuickFocus() {
-        let monitor = DoubleControlMonitor()
-        monitor.onDoubleControl = { [weak self] in
+        let monitor = DoubleModifierMonitor()
+        monitor.onDoubleTap = { [weak self] in
             self?.showQuickFocus()
         }
-        doubleControlMonitor = monitor
+        doubleModifierMonitor = monitor
 
         appModel.focusNow = { [weak self] in
             self?.showQuickFocus()
         }
         appModel.inputMonitoringDidChange = { [weak self] in
-            self?.configureDoubleControlMonitor()
+            self?.configureDoubleModifierMonitor()
         }
-        configureDoubleControlMonitor()
+        configureDoubleModifierMonitor()
     }
 
     private func setupBindings() {
@@ -91,24 +91,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             .store(in: &cancellables)
 
-        SettingsManager.shared.$doubleControlEnabled
-            .removeDuplicates()
-            .sink { [weak self] _ in
-                self?.configureDoubleControlMonitor()
+        Publishers.CombineLatest(
+            SettingsManager.shared.$quickFocusShortcutEnabled,
+            SettingsManager.shared.$quickFocusModifier
+        )
+            .removeDuplicates { previous, current in
+                previous.0 == current.0 && previous.1 == current.1
+            }
+            .sink { [weak self] _, _ in
+                self?.configureDoubleModifierMonitor()
             }
             .store(in: &cancellables)
     }
 
-    private func configureDoubleControlMonitor() {
+    private func configureDoubleModifierMonitor() {
         guard
-            SettingsManager.shared.doubleControlEnabled,
+            SettingsManager.shared.quickFocusShortcutEnabled,
             appModel.isInputMonitoringGranted
         else {
-            doubleControlMonitor?.stop()
+            doubleModifierMonitor?.stop()
             return
         }
 
-        if doubleControlMonitor?.start() == false {
+        if doubleModifierMonitor?.start(for: SettingsManager.shared.quickFocusModifier) == false {
             appModel.refreshInputMonitoringState()
         }
     }
@@ -161,7 +166,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ notification: Notification) {
         mouseMonitor?.stop()
-        doubleControlMonitor?.stop()
+        doubleModifierMonitor?.stop()
         hotKeyManager.unregister()
         transientFocusController?.shutdown()
         overlayController?.shutdown()

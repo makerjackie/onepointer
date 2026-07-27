@@ -2,22 +2,26 @@ import AppKit
 import CoreGraphics
 
 @MainActor
-final class DoubleControlMonitor {
-    var onDoubleControl: (() -> Void)?
+final class DoubleModifierMonitor {
+    var onDoubleTap: (() -> Void)?
 
     private var eventTap: CFMachPort?
     private var runLoopSource: CFRunLoopSource?
-    private var recognizer = DoubleControlTapRecognizer()
+    private var recognizer = DoubleModifierTapRecognizer()
+    private var selectedModifier = QuickFocusModifier.leftOption
 
     var isRunning: Bool {
         eventTap != nil
     }
 
     @discardableResult
-    func start() -> Bool {
-        guard !isRunning else {
+    func start(for modifier: QuickFocusModifier) -> Bool {
+        if isRunning, selectedModifier == modifier {
             return true
         }
+
+        stop()
+        selectedModifier = modifier
 
         let eventMask = CGEventMask(
             (1 << CGEventType.flagsChanged.rawValue)
@@ -32,7 +36,7 @@ final class DoubleControlMonitor {
                 return Unmanaged.passUnretained(event)
             }
 
-            let monitor = Unmanaged<DoubleControlMonitor>
+            let monitor = Unmanaged<DoubleModifierMonitor>
                 .fromOpaque(userInfo)
                 .takeUnretainedValue()
 
@@ -73,7 +77,7 @@ final class DoubleControlMonitor {
         }
         runLoopSource = nil
         eventTap = nil
-        recognizer = DoubleControlTapRecognizer()
+        recognizer = DoubleModifierTapRecognizer()
     }
 
     private func handle(type: CGEventType, event: CGEvent) {
@@ -92,22 +96,18 @@ final class DoubleControlMonitor {
         }
 
         let keyCode = event.getIntegerValueField(.keyboardEventKeycode)
-        let side: ControlKeySide
-        switch keyCode {
-        case 59:
-            side = .left
-        case 62:
-            side = .right
-        default:
+        guard let isPressed = selectedModifier.standalonePressState(
+            keyCode: keyCode,
+            flags: event.flags
+        ) else {
             _ = recognizer.consume(.otherInput(timestamp: timestamp))
             return
         }
 
-        let isPressed = event.flags.contains(.maskControl)
         if recognizer.consume(
-            .controlChanged(side: side, isPressed: isPressed, timestamp: timestamp)
+            .modifierChanged(isPressed: isPressed, timestamp: timestamp)
         ) {
-            onDoubleControl?()
+            onDoubleTap?()
         }
     }
 }

@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ShortcutKeyView: View {
     let label: String
+    let accessibilityLabel: String
 
     var body: some View {
         Text(label)
@@ -10,6 +11,6 @@ struct ShortcutKeyView: View {
             .padding(.vertical, 7)
             .background(.quaternary)
             .clipShape(.rect(cornerRadius: 8))
-            .accessibilityLabel(Text("Control key"))
+            .accessibilityLabel(accessibilityLabel)
     }
 }

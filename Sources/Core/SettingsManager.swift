@@ -50,7 +50,9 @@ final class SettingsManager: ObservableObject {
 
     private enum Keys {
         static let isEnabled = "isEnabled"
-        static let doubleControlEnabled = "doubleControlEnabled"
+        static let legacyDoubleControlEnabled = "doubleControlEnabled"
+        static let quickFocusShortcutEnabled = "quickFocusShortcutEnabled"
+        static let quickFocusModifier = "quickFocusModifier"
         static let isClickEffectEnabled = "isClickEffectEnabled"
         static let highlightStyle = "highlightStyle"
         static let clickEffect = "clickEffect"
@@ -80,9 +82,21 @@ final class SettingsManager: ObservableObject {
         }
     }
 
-    @Published var doubleControlEnabled: Bool {
+    @Published var quickFocusShortcutEnabled: Bool {
         didSet {
-            UserDefaults.standard.set(doubleControlEnabled, forKey: Keys.doubleControlEnabled)
+            UserDefaults.standard.set(
+                quickFocusShortcutEnabled,
+                forKey: Keys.quickFocusShortcutEnabled
+            )
+        }
+    }
+
+    @Published var quickFocusModifier: QuickFocusModifier {
+        didSet {
+            UserDefaults.standard.set(
+                quickFocusModifier.rawValue,
+                forKey: Keys.quickFocusModifier
+            )
         }
     }
 
@@ -205,7 +219,14 @@ final class SettingsManager: ObservableObject {
         let defaults = UserDefaults.standard
 
         isEnabled = defaults.object(forKey: Keys.isEnabled) as? Bool ?? false
-        doubleControlEnabled = defaults.object(forKey: Keys.doubleControlEnabled) as? Bool ?? true
+        quickFocusShortcutEnabled =
+            defaults.object(forKey: Keys.quickFocusShortcutEnabled) as? Bool
+                ?? defaults.object(forKey: Keys.legacyDoubleControlEnabled) as? Bool
+                ?? true
+        quickFocusModifier =
+            defaults.string(forKey: Keys.quickFocusModifier)
+                .flatMap(QuickFocusModifier.init(rawValue:))
+                ?? .leftOption
         isClickEffectEnabled = defaults.object(forKey: Keys.isClickEffectEnabled) as? Bool ?? true
 
         if let styleRaw = defaults.string(forKey: Keys.highlightStyle),
@@ -297,7 +318,8 @@ final class SettingsManager: ObservableObject {
 
     func resetToDefaults() {
         isEnabled = false
-        doubleControlEnabled = true
+        quickFocusShortcutEnabled = true
+        quickFocusModifier = .leftOption
         isClickEffectEnabled = true
         highlightStyle = .circle
         clickEffect = .ripple

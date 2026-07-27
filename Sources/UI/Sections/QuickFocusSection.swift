@@ -8,17 +8,20 @@ struct QuickFocusSection: View {
         SettingsCard(title: "Quick Focus", systemImage: "scope") {
             HStack(alignment: .center, spacing: 16) {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("Double-tap Control")
+                    Text("Double-tap \(settings.quickFocusModifier.localizedName)")
                         .font(.title3)
                         .bold()
-                    Text("All displays dim briefly while a spotlight follows the pointer.")
+                    Text("All displays dim briefly while a spotlight contracts toward the pointer.")
                         .foregroundStyle(.secondary)
                 }
 
                 Spacer()
 
                 HStack(spacing: 7) {
-                    ShortcutKeyView(label: "control")
+                    ShortcutKeyView(
+                        label: settings.quickFocusModifier.symbol,
+                        accessibilityLabel: settings.quickFocusModifier.localizedName
+                    )
                     Text("×2")
                         .foregroundStyle(.secondary)
                 }
@@ -26,11 +29,29 @@ struct QuickFocusSection: View {
 
             Divider()
 
-            Toggle("Enable double-tap Control", isOn: $settings.doubleControlEnabled)
+            Toggle(
+                "Enable quick focus shortcut",
+                isOn: $settings.quickFocusShortcutEnabled
+            )
 
-            if settings.doubleControlEnabled && !appModel.isInputMonitoringGranted {
+            if settings.quickFocusShortcutEnabled {
+                Picker(
+                    "Double-tap shortcut",
+                    selection: $settings.quickFocusModifier
+                ) {
+                    ForEach(QuickFocusModifier.allCases) { modifier in
+                        Text(modifier.localizedName)
+                            .tag(modifier)
+                    }
+                }
+
+                Text("Press and release the selected modifier twice by itself.")
+                    .foregroundStyle(.secondary)
+            }
+
+            if settings.quickFocusShortcutEnabled && !appModel.isInputMonitoringGranted {
                 Label {
-                    Text("Input Monitoring is required only to recognize the Control-key rhythm.")
+                    Text("Input Monitoring is required only to recognize the modifier-key rhythm.")
                 } icon: {
                     Image(systemName: "exclamationmark.shield")
                 }
@@ -49,7 +70,7 @@ struct QuickFocusSection: View {
                         action: appModel.openInputMonitoringSettings
                     )
                 }
-            } else if settings.doubleControlEnabled {
+            } else if settings.quickFocusShortcutEnabled {
                 Label("Ready", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
             }

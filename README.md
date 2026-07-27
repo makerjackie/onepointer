@@ -5,13 +5,14 @@
 OnePointer is a native, open-source macOS utility for finding and presenting the
 mouse pointer. It keeps the original presentation features from
 `mac-mouse-highlighter` and adds a restrained, transient spotlight triggered by
-double-tapping Control.
+double-tapping a configurable modifier key.
 
 ## 简体中文
 
 ### 功能
 
-- 双击同一侧 `Control`：所有显示器短暂变暗，大聚光圈快速收拢到鼠标位置并淡出
+- 默认双击左侧 `Option`：所有显示器短暂变暗，大聚光圈快速收拢到鼠标位置并淡出
+- 可在设置中改为左右侧的 `Option`、`Control`、`Command` 或 `Shift`，也可完全关闭快捷手势
 - “立即聚焦指针”按钮：无需输入监控权限即可测试聚焦效果
 - 演示模式：圆形、聚光灯、圆环、十字准星、脉冲五种持续高亮
 - 点击效果：涟漪、颜色闪光、收缩回弹
@@ -26,11 +27,11 @@ OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后
 
 ### 权限
 
-只有“双击 Control”需要 macOS 的“输入监控”权限，用于只读识别按键节奏。
+只有“双击修饰键”快捷手势需要 macOS 的“输入监控”权限，用于只读识别按键节奏。
 聚焦按钮、`⌃⌥⌘H` 和鼠标演示模式不需要该权限。OnePointer 的事件监听使用
 `.listenOnly`，不会注入、修改或拦截输入。
 
-首次使用双击 Control：
+首次使用双击修饰键：
 
 1. 打开 OnePointer。
 2. 点击“允许输入监控”。
@@ -41,7 +42,7 @@ OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后
 
 1. 从 [GitHub Releases](https://github.com/makerjackie/onepointer/releases) 下载最新的 `.dmg`。
 2. 打开 DMG，将 OnePointer 拖入“应用程序”。
-3. 打开 OnePointer，并按上面的说明授权“双击 Control”。
+3. 打开 OnePointer，并按上面的说明授权双击修饰键快捷手势。
 
 公开 Release 使用 Developer ID Application 签名，经过 Apple 公证并附加
 notarization ticket。后续版本可由 App 内的 Sparkle 安全更新。
@@ -71,8 +72,10 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 
 ### Features
 
-- Double-tap the same `Control` key to briefly dim every display and rapidly
+- Double-tap left `Option` by default to briefly dim every display and rapidly
   contract a large spotlight toward the pointer before fading
+- Choose either side of `Option`, `Control`, `Command`, or `Shift` in Settings,
+  or disable the quick-focus gesture completely
 - A “Focus Pointer Now” button that previews the effect without Input
   Monitoring permission
 - Presentation mode with circle, spotlight, ring, crosshair, and pulse styles
@@ -89,7 +92,7 @@ Applications to bring the window back.
 
 ### Permission
 
-Only the double-Control gesture needs macOS Input Monitoring, solely to observe
+Only the double-modifier gesture needs macOS Input Monitoring, solely to observe
 the key rhythm. The focus button, `⌃⌥⌘H`, and presentation mode do not require
 it. The event tap is listen-only and cannot inject, modify, or block input.
 
@@ -98,7 +101,8 @@ it. The event tap is listen-only and cannot inject, modify, or block input.
 1. Download the latest `.dmg` from
    [GitHub Releases](https://github.com/makerjackie/onepointer/releases).
 2. Open the DMG and drag OnePointer to Applications.
-3. Launch OnePointer and grant Input Monitoring if you want double-Control.
+3. Launch OnePointer and grant Input Monitoring if you want the double-modifier
+   quick-focus gesture.
 
 Public releases are Developer ID signed, notarized by Apple, and stapled.
 Future releases can be installed securely by Sparkle from inside the app.

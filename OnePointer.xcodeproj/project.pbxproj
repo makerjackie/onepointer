@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		062E888CF60FBDBC6159E381 /* DoubleModifierTapRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557F112BB733183006C2423C /* DoubleModifierTapRecognizer.swift */; };
 		0715AB32E5CA72131FDEBF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8397E82082E13001859D64F /* AppDelegate.swift */; };
 		0E60515D078D952812755831 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1643DE114C8BE244B5E63AF3 /* Geometry.swift */; };
 		13C655440397599D5DF31373 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EEEDC82B28DDDA0317C0E6 /* main.swift */; };
@@ -15,7 +16,7 @@
 		278B72929196BBAF1A3E9BEE /* TransientFocusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1A67D17FD60C92F45A7DB5 /* TransientFocusView.swift */; };
 		29D1FF6983C5E976BE1689D3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCD94224DD2009B604AFF2 /* SettingsWindowController.swift */; };
 		2EFC79809961BD9F99E233CA /* Sparkle-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 40F8499B16304A987500C094 /* Sparkle-LICENSE */; };
-		3038FBC93E00FBAFCDAED90E /* DoubleControlTapRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0253690118397BF2F99C14 /* DoubleControlTapRecognizer.swift */; };
+		398926F96B0BCDD6B3EF1FE4 /* QuickFocusModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */; };
 		3C44F1250BEDD79D1AFAE03C /* PulseHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7299C6018AB315A586ABDC /* PulseHighlight.swift */; };
 		3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F89975A378A1AD2090009 /* HighlightPreviewView.swift */; };
 		3D40EFF8E7440318E04C5D14 /* CrosshairHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B997C69D3D90F26643855638 /* CrosshairHighlight.swift */; };
@@ -28,12 +29,10 @@
 		73BCFE8C5F6E9BF9B507E6A5 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B4BBF595C273C74C12B17 /* OverlayWindowController.swift */; };
 		76C16CED57942211B8BD9CC2 /* RippleEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FCE25F8B9502E6D038CD5F /* RippleEffect.swift */; };
 		7DA2FB7B4099D938FE34007D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF4F11F031FAD654B1B772D /* SettingsView.swift */; };
-		7DCB357678B83622BEBE8CC9 /* DoubleControlMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F412DA578C9EDEE6B65D6969 /* DoubleControlMonitor.swift */; };
 		80C8E33B25433291B198A40D /* CircleHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D08A25211550C235AC09F4 /* CircleHighlight.swift */; };
-		86EBBA793CB4F5B15D8AE72B /* ControlTapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B92F533CA0F26EBE8C917D /* ControlTapEvent.swift */; };
 		89B14833EAB1BAB0C495D25C /* RingHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3250892665D1FDF32F4B6 /* RingHighlight.swift */; };
 		8D124E1157256A126D9F6CC2 /* ShrinkBounceEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F33AFE8483B32358C81D9A /* ShrinkBounceEffect.swift */; };
-		90F402635344AD5C4C6F5CB1 /* ControlKeySide.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05D1CEE0E1FD381211309ED /* ControlKeySide.swift */; };
+		8E91AC901A67EE17C80B18F6 /* DoubleModifierMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */; };
 		924F7779985DF31BEE962107 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EF42E0ADD9C567EC225642A7 /* LICENSE */; };
 		9536727069BA07E7D644D42F /* SpotlightHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32ECDBAA6951B517B5642E5 /* SpotlightHighlight.swift */; };
 		969A28FA96D30A5ED3D09291 /* FocusAnimationTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */; };
@@ -42,15 +41,17 @@
 		AA0DEE074C4DE7B899F9E9FD /* QuickFocusSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131E41708121C942BD562770 /* QuickFocusSection.swift */; };
 		AD263EC0A5DDF08C19695591 /* THIRD_PARTY_NOTICES.md in Resources */ = {isa = PBXBuildFile; fileRef = 3DE951FCDB2C2B759E80A963 /* THIRD_PARTY_NOTICES.md */; };
 		AF7C39DB7E0DDEC6D56AAEF9 /* AdvancedSettingsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017848C4E857B8ABEFE99A7B /* AdvancedSettingsSection.swift */; };
-		B6E2280F83DAB2972E5832E6 /* DoubleControlTapRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989428247E8A8FDE11E405C6 /* DoubleControlTapRecognizerTests.swift */; };
 		BB1DCAE607C0CC38C70045CE /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A994E0AFFE61C7D652963AC /* HotKeyManager.swift */; };
 		BDB567CD9D7D5600F0A4A179 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 491B4939378C6D9C89B3ED97 /* Sparkle */; };
 		BDE4C9DDFB42A9AD92A80283 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF48C7D213AFD3135FCDBC6 /* GeometryTests.swift */; };
 		BF38A6E2C9EF9B917F74C536 /* DesignTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94112EF908D12562527F2A3 /* DesignTokens.swift */; };
+		CAC6A448ADDA10AE3C92DB06 /* ModifierTapEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2915DE49ED917762B9D01682 /* ModifierTapEvent.swift */; };
 		CDF0179A457630B82727CBA6 /* AppHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063CC278083EA48F27BDFE31 /* AppHeaderView.swift */; };
 		D302761540E7B2DB2FD3E7CA /* MouseEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C035E053DE072EA2EC70E6F /* MouseEventMonitor.swift */; };
+		D9A264DF548550130F91EFFD /* QuickFocusModifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37FA90EB80F1652A6C4E306 /* QuickFocusModifierTests.swift */; };
 		DF3B32939D130D998A7B4A23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5744829DE39B4E5315F915F /* Localizable.strings */; };
 		E024587D8BDBA1D140499531 /* TransientFocusOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01017CDEF97E57F17FC05C25 /* TransientFocusOverlayController.swift */; };
+		E31005297A2883C2A9E33328 /* DoubleModifierTapRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */; };
 		F05C7CE05840A0879DDE588C /* mac-mouse-highlighter-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EDED30D7ADD4CCBC3EFF87D1 /* mac-mouse-highlighter-LICENSE */; };
 		F3DEF6204FB4EEDDDD6CCC7A /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317FE4291EF447F51AE1DF62 /* AppModel.swift */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		1643DE114C8BE244B5E63AF3 /* Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		17B6D9A7AB28F4A7BB02D687 /* FocusAnimationTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusAnimationTimeline.swift; sourceTree = "<group>"; };
 		28F33AFE8483B32358C81D9A /* ShrinkBounceEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShrinkBounceEffect.swift; sourceTree = "<group>"; };
+		2915DE49ED917762B9D01682 /* ModifierTapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifierTapEvent.swift; sourceTree = "<group>"; };
 		2AF48C7D213AFD3135FCDBC6 /* GeometryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		2C035E053DE072EA2EC70E6F /* MouseEventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MouseEventMonitor.swift; sourceTree = "<group>"; };
 		317FE4291EF447F51AE1DF62 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
@@ -85,33 +87,33 @@
 		3E8584F43A3633EEF95E2FD5 /* PresentationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSection.swift; sourceTree = "<group>"; };
 		40F8499B16304A987500C094 /* Sparkle-LICENSE */ = {isa = PBXFileReference; path = "Sparkle-LICENSE"; sourceTree = "<group>"; };
 		4A7299C6018AB315A586ABDC /* PulseHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseHighlight.swift; sourceTree = "<group>"; };
+		557F112BB733183006C2423C /* DoubleModifierTapRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizer.swift; sourceTree = "<group>"; };
+		595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierMonitor.swift; sourceTree = "<group>"; };
 		5B2AA9AE44A3FB164EED4F12 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		5B9731B12A571738F421051D /* ShortcutKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutKeyView.swift; sourceTree = "<group>"; };
 		6302588BE38D1829AC24E4E4 /* OnePointer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePointer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		659F89975A378A1AD2090009 /* HighlightPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightPreviewView.swift; sourceTree = "<group>"; };
+		65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusModifier.swift; sourceTree = "<group>"; };
 		686946EB9FA8C169BE7D0C8E /* OnePointerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnePointerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA799485B34C6DF64BAFF69 /* ColorFlashEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorFlashEffect.swift; sourceTree = "<group>"; };
 		6FF4F11F031FAD654B1B772D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		752B4BBF595C273C74C12B17 /* OverlayWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayWindowController.swift; sourceTree = "<group>"; };
 		784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusAnimationTimelineTests.swift; sourceTree = "<group>"; };
 		7A994E0AFFE61C7D652963AC /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
-		7F0253690118397BF2F99C14 /* DoubleControlTapRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleControlTapRecognizer.swift; sourceTree = "<group>"; };
-		93B92F533CA0F26EBE8C917D /* ControlTapEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlTapEvent.swift; sourceTree = "<group>"; };
 		97D08A25211550C235AC09F4 /* CircleHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleHighlight.swift; sourceTree = "<group>"; };
-		989428247E8A8FDE11E405C6 /* DoubleControlTapRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleControlTapRecognizerTests.swift; sourceTree = "<group>"; };
 		9C6BFFD69BA215C831DA6AA8 /* HighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightView.swift; sourceTree = "<group>"; };
 		ABCA6DC9C74DF0030A6923BD /* SettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCard.swift; sourceTree = "<group>"; };
 		B5FCE25F8B9502E6D038CD5F /* RippleEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffect.swift; sourceTree = "<group>"; };
 		B997C69D3D90F26643855638 /* CrosshairHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairHighlight.swift; sourceTree = "<group>"; };
 		BA32164464A4B28D5F4170F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1EEEDC82B28DDDA0317C0E6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		C37FA90EB80F1652A6C4E306 /* QuickFocusModifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusModifierTests.swift; sourceTree = "<group>"; };
 		D32ECDBAA6951B517B5642E5 /* SpotlightHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightHighlight.swift; sourceTree = "<group>"; };
 		D9A401F66A4C009A2259AF47 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		E05D1CEE0E1FD381211309ED /* ControlKeySide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlKeySide.swift; sourceTree = "<group>"; };
+		E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizerTests.swift; sourceTree = "<group>"; };
 		E94112EF908D12562527F2A3 /* DesignTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTokens.swift; sourceTree = "<group>"; };
 		EDED30D7ADD4CCBC3EFF87D1 /* mac-mouse-highlighter-LICENSE */ = {isa = PBXFileReference; path = "mac-mouse-highlighter-LICENSE"; sourceTree = "<group>"; };
 		EF42E0ADD9C567EC225642A7 /* LICENSE */ = {isa = PBXFileReference; path = LICENSE; sourceTree = "<group>"; };
-		F412DA578C9EDEE6B65D6969 /* DoubleControlMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleControlMonitor.swift; sourceTree = "<group>"; };
 		F8397E82082E13001859D64F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDC3250892665D1FDF32F4B6 /* RingHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingHighlight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,10 +143,10 @@
 		0E3F7D84865795A5478D91E6 /* Input */ = {
 			isa = PBXGroup;
 			children = (
-				E05D1CEE0E1FD381211309ED /* ControlKeySide.swift */,
-				93B92F533CA0F26EBE8C917D /* ControlTapEvent.swift */,
-				F412DA578C9EDEE6B65D6969 /* DoubleControlMonitor.swift */,
-				7F0253690118397BF2F99C14 /* DoubleControlTapRecognizer.swift */,
+				595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */,
+				557F112BB733183006C2423C /* DoubleModifierTapRecognizer.swift */,
+				2915DE49ED917762B9D01682 /* ModifierTapEvent.swift */,
+				65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -275,9 +277,10 @@
 		E1124DE1E8DD450A8DF9F158 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				989428247E8A8FDE11E405C6 /* DoubleControlTapRecognizerTests.swift */,
+				E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */,
 				784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */,
 				2AF48C7D213AFD3135FCDBC6 /* GeometryTests.swift */,
+				C37FA90EB80F1652A6C4E306 /* QuickFocusModifierTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -406,9 +409,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6E2280F83DAB2972E5832E6 /* DoubleControlTapRecognizerTests.swift in Sources */,
+				E31005297A2883C2A9E33328 /* DoubleModifierTapRecognizerTests.swift in Sources */,
 				969A28FA96D30A5ED3D09291 /* FocusAnimationTimelineTests.swift in Sources */,
 				BDE4C9DDFB42A9AD92A80283 /* GeometryTests.swift in Sources */,
+				D9A264DF548550130F91EFFD /* QuickFocusModifierTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,22 +427,22 @@
 				F3DEF6204FB4EEDDDD6CCC7A /* AppModel.swift in Sources */,
 				80C8E33B25433291B198A40D /* CircleHighlight.swift in Sources */,
 				55CCC2D4D9A13E9D9E759E46 /* ColorFlashEffect.swift in Sources */,
-				90F402635344AD5C4C6F5CB1 /* ControlKeySide.swift in Sources */,
-				86EBBA793CB4F5B15D8AE72B /* ControlTapEvent.swift in Sources */,
 				3D40EFF8E7440318E04C5D14 /* CrosshairHighlight.swift in Sources */,
 				BF38A6E2C9EF9B917F74C536 /* DesignTokens.swift in Sources */,
-				7DCB357678B83622BEBE8CC9 /* DoubleControlMonitor.swift in Sources */,
-				3038FBC93E00FBAFCDAED90E /* DoubleControlTapRecognizer.swift in Sources */,
+				8E91AC901A67EE17C80B18F6 /* DoubleModifierMonitor.swift in Sources */,
+				062E888CF60FBDBC6159E381 /* DoubleModifierTapRecognizer.swift in Sources */,
 				6122B164A78D36AEF4562552 /* FocusAnimationTimeline.swift in Sources */,
 				0E60515D078D952812755831 /* Geometry.swift in Sources */,
 				3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */,
 				406E6A78EEA0FE0678615378 /* HighlightView.swift in Sources */,
 				BB1DCAE607C0CC38C70045CE /* HotKeyManager.swift in Sources */,
 				9E4003EA62C7A30763707894 /* MenuBarController.swift in Sources */,
+				CAC6A448ADDA10AE3C92DB06 /* ModifierTapEvent.swift in Sources */,
 				D302761540E7B2DB2FD3E7CA /* MouseEventMonitor.swift in Sources */,
 				73BCFE8C5F6E9BF9B507E6A5 /* OverlayWindowController.swift in Sources */,
 				59ED39E4C741F4856DE8E935 /* PresentationSection.swift in Sources */,
 				3C44F1250BEDD79D1AFAE03C /* PulseHighlight.swift in Sources */,
+				398926F96B0BCDD6B3EF1FE4 /* QuickFocusModifier.swift in Sources */,
 				AA0DEE074C4DE7B899F9E9FD /* QuickFocusSection.swift in Sources */,
 				89B14833EAB1BAB0C495D25C /* RingHighlight.swift in Sources */,
 				76C16CED57942211B8BD9CC2 /* RippleEffect.swift in Sources */,

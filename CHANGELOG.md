@@ -4,6 +4,20 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-27
+
+### Added
+
+- A configurable double-modifier quick-focus shortcut with separate left and
+  right `Option`, `Control`, `Command`, and `Shift` choices.
+- An option to disable the quick-focus gesture completely.
+
+### Changed
+
+- The default quick-focus shortcut is now double-tap left `Option`.
+- Modifier keys only trigger quick focus when tapped by themselves, preventing
+  shortcuts such as `Option` plus another key from causing the effect.
+
 ## [0.1.1] - 2026-07-27
 
 ### Changed

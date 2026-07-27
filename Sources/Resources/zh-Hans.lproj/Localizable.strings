@@ -1,6 +1,7 @@
 "About OnePointer" = "关于 OnePointer";
 "Advanced" = "高级设置";
 "All displays dim briefly while a spotlight follows the pointer." = "所有显示器会短暂变暗，聚光区将跟随鼠标指针。";
+"All displays dim briefly while a spotlight contracts toward the pointer." = "所有显示器会短暂变暗，大聚光圈将快速收拢到鼠标位置。";
 "Allow Input Monitoring" = "允许输入监控";
 "Appearance and click effects" = "外观与点击效果";
 "Circle" = "圆形";
@@ -12,8 +13,11 @@
 "Crosshair style" = "准星样式";
 "Dim opacity" = "暗层透明度";
 "Double-tap Control" = "双击 Control";
+"Double-tap %@" = "双击%@";
+"Double-tap shortcut" = "双击快捷键";
 "Effect duration" = "效果时长";
 "Enable double-tap Control" = "启用双击 Control";
+"Enable quick focus shortcut" = "启用快速聚焦快捷键";
 "Find your pointer instantly, or keep it visible while presenting." = "瞬间找到鼠标，也可在演示时持续突出显示。";
 "Focus Pointer Now" = "立即聚焦指针";
 "General" = "通用";
@@ -22,10 +26,15 @@
 "Highlight color" = "高亮颜色";
 "Highlight style" = "高亮样式";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "输入监控仅用于识别 Control 键的双击节奏。";
+"Input Monitoring is required only to recognize the modifier-key rhythm." = "输入监控仅用于识别修饰键的双击节奏。";
 "Keep a highlight around the pointer" = "持续高亮鼠标指针";
 "Launch OnePointer at login" = "开机时启动 OnePointer";
 "Line length" = "线条长度";
 "Line thickness" = "线条粗细";
+"Left Command" = "左 Command";
+"Left Control" = "左 Control";
+"Left Option" = "左 Option";
+"Left Shift" = "左 Shift";
 "Medium" = "中等";
 "Moderate" = "适中";
 "None" = "无";
@@ -33,6 +42,7 @@
 "Opacity" = "透明度";
 "Open System Settings" = "打开系统设置";
 "Plus (+)" = "十字（+）";
+"Press and release the selected modifier twice by itself." = "单独快速按下并松开所选修饰键两次。";
 "Presentation frame rate" = "演示模式帧率";
 "Presentation Mode" = "演示模式";
 "Preview" = "预览";
@@ -45,6 +55,10 @@
 "Reset to Defaults" = "恢复默认设置";
 "Ring" = "圆环";
 "Ring thickness" = "圆环粗细";
+"Right Command" = "右 Command";
+"Right Control" = "右 Control";
+"Right Option" = "右 Option";
+"Right Shift" = "右 Shift";
 "Ripple" = "涟漪";
 "Show click effects" = "显示点击效果";
 "Shrink & Bounce" = "收缩回弹";
