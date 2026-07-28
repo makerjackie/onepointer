@@ -17,27 +17,33 @@
 		29D1FF6983C5E976BE1689D3 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABCD94224DD2009B604AFF2 /* SettingsWindowController.swift */; };
 		2EFC79809961BD9F99E233CA /* Sparkle-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 40F8499B16304A987500C094 /* Sparkle-LICENSE */; };
 		35D4B11397D66A59191EB9BA /* OneAppsPromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3DC5C8CD934EB33F41BCDB /* OneAppsPromotionView.swift */; };
+		36BEB14B461D696D71E80BD0 /* InputMonitoringOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5847AAF83982755927E70D37 /* InputMonitoringOnboardingView.swift */; };
 		398926F96B0BCDD6B3EF1FE4 /* QuickFocusModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A335207AFD7DE2F2A33AD5 /* QuickFocusModifier.swift */; };
 		3C44F1250BEDD79D1AFAE03C /* PulseHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7299C6018AB315A586ABDC /* PulseHighlight.swift */; };
 		3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659F89975A378A1AD2090009 /* HighlightPreviewView.swift */; };
 		3D40EFF8E7440318E04C5D14 /* CrosshairHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = B997C69D3D90F26643855638 /* CrosshairHighlight.swift */; };
 		3FE9EA007F5F1EA4F18BCE70 /* FocusPreviewGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0285C0F81D442028CBD67CF /* FocusPreviewGrid.swift */; };
 		406E6A78EEA0FE0678615378 /* HighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6BFFD69BA215C831DA6AA8 /* HighlightView.swift */; };
+		519F216C025FDC631A21238A /* InputMonitoringPermissionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011B012B3C2E3EF5B865530A /* InputMonitoringPermissionRow.swift */; };
 		55CCC2D4D9A13E9D9E759E46 /* ColorFlashEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA799485B34C6DF64BAFF69 /* ColorFlashEffect.swift */; };
 		5834C2C28C75EE384957A53A /* FocusPreviewSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CE9C399A513DC85FEAE697 /* FocusPreviewSurface.swift */; };
 		59ED39E4C741F4856DE8E935 /* PresentationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8584F43A3633EEF95E2FD5 /* PresentationSection.swift */; };
 		6122B164A78D36AEF4562552 /* FocusAnimationTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6D9A7AB28F4A7BB02D687 /* FocusAnimationTimeline.swift */; };
 		61560E4CC3EB87684BF0C6F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA32164464A4B28D5F4170F0 /* Assets.xcassets */; };
 		6D4692049FCE570604C0105A /* AnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2AA9AE44A3FB164EED4F12 /* AnimationController.swift */; };
+		6E6645D26AA311CA3175915D /* AppModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADEDC55BD320B4176AED16A6 /* AppModelTests.swift */; };
+		6FE33C6C09F89A02603BF50A /* InputMonitoringAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC9EF36F2B46CA74DE24D46 /* InputMonitoringAuthorizing.swift */; };
 		73BCFE8C5F6E9BF9B507E6A5 /* OverlayWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752B4BBF595C273C74C12B17 /* OverlayWindowController.swift */; };
 		76C16CED57942211B8BD9CC2 /* RippleEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FCE25F8B9502E6D038CD5F /* RippleEffect.swift */; };
 		7DA2FB7B4099D938FE34007D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FF4F11F031FAD654B1B772D /* SettingsView.swift */; };
 		80C8E33B25433291B198A40D /* CircleHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D08A25211550C235AC09F4 /* CircleHighlight.swift */; };
 		89B14833EAB1BAB0C495D25C /* RingHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC3250892665D1FDF32F4B6 /* RingHighlight.swift */; };
 		8D124E1157256A126D9F6CC2 /* ShrinkBounceEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F33AFE8483B32358C81D9A /* ShrinkBounceEffect.swift */; };
+		8E2D6AF049BF2B16EFD2F142 /* InputMonitoringPermissionStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82FA2AB6BA785AF8F8B3046 /* InputMonitoringPermissionStep.swift */; };
 		8E91AC901A67EE17C80B18F6 /* DoubleModifierMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */; };
 		924F7779985DF31BEE962107 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = EF42E0ADD9C567EC225642A7 /* LICENSE */; };
 		9536727069BA07E7D644D42F /* SpotlightHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32ECDBAA6951B517B5642E5 /* SpotlightHighlight.swift */; };
+		960D2697B429CCD34B825AA4 /* InputMonitoringState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A62D33C1D837CB93951D5D8B /* InputMonitoringState.swift */; };
 		969A28FA96D30A5ED3D09291 /* FocusAnimationTimelineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */; };
 		9BF13EF84430E2167DEA953A /* ShortcutKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9731B12A571738F421051D /* ShortcutKeyView.swift */; };
 		9E4003EA62C7A30763707894 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35ED1A602FFEFEFDEF2C83D9 /* MenuBarController.swift */; };
@@ -54,6 +60,7 @@
 		D302761540E7B2DB2FD3E7CA /* MouseEventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C035E053DE072EA2EC70E6F /* MouseEventMonitor.swift */; };
 		D9A264DF548550130F91EFFD /* QuickFocusModifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C37FA90EB80F1652A6C4E306 /* QuickFocusModifierTests.swift */; };
 		DF3B32939D130D998A7B4A23 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D5744829DE39B4E5315F915F /* Localizable.strings */; };
+		DFFDA998A0CC6B0FD131F490 /* SystemInputMonitoringAuthorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924C93E5D5600F39D61B45C3 /* SystemInputMonitoringAuthorization.swift */; };
 		E024587D8BDBA1D140499531 /* TransientFocusOverlayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01017CDEF97E57F17FC05C25 /* TransientFocusOverlayController.swift */; };
 		E31005297A2883C2A9E33328 /* DoubleModifierTapRecognizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */; };
 		EDD1D328340B51A6CD29B458 /* SettingsPageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */; };
@@ -73,6 +80,7 @@
 
 /* Begin PBXFileReference section */
 		01017CDEF97E57F17FC05C25 /* TransientFocusOverlayController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientFocusOverlayController.swift; sourceTree = "<group>"; };
+		011B012B3C2E3EF5B865530A /* InputMonitoringPermissionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMonitoringPermissionRow.swift; sourceTree = "<group>"; };
 		017848C4E857B8ABEFE99A7B /* AdvancedSettingsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSettingsSection.swift; sourceTree = "<group>"; };
 		03F569A9B92772B1D320A08A /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		063CC278083EA48F27BDFE31 /* AppHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHeaderView.swift; sourceTree = "<group>"; };
@@ -91,10 +99,12 @@
 		3D1A67D17FD60C92F45A7DB5 /* TransientFocusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransientFocusView.swift; sourceTree = "<group>"; };
 		3DE951FCDB2C2B759E80A963 /* THIRD_PARTY_NOTICES.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = THIRD_PARTY_NOTICES.md; sourceTree = "<group>"; };
 		3E8584F43A3633EEF95E2FD5 /* PresentationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSection.swift; sourceTree = "<group>"; };
+		3EC9EF36F2B46CA74DE24D46 /* InputMonitoringAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMonitoringAuthorizing.swift; sourceTree = "<group>"; };
 		40F8499B16304A987500C094 /* Sparkle-LICENSE */ = {isa = PBXFileReference; path = "Sparkle-LICENSE"; sourceTree = "<group>"; };
 		48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPageHeader.swift; sourceTree = "<group>"; };
 		4A7299C6018AB315A586ABDC /* PulseHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseHighlight.swift; sourceTree = "<group>"; };
 		557F112BB733183006C2423C /* DoubleModifierTapRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizer.swift; sourceTree = "<group>"; };
+		5847AAF83982755927E70D37 /* InputMonitoringOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMonitoringOnboardingView.swift; sourceTree = "<group>"; };
 		595436E0809FDD74095532DD /* DoubleModifierMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierMonitor.swift; sourceTree = "<group>"; };
 		5B2AA9AE44A3FB164EED4F12 /* AnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationController.swift; sourceTree = "<group>"; };
 		5B9731B12A571738F421051D /* ShortcutKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutKeyView.swift; sourceTree = "<group>"; };
@@ -108,14 +118,18 @@
 		752B4BBF595C273C74C12B17 /* OverlayWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayWindowController.swift; sourceTree = "<group>"; };
 		784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusAnimationTimelineTests.swift; sourceTree = "<group>"; };
 		7A994E0AFFE61C7D652963AC /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyManager.swift; sourceTree = "<group>"; };
+		924C93E5D5600F39D61B45C3 /* SystemInputMonitoringAuthorization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemInputMonitoringAuthorization.swift; sourceTree = "<group>"; };
 		97D08A25211550C235AC09F4 /* CircleHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleHighlight.swift; sourceTree = "<group>"; };
 		9C6BFFD69BA215C831DA6AA8 /* HighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightView.swift; sourceTree = "<group>"; };
+		A62D33C1D837CB93951D5D8B /* InputMonitoringState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMonitoringState.swift; sourceTree = "<group>"; };
 		ABCA6DC9C74DF0030A6923BD /* SettingsCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCard.swift; sourceTree = "<group>"; };
+		ADEDC55BD320B4176AED16A6 /* AppModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModelTests.swift; sourceTree = "<group>"; };
 		B5FCE25F8B9502E6D038CD5F /* RippleEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RippleEffect.swift; sourceTree = "<group>"; };
 		B997C69D3D90F26643855638 /* CrosshairHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrosshairHighlight.swift; sourceTree = "<group>"; };
 		BA32164464A4B28D5F4170F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1EEEDC82B28DDDA0317C0E6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C37FA90EB80F1652A6C4E306 /* QuickFocusModifierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFocusModifierTests.swift; sourceTree = "<group>"; };
+		C82FA2AB6BA785AF8F8B3046 /* InputMonitoringPermissionStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputMonitoringPermissionStep.swift; sourceTree = "<group>"; };
 		D32ECDBAA6951B517B5642E5 /* SpotlightHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightHighlight.swift; sourceTree = "<group>"; };
 		D9A401F66A4C009A2259AF47 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleModifierTapRecognizerTests.swift; sourceTree = "<group>"; };
@@ -204,8 +218,11 @@
 				317FE4291EF447F51AE1DF62 /* AppModel.swift */,
 				1643DE114C8BE244B5E63AF3 /* Geometry.swift */,
 				7A994E0AFFE61C7D652963AC /* HotKeyManager.swift */,
+				3EC9EF36F2B46CA74DE24D46 /* InputMonitoringAuthorizing.swift */,
+				A62D33C1D837CB93951D5D8B /* InputMonitoringState.swift */,
 				2C035E053DE072EA2EC70E6F /* MouseEventMonitor.swift */,
 				03F569A9B92772B1D320A08A /* SettingsManager.swift */,
+				924C93E5D5600F39D61B45C3 /* SystemInputMonitoringAuthorization.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -237,6 +254,7 @@
 				063CC278083EA48F27BDFE31 /* AppHeaderView.swift */,
 				E94112EF908D12562527F2A3 /* DesignTokens.swift */,
 				659F89975A378A1AD2090009 /* HighlightPreviewView.swift */,
+				5847AAF83982755927E70D37 /* InputMonitoringOnboardingView.swift */,
 				35ED1A602FFEFEFDEF2C83D9 /* MenuBarController.swift */,
 				EE3DC5C8CD934EB33F41BCDB /* OneAppsPromotionView.swift */,
 				6FF4F11F031FAD654B1B772D /* SettingsView.swift */,
@@ -288,6 +306,7 @@
 		E1124DE1E8DD450A8DF9F158 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				ADEDC55BD320B4176AED16A6 /* AppModelTests.swift */,
 				E3A130611ACAB08EBEB59E38 /* DoubleModifierTapRecognizerTests.swift */,
 				784150086EB5810D2C76230A /* FocusAnimationTimelineTests.swift */,
 				2AF48C7D213AFD3135FCDBC6 /* GeometryTests.swift */,
@@ -301,6 +320,8 @@
 			children = (
 				F0285C0F81D442028CBD67CF /* FocusPreviewGrid.swift */,
 				27CE9C399A513DC85FEAE697 /* FocusPreviewSurface.swift */,
+				011B012B3C2E3EF5B865530A /* InputMonitoringPermissionRow.swift */,
+				C82FA2AB6BA785AF8F8B3046 /* InputMonitoringPermissionStep.swift */,
 				5DC926DECFB1EC4C4BFBB373 /* QuickFocusControlBar.swift */,
 				ABCA6DC9C74DF0030A6923BD /* SettingsCard.swift */,
 				48D43635FFE15FE1EABCDEB6 /* SettingsPageHeader.swift */,
@@ -424,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E6645D26AA311CA3175915D /* AppModelTests.swift in Sources */,
 				E31005297A2883C2A9E33328 /* DoubleModifierTapRecognizerTests.swift in Sources */,
 				969A28FA96D30A5ED3D09291 /* FocusAnimationTimelineTests.swift in Sources */,
 				BDE4C9DDFB42A9AD92A80283 /* GeometryTests.swift in Sources */,
@@ -453,6 +475,11 @@
 				3D059603CFA599A97558C4F0 /* HighlightPreviewView.swift in Sources */,
 				406E6A78EEA0FE0678615378 /* HighlightView.swift in Sources */,
 				BB1DCAE607C0CC38C70045CE /* HotKeyManager.swift in Sources */,
+				6FE33C6C09F89A02603BF50A /* InputMonitoringAuthorizing.swift in Sources */,
+				36BEB14B461D696D71E80BD0 /* InputMonitoringOnboardingView.swift in Sources */,
+				519F216C025FDC631A21238A /* InputMonitoringPermissionRow.swift in Sources */,
+				8E2D6AF049BF2B16EFD2F142 /* InputMonitoringPermissionStep.swift in Sources */,
+				960D2697B429CCD34B825AA4 /* InputMonitoringState.swift in Sources */,
 				9E4003EA62C7A30763707894 /* MenuBarController.swift in Sources */,
 				CAC6A448ADDA10AE3C92DB06 /* ModifierTapEvent.swift in Sources */,
 				D302761540E7B2DB2FD3E7CA /* MouseEventMonitor.swift in Sources */,
@@ -473,6 +500,7 @@
 				9BF13EF84430E2167DEA953A /* ShortcutKeyView.swift in Sources */,
 				8D124E1157256A126D9F6CC2 /* ShrinkBounceEffect.swift in Sources */,
 				9536727069BA07E7D644D42F /* SpotlightHighlight.swift in Sources */,
+				DFFDA998A0CC6B0FD131F490 /* SystemInputMonitoringAuthorization.swift in Sources */,
 				E024587D8BDBA1D140499531 /* TransientFocusOverlayController.swift in Sources */,
 				278B72929196BBAF1A3E9BEE /* TransientFocusView.swift in Sources */,
 				13C655440397599D5DF31373 /* main.swift in Sources */,

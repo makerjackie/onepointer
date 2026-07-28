@@ -36,9 +36,13 @@ OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后
 首次使用双击修饰键：
 
 1. 打开 OnePointer。
-2. 点击“允许输入监控”。
-3. 在“系统设置 → 隐私与安全性 → 输入监控”中启用 OnePointer。
+2. 阅读首次使用说明，然后点击“继续并授权”。
+3. macOS 会将 OnePointer 加入“输入监控”列表；打开 OnePointer
+   右侧的开关，无需手动点击 `+` 添加 App。
 4. 返回 OnePointer；如 macOS 要求，退出并重新打开 App。
+
+你也可以选择“暂不授权”。“立即聚焦”、`⌃⌥⌘H` 和持续高亮仍可正常使用，
+只有双击修饰键快捷手势会保持停用。
 
 ### 从 GitHub Releases 安装
 
@@ -105,8 +109,9 @@ it. The event tap is listen-only and cannot inject, modify, or block input.
 1. Download the latest `.dmg` from
    [GitHub Releases](https://github.com/makerjackie/onepointer/releases).
 2. Open the DMG and drag OnePointer to Applications.
-3. Launch OnePointer and grant Input Monitoring if you want the double-modifier
-   quick-focus gesture.
+3. Launch OnePointer, review the first-run explanation, and choose “Continue &
+   Allow” if you want the double-modifier quick-focus gesture. macOS adds
+   OnePointer to Input Monitoring so you only need to turn on its switch.
 
 Public releases are Developer ID signed, notarized by Apple, and stapled.
 Future releases can be installed securely by Sparkle from inside the app.

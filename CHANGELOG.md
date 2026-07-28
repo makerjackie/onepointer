@@ -4,6 +4,21 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-07-28
+
+### Added
+
+- A concise first-run explanation before requesting Input Monitoring.
+- A “Not Now” path that keeps permission-free features available.
+
+### Fixed
+
+- Input Monitoring now uses the system HID authorization API so macOS registers
+  OnePointer in the permission list without requiring users to find the app
+  manually with the `+` button.
+- The permission card now shows one clear next action for each authorization
+  state instead of two competing buttons.
+
 ## [0.3.0] - 2026-07-27
 
 ### Added

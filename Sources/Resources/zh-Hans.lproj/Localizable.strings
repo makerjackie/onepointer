@@ -2,6 +2,7 @@
 "Advanced" = "高级设置";
 "All displays dim briefly while a spotlight follows the pointer." = "所有显示器会短暂变暗，聚光区将跟随鼠标指针。";
 "All displays dim briefly while a spotlight contracts toward the pointer." = "所有显示器会短暂变暗，大聚光圈将快速收拢到鼠标位置。";
+"Allow OnePointer to recognize the double-tap shortcut." = "允许 OnePointer 识别双击快捷手势。";
 "Allow Input Monitoring" = "允许输入监控";
 "Appearance and click effects" = "外观与点击效果";
 "App Settings" = "App 设置";
@@ -10,6 +11,8 @@
 "Click to turn it off." = "点击即可关闭。";
 "Click effect" = "点击效果";
 "Color Flash" = "颜色闪光";
+"Continue & Allow" = "继续并授权";
+"Continue to let macOS add OnePointer to Input Monitoring." = "继续，让 macOS 将 OnePointer 加入“输入监控”列表。";
 "Control key" = "Control 键";
 "Crosshair" = "十字准星";
 "Crosshair style" = "准星样式";
@@ -19,6 +22,7 @@
 "Double-tap shortcut" = "双击快捷键";
 "Effect duration" = "效果时长";
 "Enable double-tap Control" = "启用双击 Control";
+"Enable Double-Tap Quick Focus" = "启用双击快速聚焦";
 "Enable Persistent Highlight" = "开启持续高亮";
 "Enable quick focus shortcut" = "启用快速聚焦快捷键";
 "Find the pointer instantly with a brief, focused animation." = "用短暂而明确的动画，立即找到鼠标指针。";
@@ -30,6 +34,7 @@
 "Highlight style" = "高亮样式";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "输入监控仅用于识别 Control 键的双击节奏。";
 "Input Monitoring is required only to recognize the modifier-key rhythm." = "输入监控仅用于识别修饰键的双击节奏。";
+"Input Monitoring is ready." = "输入监控已就绪。";
 "Keep the pointer clear and visible during presentations and recordings." = "让鼠标指针在演示与录屏中始终清晰可见。";
 "Keep the pointer visible during presentations and recordings." = "让鼠标指针在演示与录屏中始终清晰可见。";
 "Keep a highlight around the pointer" = "持续高亮鼠标指针";
@@ -45,10 +50,13 @@
 "More Useful Apps" = "更多实用 App";
 "Moderate" = "适中";
 "None" = "无";
+"Not Now" = "暂不授权";
 "Off" = "已关闭";
 "OK" = "好";
 "Opacity" = "透明度";
 "Open System Settings" = "打开系统设置";
+"OnePointer needs Input Monitoring so the shortcut works while you use other apps." = "OnePointer 需要“输入监控”权限，才能在你使用其他 App 时识别快捷手势。";
+"OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input." = "OnePointer 仅观察识别修饰键节奏所需的输入事件，不会记录输入文字，也不会修改你的输入。";
 "Plus (+)" = "十字（+）";
 "Press and release the selected modifier twice by itself." = "单独快速按下并松开所选修饰键两次。";
 "Presentation frame rate" = "演示模式帧率";
@@ -83,5 +91,7 @@
 "Explore lightweight tools for Mac, iPhone, and iPad." = "探索为 Mac、iPhone 与 iPad 打造的轻量工具。";
 "Explore One Apps" = "浏览 One Apps";
 "Toggle anytime with %@." = "随时按 %@ 开关。";
+"Turn on OnePointer in System Settings, then return here." = "请在系统设置中打开 OnePointer 开关，然后返回这里。";
+"Turn on the switch beside OnePointer in System Settings." = "在系统设置中打开 OnePointer 右侧的开关。";
 "Unable to update login item" = "无法更新开机启动项";
 "X (×)" = "交叉（×）";

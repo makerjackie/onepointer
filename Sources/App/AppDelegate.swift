@@ -100,6 +100,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
             .sink { [weak self] _, _ in
                 self?.configureDoubleModifierMonitor()
+                self?.appModel.presentInputMonitoringOnboardingIfNeeded(
+                    quickFocusEnabled: SettingsManager.shared.quickFocusShortcutEnabled
+                )
             }
             .store(in: &cancellables)
     }

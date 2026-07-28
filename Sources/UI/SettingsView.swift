@@ -36,6 +36,15 @@ struct SettingsView: View {
         } message: {
             Text(settings.launchAtLoginError ?? "")
         }
+        .sheet(
+            isPresented: $appModel.isInputMonitoringOnboardingPresented,
+            onDismiss: appModel.acknowledgeInputMonitoringOnboarding
+        ) {
+            InputMonitoringOnboardingView(
+                continueAction: appModel.requestInputMonitoring,
+                notNowAction: appModel.acknowledgeInputMonitoringOnboarding
+            )
+        }
     }
 
     @ViewBuilder

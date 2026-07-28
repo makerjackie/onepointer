@@ -60,7 +60,7 @@ struct QuickFocusControlBar: View {
 
             if settings.quickFocusShortcutEnabled && !appModel.isInputMonitoringGranted {
                 Divider()
-                permissionActions
+                InputMonitoringPermissionRow(appModel: appModel)
             }
 
             Divider()
@@ -101,46 +101,6 @@ struct QuickFocusControlBar: View {
         )
         .buttonStyle(.borderedProminent)
         .controlSize(.large)
-    }
-
-    private var permissionActions: some View {
-        ViewThatFits(in: .horizontal) {
-            HStack(alignment: .center, spacing: 10) {
-                permissionDescription
-                Spacer()
-                permissionButtons
-            }
-
-            VStack(alignment: .leading, spacing: 10) {
-                permissionDescription
-                permissionButtons
-            }
-        }
-        .padding(14)
-    }
-
-    private var permissionDescription: some View {
-        Label {
-            Text("Input Monitoring is required only to recognize the modifier-key rhythm.")
-        } icon: {
-            Image(systemName: "lock.open")
-        }
-        .font(.callout)
-        .foregroundStyle(.secondary)
-    }
-
-    private var permissionButtons: some View {
-        HStack {
-            Button(
-                "Allow Input Monitoring",
-                action: appModel.requestInputMonitoring
-            )
-
-            Button(
-                "Open System Settings",
-                action: appModel.openInputMonitoringSettings
-            )
-        }
     }
 
     private func settingsRow<Leading: View, Trailing: View>(

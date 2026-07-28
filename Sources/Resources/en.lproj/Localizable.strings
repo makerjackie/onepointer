@@ -2,6 +2,7 @@
 "Advanced" = "Advanced";
 "All displays dim briefly while a spotlight follows the pointer." = "All displays dim briefly while a spotlight follows the pointer.";
 "All displays dim briefly while a spotlight contracts toward the pointer." = "All displays dim briefly while a spotlight contracts toward the pointer.";
+"Allow OnePointer to recognize the double-tap shortcut." = "Allow OnePointer to recognize the double-tap shortcut.";
 "Allow Input Monitoring" = "Allow Input Monitoring";
 "Appearance and click effects" = "Appearance and click effects";
 "App Settings" = "App Settings";
@@ -10,6 +11,8 @@
 "Click to turn it off." = "Click to turn it off.";
 "Click effect" = "Click effect";
 "Color Flash" = "Color Flash";
+"Continue & Allow" = "Continue & Allow";
+"Continue to let macOS add OnePointer to Input Monitoring." = "Continue to let macOS add OnePointer to Input Monitoring.";
 "Control key" = "Control key";
 "Crosshair" = "Crosshair";
 "Crosshair style" = "Crosshair style";
@@ -19,6 +22,7 @@
 "Double-tap shortcut" = "Double-tap shortcut";
 "Effect duration" = "Effect duration";
 "Enable double-tap Control" = "Enable double-tap Control";
+"Enable Double-Tap Quick Focus" = "Enable Double-Tap Quick Focus";
 "Enable Persistent Highlight" = "Enable Persistent Highlight";
 "Enable quick focus shortcut" = "Enable quick focus shortcut";
 "Find the pointer instantly with a brief, focused animation." = "Find the pointer instantly with a brief, focused animation.";
@@ -30,6 +34,7 @@
 "Highlight style" = "Highlight style";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "Input Monitoring is required only to recognize the Control-key rhythm.";
 "Input Monitoring is required only to recognize the modifier-key rhythm." = "Input Monitoring is required only to recognize the modifier-key rhythm.";
+"Input Monitoring is ready." = "Input Monitoring is ready.";
 "Keep the pointer clear and visible during presentations and recordings." = "Keep the pointer clear and visible during presentations and recordings.";
 "Keep the pointer visible during presentations and recordings." = "Keep the pointer visible during presentations and recordings.";
 "Keep a highlight around the pointer" = "Keep a highlight around the pointer";
@@ -45,10 +50,13 @@
 "More Useful Apps" = "More Useful Apps";
 "Moderate" = "Moderate";
 "None" = "None";
+"Not Now" = "Not Now";
 "Off" = "Off";
 "OK" = "OK";
 "Opacity" = "Opacity";
 "Open System Settings" = "Open System Settings";
+"OnePointer needs Input Monitoring so the shortcut works while you use other apps." = "OnePointer needs Input Monitoring so the shortcut works while you use other apps.";
+"OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input." = "OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input.";
 "Plus (+)" = "Plus (+)";
 "Press and release the selected modifier twice by itself." = "Press and release the selected modifier twice by itself.";
 "Presentation frame rate" = "Presentation frame rate";
@@ -83,5 +91,7 @@
 "Explore lightweight tools for Mac, iPhone, and iPad." = "Explore lightweight tools for Mac, iPhone, and iPad.";
 "Explore One Apps" = "Explore One Apps";
 "Toggle anytime with %@." = "Toggle anytime with %@.";
+"Turn on OnePointer in System Settings, then return here." = "Turn on OnePointer in System Settings, then return here.";
+"Turn on the switch beside OnePointer in System Settings." = "Turn on the switch beside OnePointer in System Settings.";
 "Unable to update login item" = "Unable to update login item";
 "X (×)" = "X (×)";

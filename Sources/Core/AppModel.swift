@@ -1,21 +1,26 @@
 import AppKit
 import Combine
-import CoreGraphics
 
 @MainActor
 final class AppModel: ObservableObject {
-    enum InputMonitoringState {
-        case granted
-        case required
-    }
-
-    @Published private(set) var inputMonitoringState: InputMonitoringState = .required
+    @Published private(set) var inputMonitoringState: InputMonitoringState = .notDetermined
+    @Published var isInputMonitoringOnboardingPresented = false
 
     var focusNow: () -> Void = {}
     var checkForUpdates: () -> Void = {}
     var inputMonitoringDidChange: () -> Void = {}
 
-    init() {
+    private let inputMonitoringAuthorization: any InputMonitoringAuthorizing
+    private let defaults: UserDefaults
+    private let inputMonitoringOnboardingKey = "hasSeenInputMonitoringOnboarding"
+
+    init(
+        inputMonitoringAuthorization: any InputMonitoringAuthorizing =
+            SystemInputMonitoringAuthorization(),
+        defaults: UserDefaults = .standard
+    ) {
+        self.inputMonitoringAuthorization = inputMonitoringAuthorization
+        self.defaults = defaults
         refreshInputMonitoringState()
     }
 
@@ -24,19 +29,35 @@ final class AppModel: ObservableObject {
     }
 
     func refreshInputMonitoringState() {
-        inputMonitoringState = CGPreflightListenEventAccess() ? .granted : .required
+        inputMonitoringState = inputMonitoringAuthorization.currentState()
         inputMonitoringDidChange()
     }
 
     func requestInputMonitoring() {
-        if CGRequestListenEventAccess() {
-            refreshInputMonitoringState()
-        } else {
-            openInputMonitoringSettings()
+        acknowledgeInputMonitoringOnboarding()
+        inputMonitoringAuthorization.requestAccess()
+        refreshInputMonitoringState()
+    }
+
+    func presentInputMonitoringOnboardingIfNeeded(quickFocusEnabled: Bool) {
+        guard
+            quickFocusEnabled,
+            inputMonitoringState != .granted,
+            !defaults.bool(forKey: inputMonitoringOnboardingKey)
+        else {
+            return
         }
+
+        isInputMonitoringOnboardingPresented = true
+    }
+
+    func acknowledgeInputMonitoringOnboarding() {
+        defaults.set(true, forKey: inputMonitoringOnboardingKey)
+        isInputMonitoringOnboardingPresented = false
     }
 
     func openInputMonitoringSettings() {
+        acknowledgeInputMonitoringOnboarding()
         guard let url = URL(
             string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ListenEvent"
         ) else {

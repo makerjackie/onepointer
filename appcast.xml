@@ -3,6 +3,36 @@
     <channel>
         <title>OnePointer</title>
         <item>
+            <title>0.3.1</title>
+            <pubDate>Tue, 28 Jul 2026 12:20:29 +0800</pubDate>
+            <link>https://github.com/makerjackie/onepointer</link>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>0.3.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.3.1
+
+首次授权流程现在更清楚，也不再需要手动寻找 App。
+
+- 首次启动时先说明为什么双击快捷手势需要“输入监控”
+- 点击“继续并授权”后，由 macOS 将 OnePointer 加入权限列表
+- 用户只需打开 OnePointer 右侧开关，不再需要点击 `+` 手动添加
+- 可以选择“暂不授权”，不影响立即聚焦和持续高亮
+- 权限区域会根据当前状态只显示一个清晰的下一步操作
+
+---
+
+The first-run permission flow is now clearer and no longer asks people to find
+the app manually.
+
+- Explains why the double-tap gesture needs Input Monitoring before requesting it
+- Uses the macOS HID authorization flow to add OnePointer to the permission list
+- Users only need to turn on the OnePointer switch instead of adding it with `+`
+- “Not Now” keeps Focus Now and persistent highlighting available
+- The permission area shows one clear next action for the current state
+]]></description>
+            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.3.1/OnePointer-0.3.1.dmg" length="3584990" type="application/octet-stream" sparkle:edSignature="x2+BAj7Epc6x98hvdRxLdZbY2xLHh6r1JHFQ9mTzjgAVZ9JEUFQaKUVpcuqpCwyG3lGb8SRDZ11dd5bvXb+5CQ=="/>
+        </item>
+        <item>
             <title>0.3.0</title>
             <pubDate>Mon, 27 Jul 2026 18:42:58 +0800</pubDate>
             <link>https://github.com/makerjackie/onepointer</link>
@@ -60,31 +90,6 @@ The quick-focus gesture is now configurable and optional.
 - Modifier-key combinations do not accidentally trigger quick focus
 ]]></description>
             <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.2.0/OnePointer-0.2.0.dmg" length="2518338" type="application/octet-stream" sparkle:edSignature="LQC6HavcPpJMmAAXJZIUUQK8ov3PLHejxJ2+s8iw5wuBa1jWY1gC67Q0pR81GfRrdEdQagkUcEMkxZijs9ztBg=="/>
-        </item>
-        <item>
-            <title>0.1.1</title>
-            <pubDate>Mon, 27 Jul 2026 16:04:37 +0800</pubDate>
-            <link>https://github.com/makerjackie/onepointer</link>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>0.1.1</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.1.1
-
-聚焦动画现在更清晰、更直接。
-
-- 大聚光圈快速收拢到鼠标位置
-- 轻微回弹后稳定，并在 0.85 秒内淡出
-- 开启“减少动态效果”时，保持固定圆圈并仅淡入淡出
-
----
-
-The focus animation is now clearer and more direct.
-
-- A large spotlight rapidly contracts toward the pointer
-- It lightly rebounds, settles, and fades within 0.85 seconds
-- Reduce Motion keeps the circle fixed and uses opacity only
-]]></description>
-            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.1.1/OnePointer-0.1.1.dmg" length="2506996" type="application/octet-stream" sparkle:edSignature="5kgYDVtZbC12zjqOX6FFE86sw5CCPD3n4YEYwWFGMM5fH3zsGV35QXENlF5NXhjzwIxZMRtwTwQhBsJx5QrdAw=="/>
         </item>
     </channel>
 </rss>
