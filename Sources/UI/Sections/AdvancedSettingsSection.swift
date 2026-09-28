@@ -20,6 +20,10 @@ struct AdvancedSettingsSection: View {
 
             Divider()
 
+            Toggle("Hide the Dock and show in the menu bar", isOn: $settings.showMenuBarIcon)
+
+            Divider()
+
             Picker("Presentation frame rate", selection: $settings.targetFrameRate) {
                 Text("30 FPS").tag(30)
                 Text("60 FPS").tag(60)

@@ -30,6 +30,7 @@
 "Focus Pointer Now" = "立即聚焦指针";
 "Glow intensity" = "发光强度";
 "Hide OnePointer" = "隐藏 OnePointer";
+"Hide the Dock and show in the menu bar" = "隐藏 Dock 并显示到菜单栏";
 "Highlight color" = "高亮颜色";
 "Highlight style" = "高亮样式";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "输入监控仅用于识别 Control 键的双击节奏。";
@@ -54,6 +55,7 @@
 "Off" = "已关闭";
 "OK" = "好";
 "Opacity" = "透明度";
+"Open Settings…" = "打开设置…";
 "Open System Settings" = "打开系统设置";
 "OnePointer needs Input Monitoring so the shortcut works while you use other apps." = "OnePointer 需要“输入监控”权限，才能在你使用其他 App 时识别快捷手势。";
 "OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input." = "OnePointer 仅观察识别修饰键节奏所需的输入事件，不会记录输入文字，也不会修改你的输入。";

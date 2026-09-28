@@ -30,6 +30,7 @@
 "Focus Pointer Now" = "Focus Pointer Now";
 "Glow intensity" = "Glow intensity";
 "Hide OnePointer" = "Hide OnePointer";
+"Hide the Dock and show in the menu bar" = "Hide the Dock and show in the menu bar";
 "Highlight color" = "Highlight color";
 "Highlight style" = "Highlight style";
 "Input Monitoring is required only to recognize the Control-key rhythm." = "Input Monitoring is required only to recognize the Control-key rhythm.";
@@ -54,6 +55,7 @@
 "Off" = "Off";
 "OK" = "OK";
 "Opacity" = "Opacity";
+"Open Settings…" = "Open Settings…";
 "Open System Settings" = "Open System Settings";
 "OnePointer needs Input Monitoring so the shortcut works while you use other apps." = "OnePointer needs Input Monitoring so the shortcut works while you use other apps.";
 "OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input." = "OnePointer observes only the input events needed to recognize the modifier-key rhythm. It never records typed text or changes your input.";
