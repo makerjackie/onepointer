@@ -3,6 +3,50 @@
     <channel>
         <title>OnePointer</title>
         <item>
+            <title>0.4.0</title>
+            <pubDate>Thu, 08 Oct 2026 11:19:47 +0800</pubDate>
+            <link>https://github.com/makerjackie/onepointer</link>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>0.4.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.4.0
+
+## 简体中文
+
+- 新增菜单栏模式：隐藏 Dock 和 ⌘⇥ 图标，在屏幕顶部菜单栏随时找回 OnePointer。
+- 设置侧栏新增“在后台运行”和“退出 OnePointer”，清楚区分收起窗口和完全退出。
+- 菜单栏可立即聚焦指针、开关持续高亮、打开设置、检查更新和退出。
+- 修复关闭或最小化设置后重新打开 App 时，窗口无法正常恢复的问题。
+- 开机启动安静地在后台运行，不再弹出设置窗口。
+- 修复快速聚焦快捷键开关慢一拍的问题，避免权限监听失败时反复重试。
+- 演示帧率切换立即生效。
+
+菜单栏模式默认关闭；点击“在后台运行”即可启用。关闭窗口会继续运行；点击
+“退出 OnePointer”或在设置窗口按 ⌘Q 可完全退出。
+
+感谢 @OpenAndrus 在 PR #1 中贡献菜单栏模式和快捷键修复。
+
+## English
+
+- Optional menu-bar mode hides OnePointer from the Dock and ⌘⇥ while keeping it
+  available at the top of the screen.
+- Clear “Run in Background” and “Quit OnePointer” sidebar actions.
+- Focus the pointer, toggle persistent highlighting, open Settings, check for
+  updates, and quit directly from the menu bar.
+- Reopening the app restores closed or minimized Settings reliably.
+- Launch at login runs quietly without opening Settings.
+- Quick-focus switches take effect immediately; failed input listeners no longer
+  trigger recursive authorization refreshes.
+- Presentation frame-rate changes apply immediately.
+
+Menu-bar mode is off by default. Choose “Run in Background” to enable it. Closing
+Settings keeps the app running; choose Quit or press ⌘Q in Settings to stop it.
+
+Thanks to @OpenAndrus for the menu-bar mode and shortcut fixes in PR #1.
+]]></description>
+            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.4.0/OnePointer-0.4.0.dmg" length="3604169" type="application/octet-stream" sparkle:edSignature="W3jyhs/YZnCW0VBSVOTv5K5FoU9AMWSBcidTLbpf8OwR1OHvfen4FTftuDJXCETM2KrQvVRizodLnOhtjHW/Aw=="/>
+        </item>
+        <item>
             <title>0.3.1</title>
             <pubDate>Tue, 28 Jul 2026 12:20:29 +0800</pubDate>
             <link>https://github.com/makerjackie/onepointer</link>
@@ -63,33 +107,6 @@ highlighting easier to find and use.
 - A new link helps users discover more apps from OneApps.Studio
 ]]></description>
             <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.3.0/OnePointer-0.3.0.dmg" length="3561591" type="application/octet-stream" sparkle:edSignature="2FBkgCx4TwBO2J/aA4YdIDjQHLNeBWIY14sfjbrnEQpKvCp4cOg5q6Vt6+h7MTRrd09TQRPq9Eudmh4mlFuTCw=="/>
-        </item>
-        <item>
-            <title>0.2.0</title>
-            <pubDate>Mon, 27 Jul 2026 17:19:46 +0800</pubDate>
-            <link>https://github.com/makerjackie/onepointer</link>
-            <sparkle:version>3</sparkle:version>
-            <sparkle:shortVersionString>0.2.0</sparkle:shortVersionString>
-            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# OnePointer 0.2.0
-
-快速聚焦快捷手势现在可以自由选择，也可以关闭。
-
-- 默认快捷手势改为双击左侧 Option
-- 可选择左右侧的 Option、Control、Command 或 Shift
-- 可完全关闭快速聚焦快捷手势
-- 修饰键与其他按键组合使用时不会误触聚焦
-
----
-
-The quick-focus gesture is now configurable and optional.
-
-- The default gesture is now double-tap left Option
-- Choose either side of Option, Control, Command, or Shift
-- Disable the quick-focus gesture completely
-- Modifier-key combinations do not accidentally trigger quick focus
-]]></description>
-            <enclosure url="https://github.com/makerjackie/onepointer/releases/download/v0.2.0/OnePointer-0.2.0.dmg" length="2518338" type="application/octet-stream" sparkle:edSignature="LQC6HavcPpJMmAAXJZIUUQK8ov3PLHejxJ2+s8iw5wuBa1jWY1gC67Q0pR81GfRrdEdQagkUcEMkxZijs9ztBg=="/>
         </item>
     </channel>
 </rss>

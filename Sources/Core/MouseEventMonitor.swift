@@ -33,20 +33,14 @@ final class MouseEventMonitor {
     private var lastLocation: NSPoint = NSEvent.mouseLocation
     private var lastButtonMask: Int = 0
 
-    private var pollInterval: TimeInterval {
-        // SettingsManager exposes a target frame rate (e.g. 60 or 120). Poll at that rate.
-        let fps = max(30, SettingsManager.shared.targetFrameRate)
-        return 1.0 / Double(fps)
-    }
-
     @discardableResult
-    func start() -> Bool {
+    func start(frameRate: Int = SettingsManager.shared.targetFrameRate) -> Bool {
         guard !isRunning else { return true }
 
         lastLocation = NSEvent.mouseLocation
         lastButtonMask = NSEvent.pressedMouseButtons
 
-        let timer = Timer(timeInterval: pollInterval, repeats: true) { [weak self] _ in
+        let timer = Timer(timeInterval: 1 / Double(max(30, frameRate)), repeats: true) { [weak self] _ in
             MainActor.assumeIsolated {
                 self?.poll()
             }
@@ -57,6 +51,12 @@ final class MouseEventMonitor {
         isRunning = true
         delegate?.mouseMoved(to: lastLocation)
         return true
+    }
+
+    func updateFrameRate(_ frameRate: Int) {
+        guard isRunning else { return }
+        stop()
+        start(frameRate: frameRate)
     }
 
     func stop() {

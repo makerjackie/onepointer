@@ -18,6 +18,19 @@ struct SettingsView: View {
                 Divider()
 
                 OneAppsPromotionView()
+
+                Divider()
+
+                VStack(alignment: .leading, spacing: 12) {
+                    Button("Run in Background", systemImage: "menubar.rectangle", action: appModel.runInBackground)
+                    Button("Quit OnePointer", systemImage: "power", action: appModel.quit)
+                    Text("OnePointer \(Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "")")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.borderless)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
             }
             .navigationSplitViewColumnWidth(min: 190, ideal: 220, max: 250)
         } detail: {

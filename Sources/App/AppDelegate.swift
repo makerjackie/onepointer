@@ -30,10 +30,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupMouseMonitor()
         setupHotKey()
         setupUpdater()
-        setupBindings()
         setupQuickFocus()
-        updateMenuBarItem(showMenuBarIcon: SettingsManager.shared.showMenuBarIcon)
-        settingsWindowController.showSettings()
+        setupBindings()
+        appModel.runInBackground = { [weak self] in
+            SettingsManager.shared.showMenuBarIcon = true
+            self?.settingsWindowController.hideSettings()
+        }
+        appModel.quit = { NSApp.terminate(nil) }
+        if AppLaunchContext.shouldShowSettings(
+            event: NSAppleEventManager.shared().currentAppleEvent,
+            arguments: ProcessInfo.processInfo.arguments
+        ) {
+            settingsWindowController.showSettings()
+        }
     }
 
     private func setupOverlays() {
@@ -59,7 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         guard menuBarController == nil else { return }
-        let controller = MenuBarController()
+        let controller = MenuBarController(appModel: appModel, settings: SettingsManager.shared)
         controller.delegate = self
         menuBarController = controller
     }
@@ -126,6 +135,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 } else {
                     self?.mouseMonitor?.stop()
                 }
+            }
+            .store(in: &cancellables)
+
+        SettingsManager.shared.$targetFrameRate
+            .removeDuplicates()
+            .dropFirst()
+            .sink { [weak self] frameRate in
+                self?.mouseMonitor?.updateFrameRate(frameRate)
             }
             .store(in: &cancellables)
 
@@ -210,13 +227,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        if !flag {
-            settingsWindowController.showSettings()
-        }
-        return true
+        // Transparent overlays also count as visible windows. A deliberate
+        // reopen must always bring settings back, including a minimized window.
+        settingsWindowController.showSettings()
+        return false
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        cancellables.removeAll()
+        menuBarController?.invalidate()
+        menuBarController = nil
         mouseMonitor?.stop()
         doubleModifierMonitor?.stop()
         hotKeyManager.unregister()

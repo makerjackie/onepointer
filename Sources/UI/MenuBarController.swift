@@ -7,13 +7,23 @@ import Cocoa
 /// only way to reach the settings window or quit. It is created when the
 /// “Hide the Dock and show in the menu bar” setting is turned on and torn down
 /// when it is turned back off.
-final class MenuBarController {
+final class MenuBarController: NSObject, NSMenuDelegate {
     private let statusItem: NSStatusItem
+    private let appModel: AppModel
+    private let settings: SettingsManager
+    private let highlightItem = NSMenuItem(
+        title: String(localized: "Keep a highlight around the pointer"),
+        action: #selector(toggleHighlight),
+        keyEquivalent: ""
+    )
 
     weak var delegate: MenuBarControllerDelegate?
 
-    init() {
+    init(appModel: AppModel, settings: SettingsManager) {
+        self.appModel = appModel
+        self.settings = settings
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        super.init()
         // A stable, app-specific autosave name. Status items without one get an
         // auto-assigned "Item-<n>", and macOS stores the menu bar position and
         // visibility of that name in the shared com.apple.controlcenter domain —
@@ -38,30 +48,69 @@ final class MenuBarController {
         button.image = Self.makeStatusIcon()
         button.image?.isTemplate = true
         button.toolTip = "OnePointer"
+        button.setAccessibilityLabel("OnePointer")
     }
 
     private func setupMenu() {
         let menu = NSMenu()
+        menu.delegate = self
+
+        let focusItem = NSMenuItem(
+            title: String(localized: "Focus Pointer Now"),
+            action: #selector(focusPointer),
+            keyEquivalent: ""
+        )
+        focusItem.target = self
+        menu.addItem(focusItem)
+
+        highlightItem.target = self
+        menu.addItem(highlightItem)
+
+        menu.addItem(.separator())
 
         let settingsItem = NSMenuItem(
             title: String(localized: "Open Settings…"),
             action: #selector(openSettings),
-            keyEquivalent: ""
+            keyEquivalent: ","
         )
         settingsItem.target = self
         menu.addItem(settingsItem)
+
+        let updateItem = NSMenuItem(
+            title: String(localized: "Check for Updates…"),
+            action: #selector(checkForUpdates),
+            keyEquivalent: ""
+        )
+        updateItem.target = self
+        menu.addItem(updateItem)
 
         menu.addItem(.separator())
 
         let quitItem = NSMenuItem(
             title: String(localized: "Quit OnePointer"),
             action: #selector(quitApplication),
-            keyEquivalent: ""
+            keyEquivalent: "q"
         )
         quitItem.target = self
         menu.addItem(quitItem)
 
         statusItem.menu = menu
+    }
+
+    func menuWillOpen(_ menu: NSMenu) {
+        highlightItem.state = settings.isEnabled ? .on : .off
+    }
+
+    @objc private func focusPointer() {
+        appModel.focusNow()
+    }
+
+    @objc private func toggleHighlight() {
+        settings.isEnabled.toggle()
+    }
+
+    @objc private func checkForUpdates() {
+        appModel.checkForUpdates()
     }
 
     /// A focus ring with a pointer inside, matching the app icon.
@@ -129,7 +178,7 @@ final class MenuBarController {
     }
 
     @objc private func quitApplication() {
-        NSApplication.shared.terminate(nil)
+        appModel.quit()
     }
 }
 

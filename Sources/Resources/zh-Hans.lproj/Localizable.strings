@@ -71,6 +71,8 @@
 "Pulse speed" = "脉冲速度";
 "Quick Focus" = "快速聚焦";
 "Quit OnePointer" = "退出 OnePointer";
+"Run in Background" = "在后台运行";
+"Closing settings keeps OnePointer running. Choose Quit to stop all pointer effects." = "关闭设置窗口后仍会继续运行。选择“退出 OnePointer”可停止所有指针效果。";
 "Ready" = "已就绪";
 "Reset to Defaults" = "恢复默认设置";
 "Ring" = "圆环";

@@ -79,6 +79,44 @@ final class AppModelTests: XCTestCase {
         XCTAssertFalse(model.isInputMonitoringOnboardingPresented)
     }
 
+    func testUnchangedPermissionDoesNotRecursivelyRetryEventTap() throws {
+        let model = AppModel(
+            inputMonitoringAuthorization: MockInputMonitoringAuthorization(state: .granted),
+            defaults: try makeDefaults()
+        )
+        var notifications = 0
+        model.inputMonitoringDidChange = {
+            notifications += 1
+            if notifications < 3 {
+                model.refreshInputMonitoringState()
+            }
+        }
+
+        model.refreshInputMonitoringState()
+
+        XCTAssertEqual(notifications, 0)
+    }
+
+    func testChangedPermissionNotifiesOnceEvenIfMonitorRefreshesAgain() throws {
+        let authorization = MockInputMonitoringAuthorization(
+            state: .denied,
+            stateAfterRequest: .granted
+        )
+        let model = AppModel(inputMonitoringAuthorization: authorization, defaults: try makeDefaults())
+        var notifications = 0
+        model.inputMonitoringDidChange = {
+            notifications += 1
+            if notifications < 3 {
+                model.refreshInputMonitoringState()
+            }
+        }
+
+        model.requestInputMonitoring()
+
+        XCTAssertEqual(model.inputMonitoringState, .granted)
+        XCTAssertEqual(notifications, 1)
+    }
+
     private func makeDefaults() throws -> UserDefaults {
         let suiteName = "studio.oneapps.onepointer.tests.\(UUID().uuidString)"
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suiteName))

@@ -22,6 +22,10 @@ struct AdvancedSettingsSection: View {
 
             Toggle("Hide the Dock and show in the menu bar", isOn: $settings.showMenuBarIcon)
 
+            Text("Closing settings keeps OnePointer running. Choose Quit to stop all pointer effects.")
+                .font(.caption)
+                .foregroundStyle(.secondary)
+
             Divider()
 
             Picker("Presentation frame rate", selection: $settings.targetFrameRate) {

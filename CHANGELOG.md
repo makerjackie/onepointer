@@ -4,12 +4,18 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-08
+
 ### Added
 
 - An optional menu-bar mode. Turn on “Hide the Dock and show in the menu bar” in
   App Settings and OnePointer disappears from the Dock and from ⌘⇥, keeping an
   icon at the right of the menu bar instead; clicking it opens the settings window
   or quits the app.
+- Sidebar actions to run in the background and quit, with the current version
+  displayed underneath. Background mode enables the menu-bar entry before hiding
+  Settings.
+- Quick focus, persistent highlighting, and update actions in the menu bar.
 
 ### Changed
 
@@ -25,14 +31,19 @@ All notable changes to OnePointer will be documented here.
 
 ### Fixed
 
-- Turning “Hide the Dock and show in the menu bar” off used to add the menu bar
-  icon and turning it on used to remove it: every click was acted on with the value
-  of the previous click, so the icon trailed the checkbox. It now follows the click
-  itself.
+- Menu-bar visibility follows the newly selected value immediately.
 - The same mistake affected the Quick Focus shortcut toggle: the double-tap
   monitor and the Input Monitoring explanation it triggers were one click behind
   the switch, so enabling the shortcut could leave it without effect until the
   app was relaunched.
+- Reopening OnePointer always restores Settings, even when transparent overlays
+  remain visible or Settings has been minimized.
+- Login-item and explicit `--background` launches no longer bring Settings to the
+  foreground.
+- Unchanged Input Monitoring authorization no longer causes recursive event-tap
+  retries if macOS cannot create the listener.
+- Changes to the presentation frame rate take effect immediately while running.
+- Quitting explicitly removes the menu-bar item and stops input and overlays.
 
 ## [0.3.1] - 2026-07-28
 

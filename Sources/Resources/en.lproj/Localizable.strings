@@ -71,6 +71,8 @@
 "Pulse speed" = "Pulse speed";
 "Quick Focus" = "Quick Focus";
 "Quit OnePointer" = "Quit OnePointer";
+"Run in Background" = "Run in Background";
+"Closing settings keeps OnePointer running. Choose Quit to stop all pointer effects." = "Closing settings keeps OnePointer running. Choose Quit to stop all pointer effects.";
 "Ready" = "Ready";
 "Reset to Defaults" = "Reset to Defaults";
 "Ring" = "Ring";

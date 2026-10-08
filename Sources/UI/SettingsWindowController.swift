@@ -12,6 +12,9 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
 
     func showSettings() {
         if let window {
+            if window.isMiniaturized {
+                window.deminiaturize(nil)
+            }
             window.makeKeyAndOrderFront(nil)
             NSApp.activate(ignoringOtherApps: true)
             return
@@ -36,5 +39,9 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
         self.window = window
         window.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+    }
+
+    func hideSettings() {
+        window?.orderOut(nil)
     }
 }

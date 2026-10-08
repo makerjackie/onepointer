@@ -20,7 +20,8 @@ double-tapping a configurable modifier key.
 - `⌃⌥⌘H`：随时开关演示模式
 - 持续高亮页顶部提供醒目的主开关，可一键开启或关闭
 - 可选菜单栏模式：勾选“隐藏 Dock 并显示到菜单栏”后，OnePointer 从 Dock 与
-  ⌘⇥ 中消失，改为在菜单栏右上角常驻一个图标，点击可打开设置或退出
+  ⌘⇥ 中消失，改为在菜单栏右上角常驻一个图标，可聚焦指针、开关持续高亮、打开设置、检查更新或退出
+- 设置侧栏提供“在后台运行”和“退出 OnePointer”；后台运行会启用菜单栏模式并收起窗口
 - 可选开机启动，默认关闭
 - Sparkle 安全自动更新，也可手动“检查更新”
 - 简体中文与英文界面
@@ -28,8 +29,9 @@ double-tapping a configurable modifier key.
 
 OnePointer 默认是普通 Dock App，不创建菜单栏图标。打开设置中的“隐藏 Dock 并
 显示到菜单栏”后，App 会切换为菜单栏常驻：Dock 与 ⌘⇥ 中都不再出现，菜单栏右
-上角的图标成为唯一入口，点击可打开设置窗口或退出。关闭设置窗口后，App 仍会在
-后台运行；在 Dock 模式下，再次从 Spotlight 或“应用程序”打开即可显示窗口。
+上角的图标提供常用操作入口。关闭设置窗口后，App 仍会在后台运行；从菜单栏、
+Spotlight 或“应用程序”重新打开即可显示设置。开机启动不会弹出设置窗口。
+需要完全停止时，点击侧栏或菜单中的“退出 OnePointer”，也可在设置窗口按 `⌘Q`。
 
 ### 权限
 
@@ -72,8 +74,7 @@ xcodebuild test \
   CODE_SIGNING_ALLOWED=NO
 ```
 
-本地独立仓库路径建议为 `/Users/jackiexiao/code/OnePointer`。它不属于
-`/Users/jackiexiao/code/OneApps` monorepo。
+本项目使用独立 Git 仓库，不属于 OneApps monorepo。
 
 维护者可运行 `./scripts/build-dmg.sh` 完成测试、归档、嵌套签名、App 与
 DMG 双重公证、Sparkle appcast 签名和校验和生成。
@@ -95,7 +96,9 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 - A prominent primary control enables or disables persistent highlighting
 - An optional menu-bar mode: “Hide the Dock and show in the menu bar” removes
   OnePointer from the Dock and from ⌘⇥ and keeps an icon at the right of the menu
-  bar instead, where clicking opens Settings or quits the app
+  bar for quick focus, persistent highlighting, Settings, updates, and quitting
+- Sidebar actions to run in the background or quit; running in the background
+  enables menu-bar mode and hides Settings
 - Optional launch at login, off by default
 - Secure Sparkle automatic updates and a manual “Check for Updates” action
 - Full English and Simplified Chinese interface
@@ -104,9 +107,10 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 OnePointer is a regular Dock app by default and does not create a menu-bar item.
 Turning on “Hide the Dock and show in the menu bar” in Settings switches it to
 menu-bar mode: it disappears from the Dock and from ⌘⇥, and the menu-bar icon
-becomes the only entry point, opening the settings window or quitting the app.
-Closing the settings window leaves the app running; in Dock mode, open it again
-from Spotlight or Applications to bring the window back.
+offers common actions. Closing Settings leaves the app running. Open Settings
+again from the menu bar, Spotlight, or Applications. Launching at login keeps
+Settings hidden. To stop the app completely, use “Quit OnePointer” in the sidebar
+or menu, or press `⌘Q` while Settings is open.
 
 ### Permission
 

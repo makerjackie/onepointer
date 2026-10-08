@@ -8,6 +8,8 @@ final class AppModel: ObservableObject {
 
     var focusNow: () -> Void = {}
     var checkForUpdates: () -> Void = {}
+    var runInBackground: () -> Void = {}
+    var quit: () -> Void = {}
     var inputMonitoringDidChange: () -> Void = {}
 
     private let inputMonitoringAuthorization: any InputMonitoringAuthorizing
@@ -29,7 +31,11 @@ final class AppModel: ObservableObject {
     }
 
     func refreshInputMonitoringState() {
-        inputMonitoringState = inputMonitoringAuthorization.currentState()
+        let state = inputMonitoringAuthorization.currentState()
+        guard state != inputMonitoringState else { return }
+        inputMonitoringState = state
+        // A failed event tap can refresh authorization again. Notify only on a
+        // real change so an unchanged grant cannot cause recursive retries.
         inputMonitoringDidChange()
     }
 
