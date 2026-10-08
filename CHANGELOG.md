@@ -4,6 +4,36 @@ All notable changes to OnePointer will be documented here.
 
 ## [Unreleased]
 
+### Added
+
+- An optional menu-bar mode. Turn on “Hide the Dock and show in the menu bar” in
+  App Settings and OnePointer disappears from the Dock and from ⌘⇥, keeping an
+  icon at the right of the menu bar instead; clicking it opens the settings window
+  or quits the app.
+
+### Changed
+
+- Dock and ⌘⇥ visibility now follows the “Hide the Dock and show in the menu bar”
+  setting, which defaults to off so existing installations keep the regular Dock
+  app behaviour. The previous, never-surfaced `showInDock` preference was removed.
+- The menu-bar icon is now registered under a OnePointer-specific name instead of
+  the auto-assigned one every unnamed status item gets. Without it, macOS stores
+  the icon's menu bar position and visibility in a namespace shared with other
+  apps, so the spot you drag the icon to was not guaranteed to be remembered.
+- The menu-bar icon shows a pointer inside the focus ring, matching the app icon,
+  instead of a dot in the middle of the ring.
+
+### Fixed
+
+- Turning “Hide the Dock and show in the menu bar” off used to add the menu bar
+  icon and turning it on used to remove it: every click was acted on with the value
+  of the previous click, so the icon trailed the checkbox. It now follows the click
+  itself.
+- The same mistake affected the Quick Focus shortcut toggle: the double-tap
+  monitor and the Input Monitoring explanation it triggers were one click behind
+  the switch, so enabling the shortcut could leave it without effect until the
+  app was relaunched.
+
 ## [0.3.1] - 2026-07-28
 
 ### Added

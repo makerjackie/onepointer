@@ -1,218 +1,135 @@
 import Cocoa
-import Combine
 
+/// Owns the menu bar status item used while OnePointer runs as a
+/// menu-bar-only app.
+///
+/// In that mode the app has no Dock icon and no ⌘⇥ entry, so this menu is the
+/// only way to reach the settings window or quit. It is created when the
+/// “Hide the Dock and show in the menu bar” setting is turned on and torn down
+/// when it is turned back off.
 final class MenuBarController {
-    private var statusItem: NSStatusItem?
-    private var menu: NSMenu?
-    private var cancellables = Set<AnyCancellable>()
+    private let statusItem: NSStatusItem
 
     weak var delegate: MenuBarControllerDelegate?
 
-    /// Quick-access size presets (label → diameter in points).
-    static let sizePresets: [(name: String, value: CGFloat)] = [
-        ("Small", 30),
-        ("Medium", 60),
-        ("Large", 100),
-        ("Extra Large", 160)
-    ]
-
     init() {
+        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+        // A stable, app-specific autosave name. Status items without one get an
+        // auto-assigned "Item-<n>", and macOS stores the menu bar position and
+        // visibility of that name in the shared com.apple.controlcenter domain —
+        // so unnamed items from different apps collide, and a position the user
+        // drags the icon to would not reliably stick.
+        statusItem.autosaveName = "studio.oneapps.onepointer.menuBarIcon"
         setupStatusItem()
-        setupBindings()
+        setupMenu()
+    }
+
+    /// Removes the status item from the menu bar.
+    ///
+    /// `NSStatusBar` keeps its own reference to the item, so the icon outlives
+    /// the controller unless it is removed explicitly — dropping the controller
+    /// alone is not enough.
+    func invalidate() {
+        NSStatusBar.system.removeStatusItem(statusItem)
     }
 
     private func setupStatusItem() {
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-
-        if let button = statusItem?.button {
-            button.image = createMenuBarIcon()
-            button.image?.isTemplate = true
-        }
-
-        menu = createMenu()
-        statusItem?.menu = menu
+        guard let button = statusItem.button else { return }
+        button.image = Self.makeStatusIcon()
+        button.image?.isTemplate = true
+        button.toolTip = "OnePointer"
     }
 
-    private func createMenuBarIcon() -> NSImage {
-        let size = NSSize(width: 18, height: 18)
-        let image = NSImage(size: size, flipped: false) { rect in
-            let circleRect = rect.insetBy(dx: 2, dy: 2)
-
-            NSColor.labelColor.setStroke()
-
-            let path = NSBezierPath(ovalIn: circleRect)
-            path.lineWidth = 1.5
-            path.stroke()
-
-            let centerRect = circleRect.insetBy(dx: 5, dy: 5)
-            let centerPath = NSBezierPath(ovalIn: centerRect)
-            NSColor.labelColor.setFill()
-            centerPath.fill()
-
-            return true
-        }
-
-        return image
-    }
-
-    private func createMenu() -> NSMenu {
+    private func setupMenu() {
         let menu = NSMenu()
 
-        let enabledItem = NSMenuItem(title: "Enabled", action: #selector(toggleEnabled), keyEquivalent: "e")
-        enabledItem.target = self
-        enabledItem.state = SettingsManager.shared.isEnabled ? .on : .off
-        menu.addItem(enabledItem)
-
-        menu.addItem(NSMenuItem.separator())
-
-        let styleMenu = NSMenu()
-        for style in HighlightStyle.allCases {
-            let item = NSMenuItem(title: style.rawValue, action: #selector(selectHighlightStyle(_:)), keyEquivalent: "")
-            item.target = self
-            item.representedObject = style
-            item.state = SettingsManager.shared.highlightStyle == style ? .on : .off
-            styleMenu.addItem(item)
-        }
-        let styleItem = NSMenuItem(title: "Highlight Style", action: nil, keyEquivalent: "")
-        styleItem.submenu = styleMenu
-        menu.addItem(styleItem)
-
-        let effectMenu = NSMenu()
-        for effect in ClickEffect.allCases {
-            let item = NSMenuItem(title: effect.rawValue, action: #selector(selectClickEffect(_:)), keyEquivalent: "")
-            item.target = self
-            item.representedObject = effect
-            item.state = SettingsManager.shared.clickEffect == effect ? .on : .off
-            effectMenu.addItem(item)
-        }
-        let effectItem = NSMenuItem(title: "Click Effect", action: nil, keyEquivalent: "")
-        effectItem.submenu = effectMenu
-        menu.addItem(effectItem)
-
-        let sizeMenu = NSMenu()
-        for preset in Self.sizePresets {
-            let item = NSMenuItem(title: preset.name, action: #selector(selectSize(_:)), keyEquivalent: "")
-            item.target = self
-            item.representedObject = preset.value
-            item.state = SettingsManager.shared.highlightSize == preset.value ? .on : .off
-            sizeMenu.addItem(item)
-        }
-        let sizeItem = NSMenuItem(title: "Highlight Size", action: nil, keyEquivalent: "")
-        sizeItem.submenu = sizeMenu
-        menu.addItem(sizeItem)
-
-        menu.addItem(NSMenuItem.separator())
-
-        let settingsItem = NSMenuItem(title: "Settings...", action: #selector(openSettings), keyEquivalent: ",")
+        let settingsItem = NSMenuItem(
+            title: String(localized: "Open Settings…"),
+            action: #selector(openSettings),
+            keyEquivalent: ""
+        )
         settingsItem.target = self
         menu.addItem(settingsItem)
 
-        menu.addItem(NSMenuItem.separator())
+        menu.addItem(.separator())
 
-        let quitItem = NSMenuItem(title: "Quit Mouse Highlighter", action: #selector(quitApp), keyEquivalent: "q")
+        let quitItem = NSMenuItem(
+            title: String(localized: "Quit OnePointer"),
+            action: #selector(quitApplication),
+            keyEquivalent: ""
+        )
         quitItem.target = self
         menu.addItem(quitItem)
 
-        return menu
+        statusItem.menu = menu
     }
 
-    private func setupBindings() {
-        SettingsManager.shared.$isEnabled
-            .sink { [weak self] enabled in
-                self?.updateMenuState()
+    /// A focus ring with a pointer inside, matching the app icon.
+    ///
+    /// The shapes are drawn in black because the image is used as a template:
+    /// the menu bar only reads the alpha channel and supplies the tint itself, so
+    /// the icon follows the light and dark menu bar without extra work.
+    private static func makeStatusIcon() -> NSImage {
+        NSImage(size: NSSize(width: 18, height: 18), flipped: false) { rect in
+            NSColor.black.setStroke()
+            let ring = NSBezierPath(ovalIn: rect.insetBy(dx: 1.5, dy: 1.5))
+            ring.lineWidth = 1.4
+            ring.stroke()
+
+            // The pointer sits slightly above and left of centre, the way it does
+            // in the app icon, which keeps it visually balanced inside the ring.
+            let side = rect.width * 10 / 18
+            let pointerRect = NSRect(
+                x: rect.midX - side / 2 - 0.3,
+                y: rect.midY - side / 2 + 0.3,
+                width: side,
+                height: side
+            )
+
+            if let pointer = NSImage(
+                systemSymbolName: "cursorarrow",
+                accessibilityDescription: nil
+            ) {
+                pointer.draw(in: pointerRect)
+            } else {
+                Self.drawFallbackPointer(in: pointerRect)
             }
-            .store(in: &cancellables)
 
-        SettingsManager.shared.$highlightStyle
-            .sink { [weak self] _ in
-                self?.updateMenuState()
-            }
-            .store(in: &cancellables)
-
-        SettingsManager.shared.$clickEffect
-            .sink { [weak self] _ in
-                self?.updateMenuState()
-            }
-            .store(in: &cancellables)
-
-        SettingsManager.shared.$highlightSize
-            .sink { [weak self] _ in
-                self?.updateMenuState()
-            }
-            .store(in: &cancellables)
-    }
-
-    private func updateMenuState() {
-        guard let menu = menu else { return }
-
-        if let enabledItem = menu.item(withTitle: "Enabled") {
-            enabledItem.state = SettingsManager.shared.isEnabled ? .on : .off
-        }
-
-        if let styleItem = menu.item(withTitle: "Highlight Style"),
-           let styleMenu = styleItem.submenu {
-            for item in styleMenu.items {
-                if let style = item.representedObject as? HighlightStyle {
-                    item.state = SettingsManager.shared.highlightStyle == style ? .on : .off
-                }
-            }
-        }
-
-        if let effectItem = menu.item(withTitle: "Click Effect"),
-           let effectMenu = effectItem.submenu {
-            for item in effectMenu.items {
-                if let effect = item.representedObject as? ClickEffect {
-                    item.state = SettingsManager.shared.clickEffect == effect ? .on : .off
-                }
-            }
-        }
-
-        if let sizeItem = menu.item(withTitle: "Highlight Size"),
-           let sizeMenu = sizeItem.submenu {
-            for item in sizeMenu.items {
-                if let value = item.representedObject as? CGFloat {
-                    item.state = SettingsManager.shared.highlightSize == value ? .on : .off
-                }
-            }
+            return true
         }
     }
 
-    @objc private func toggleEnabled() {
-        SettingsManager.shared.isEnabled.toggle()
-    }
+    /// A filled pointer arrow, used only if the system symbol is unavailable.
+    private static func drawFallbackPointer(in rect: NSRect) {
+        // An arrow designed in a 12.8 x 19.2 box, tip at the top left, with y
+        // growing downwards like a CSS cursor polygon.
+        let design = NSSize(width: 12.8, height: 19.2)
+        func point(_ x: CGFloat, _ y: CGFloat) -> NSPoint {
+            NSPoint(
+                x: rect.minX + x / design.width * rect.width,
+                y: rect.maxY - y / design.height * rect.height
+            )
+        }
 
-    @objc private func selectHighlightStyle(_ sender: NSMenuItem) {
-        guard let style = sender.representedObject as? HighlightStyle else { return }
-        SettingsManager.shared.highlightStyle = style
-    }
-
-    @objc private func selectClickEffect(_ sender: NSMenuItem) {
-        guard let effect = sender.representedObject as? ClickEffect else { return }
-        SettingsManager.shared.clickEffect = effect
-    }
-
-    @objc private func selectSize(_ sender: NSMenuItem) {
-        guard let value = sender.representedObject as? CGFloat else { return }
-        SettingsManager.shared.highlightSize = value
+        let path = NSBezierPath()
+        path.move(to: point(0, 0))
+        path.line(to: point(0, 16.4))
+        path.line(to: point(4.4, 12.6))
+        path.line(to: point(7.2, 19.2))
+        path.line(to: point(10.2, 17.8))
+        path.line(to: point(7.4, 11.2))
+        path.line(to: point(12.8, 11.2))
+        path.close()
+        NSColor.black.setFill()
+        path.fill()
     }
 
     @objc private func openSettings() {
         delegate?.menuBarControllerDidRequestSettings()
     }
 
-    @objc private func quitApp() {
+    @objc private func quitApplication() {
         NSApplication.shared.terminate(nil)
-    }
-
-    func updateIcon(enabled: Bool) {
-        if let button = statusItem?.button {
-            button.image?.isTemplate = enabled
-            if !enabled {
-                button.alphaValue = 0.5
-            } else {
-                button.alphaValue = 1.0
-            }
-        }
     }
 }
 

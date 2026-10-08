@@ -64,7 +64,7 @@ final class SettingsManager: ObservableObject {
         static let ringThickness = "ringThickness"
         static let effectDuration = "effectDuration"
         static let launchAtLogin = "launchAtLogin"
-        static let showInDock = "showInDock"
+        static let showMenuBarIcon = "showMenuBarIcon"
         // Crosshair settings
         static let crosshairLength = "crosshairLength"
         static let crosshairThickness = "crosshairThickness"
@@ -169,10 +169,13 @@ final class SettingsManager: ObservableObject {
 
     @Published private(set) var launchAtLoginError: String?
 
-    @Published var showInDock: Bool {
+    /// When on, OnePointer runs as a menu-bar-only app: it disappears from the
+    /// Dock and from ⌘⇥, and the status item in the menu bar becomes the only
+    /// way to reach the settings window or quit.
+    @Published var showMenuBarIcon: Bool {
         didSet {
-            UserDefaults.standard.set(showInDock, forKey: Keys.showInDock)
-            updateDockVisibility()
+            UserDefaults.standard.set(showMenuBarIcon, forKey: Keys.showMenuBarIcon)
+            applyActivationPolicy()
         }
     }
 
@@ -251,7 +254,7 @@ final class SettingsManager: ObservableObject {
         ringThickness = defaults.object(forKey: Keys.ringThickness) as? CGFloat ?? 3.0
         effectDuration = defaults.object(forKey: Keys.effectDuration) as? CGFloat ?? 0.3
         launchAtLogin = defaults.object(forKey: Keys.launchAtLogin) as? Bool ?? false
-        showInDock = defaults.object(forKey: Keys.showInDock) as? Bool ?? true
+        showMenuBarIcon = defaults.object(forKey: Keys.showMenuBarIcon) as? Bool ?? false
 
         // Crosshair settings
         crosshairLength = defaults.object(forKey: Keys.crosshairLength) as? CGFloat ?? 40.0
@@ -308,12 +311,14 @@ final class SettingsManager: ObservableObject {
         }
     }
 
-    private func updateDockVisibility() {
-        if showInDock {
-            NSApp.setActivationPolicy(.regular)
-        } else {
-            NSApp.setActivationPolicy(.accessory)
-        }
+    /// Applies the activation policy that matches `showMenuBarIcon`. Called on
+    /// every change and once at launch, before the app is on screen, so the
+    /// Dock icon never flashes for menu-bar-only users.
+    ///
+    /// A regular app appears in the Dock and in ⌘⇥; an accessory app appears in
+    /// neither but can still show windows and take focus when asked.
+    func applyActivationPolicy() {
+        NSApp.setActivationPolicy(showMenuBarIcon ? .accessory : .regular)
     }
 
     func resetToDefaults() {
@@ -331,7 +336,7 @@ final class SettingsManager: ObservableObject {
         ringThickness = 3.0
         effectDuration = 0.3
         launchAtLogin = false
-        showInDock = true
+        showMenuBarIcon = false
         // Crosshair defaults
         crosshairLength = 40.0
         crosshairThickness = 2.0

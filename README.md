@@ -19,13 +19,17 @@ double-tapping a configurable modifier key.
 - 多显示器与全屏空间支持
 - `⌃⌥⌘H`：随时开关演示模式
 - 持续高亮页顶部提供醒目的主开关，可一键开启或关闭
+- 可选菜单栏模式：勾选“隐藏 Dock 并显示到菜单栏”后，OnePointer 从 Dock 与
+  ⌘⇥ 中消失，改为在菜单栏右上角常驻一个图标，点击可打开设置或退出
 - 可选开机启动，默认关闭
 - Sparkle 安全自动更新，也可手动“检查更新”
 - 简体中文与英文界面
 - 设置窗口提供 OneApps.Studio 的更多 App 入口
 
-OnePointer 是普通 Dock App，不创建菜单栏图标。关闭设置窗口后，App
-仍会在后台运行；再次从 Spotlight 或“应用程序”打开即可显示窗口。
+OnePointer 默认是普通 Dock App，不创建菜单栏图标。打开设置中的“隐藏 Dock 并
+显示到菜单栏”后，App 会切换为菜单栏常驻：Dock 与 ⌘⇥ 中都不再出现，菜单栏右
+上角的图标成为唯一入口，点击可打开设置窗口或退出。关闭设置窗口后，App 仍会在
+后台运行；在 Dock 模式下，再次从 Spotlight 或“应用程序”打开即可显示窗口。
 
 ### 权限
 
@@ -89,14 +93,20 @@ DMG 双重公证、Sparkle appcast 签名和校验和生成。
 - Multiple-display and full-screen Space support
 - `⌃⌥⌘H` toggles presentation mode
 - A prominent primary control enables or disables persistent highlighting
+- An optional menu-bar mode: “Hide the Dock and show in the menu bar” removes
+  OnePointer from the Dock and from ⌘⇥ and keeps an icon at the right of the menu
+  bar instead, where clicking opens Settings or quits the app
 - Optional launch at login, off by default
 - Secure Sparkle automatic updates and a manual “Check for Updates” action
 - Full English and Simplified Chinese interface
 - A settings-window link for discovering more apps from OneApps.Studio
 
-OnePointer is a regular Dock app and does not create a menu-bar item. Closing
-the settings window leaves the app running; open it again from Spotlight or
-Applications to bring the window back.
+OnePointer is a regular Dock app by default and does not create a menu-bar item.
+Turning on “Hide the Dock and show in the menu bar” in Settings switches it to
+menu-bar mode: it disappears from the Dock and from ⌘⇥, and the menu-bar icon
+becomes the only entry point, opening the settings window or quitting the app.
+Closing the settings window leaves the app running; in Dock mode, open it again
+from Spotlight or Applications to bring the window back.
 
 ### Permission
 

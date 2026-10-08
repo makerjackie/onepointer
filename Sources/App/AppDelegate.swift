@@ -11,12 +11,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     private let hotKeyManager = HotKeyManager()
     private let appModel = AppModel()
     private var updaterController: SPUStandardUpdaterController?
+    private var menuBarController: MenuBarController?
     private lazy var settingsWindowController = SettingsWindowController(appModel: appModel)
 
     private var cancellables = Set<AnyCancellable>()
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        // The activation policy has to be resolved before the app is on screen,
+        // otherwise the Dock icon flashes for users who keep OnePointer in the
+        // menu bar only. The status item is registered in
+        // applicationDidFinishLaunching, the conventional point for NSStatusBar.
+        SettingsManager.shared.applyActivationPolicy()
+    }
+
     func applicationDidFinishLaunching(_ notification: Notification) {
-        NSApp.setActivationPolicy(.regular)
         setupApplicationMenu()
         setupOverlays()
         setupMouseMonitor()
@@ -24,6 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupUpdater()
         setupBindings()
         setupQuickFocus()
+        updateMenuBarItem(showMenuBarIcon: SettingsManager.shared.showMenuBarIcon)
         settingsWindowController.showSettings()
     }
 
@@ -31,6 +40,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         overlayController = OverlayWindowController()
         overlayController?.setupOverlays()
         transientFocusController = TransientFocusOverlayController()
+    }
+
+    /// Creates or removes the menu bar status item.
+    ///
+    /// The setting is passed in rather than read back from `SettingsManager`:
+    /// `@Published` publishes from `willSet`, so a subscriber that reads the
+    /// property itself still gets the previous value. Reading it here made the
+    /// status item react exactly one toggle late — turning the setting off
+    /// created the icon and turning it on removed it. The Dock/⌘⇥ visibility is
+    /// handled by `SettingsManager`, which applies the matching activation policy
+    /// in its own `didSet` and once at launch.
+    private func updateMenuBarItem(showMenuBarIcon: Bool) {
+        guard showMenuBarIcon else {
+            menuBarController?.invalidate()
+            menuBarController = nil
+            return
+        }
+
+        guard menuBarController == nil else { return }
+        let controller = MenuBarController()
+        controller.delegate = self
+        menuBarController = controller
     }
 
     private func setupMouseMonitor() {
@@ -80,6 +111,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setupBindings() {
+        SettingsManager.shared.$showMenuBarIcon
+            .removeDuplicates()
+            .sink { [weak self] showMenuBarIcon in
+                self?.updateMenuBarItem(showMenuBarIcon: showMenuBarIcon)
+            }
+            .store(in: &cancellables)
+
         SettingsManager.shared.$isEnabled
             .sink { [weak self] enabled in
                 self?.overlayController?.setHighlightsVisible(enabled)
@@ -98,25 +136,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             .removeDuplicates { previous, current in
                 previous.0 == current.0 && previous.1 == current.1
             }
-            .sink { [weak self] _, _ in
-                self?.configureDoubleModifierMonitor()
+            .sink { [weak self] shortcutEnabled, modifier in
+                // Use the delivered values: reading the settings back inside a
+                // sink of a @Published property returns the *previous* value,
+                // which left the monitor and the permission prompt one change
+                // behind the toggle.
+                self?.configureDoubleModifierMonitor(
+                    shortcutEnabled: shortcutEnabled,
+                    modifier: modifier
+                )
                 self?.appModel.presentInputMonitoringOnboardingIfNeeded(
-                    quickFocusEnabled: SettingsManager.shared.quickFocusShortcutEnabled
+                    quickFocusEnabled: shortcutEnabled
                 )
             }
             .store(in: &cancellables)
     }
 
-    private func configureDoubleModifierMonitor() {
-        guard
-            SettingsManager.shared.quickFocusShortcutEnabled,
-            appModel.isInputMonitoringGranted
-        else {
+    /// The two parameters default to the current settings so that callers that
+    /// are not reacting to a change (a permission change, or launch) can simply
+    /// re-read them; the subscriber in `setupBindings` passes the values it was
+    /// handed, because the property it would read is still the old one.
+    private func configureDoubleModifierMonitor(
+        shortcutEnabled: Bool = SettingsManager.shared.quickFocusShortcutEnabled,
+        modifier: QuickFocusModifier = SettingsManager.shared.quickFocusModifier
+    ) {
+        guard shortcutEnabled, appModel.isInputMonitoringGranted else {
             doubleModifierMonitor?.stop()
             return
         }
 
-        if doubleModifierMonitor?.start(for: SettingsManager.shared.quickFocusModifier) == false {
+        if doubleModifierMonitor?.start(for: modifier) == false {
             appModel.refreshInputMonitoringState()
         }
     }
@@ -185,6 +234,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidBecomeActive(_ notification: Notification) {
         appModel.refreshInputMonitoringState()
+    }
+}
+
+extension AppDelegate: MenuBarControllerDelegate {
+    func menuBarControllerDidRequestSettings() {
+        settingsWindowController.showSettings()
     }
 }
 
